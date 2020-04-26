@@ -4,8 +4,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.myapplication.Model.RoutineModel;
-
 public class GlobalState extends ViewModel {
 
     private MutableLiveData<String>  sharedString;

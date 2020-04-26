@@ -53,4 +53,9 @@
             app:argType="string"
             android:defaultValue="nombrecit" />
     </fragment>
+    <fragment
+        android:id="@+id/listRoutineFragment"
+        android:name="com.example.myapplication.ui.Routine.ListRoutineFragment"
+        android:label="fragment_list_routine"
+        tools:layout="@layout/fragment_list_routine" />
 </navigation>
