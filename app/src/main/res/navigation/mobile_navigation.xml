@@ -55,6 +55,12 @@
             android:defaultValue="nombrecit" />
     </fragment>
     <fragment
+
+        android:id="@+id/listRoutineFragment"
+        android:name="com.example.myapplication.ui.Routine.ListRoutineFragment"
+        android:label="fragment_list_routine"
+        tools:layout="@layout/fragment_list_routine" />
+<fragment
         style = "AppTheme.NoActionBar"
         android:id="@+id/login"
         android:name="com.example.myapplication.ui.login.login"
@@ -63,4 +69,5 @@
             android:id="@+id/go_to_main"
             app:destination="@id/nav_home" />
     </fragment>
+
 </navigation>
