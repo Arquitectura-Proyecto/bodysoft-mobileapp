@@ -17,19 +17,7 @@ public class RoutineModel {
     public RoutineModel(){}
 
     public static  void getAllRoutines(ApolloCall.Callback<GetRoutinesQuery.Data>listener){
-       /* ModelListener<List<GetRoutinesQuery.GetAllRoutine>>modelListener=new ModelListener<List<GetRoutinesQuery.GetAllRoutine>>() {
-            @Override
-            public void onSuccess(List<GetRoutinesQuery.GetAllRoutine> data) {
-                listener.onResponse(data);
-            }
 
-            @Override
-            public void onError(Exception e) {
-            listener.onError(e);
-            }
-        };
-
-        */
         RoutineRepository.getAllRoutines(new ApolloCall.Callback<GetRoutinesQuery.Data>() {
             @Override
             public void onResponse(@NotNull Response<GetRoutinesQuery.Data> response) {

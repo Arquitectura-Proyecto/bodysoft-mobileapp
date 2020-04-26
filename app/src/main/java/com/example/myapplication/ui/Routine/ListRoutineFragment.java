@@ -57,27 +57,7 @@ public class ListRoutineFragment extends Fragment {
         globalState= ViewModelProviders.of(getActivity()).get(GlobalState.class);
         txt=(TextView)view.findViewById(R.id.txtlistarutinas);
         listview=(ListView)view.findViewById(R.id.list_routines);
-       /* ModelListener<List<GetRoutinesQuery.GetAllRoutine>>mylistener=new ModelListener<List<GetRoutinesQuery.GetAllRoutine>>() {
-            @Override
-            public void onSuccess(List<GetRoutinesQuery.GetAllRoutine> data) {
-                ArrayList<String>nombres=new ArrayList<>();
-                for(GetRoutinesQuery.GetAllRoutine s : data){
-                    nombres.add(s.name());
-                }
-                adaptador=new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1,nombres);
-                //listview.setAdapter(adaptador);
-                //txt.setText("sirvio");
 
-
-
-            }
-
-            @Override
-            public void onError(Exception e) {
-               // Toast.makeText(getContext(),"Hubo un error"+ e.getMessage(),Toast.LENGTH_SHORT).show();
-                System.out.println("el error fue "+e.getMessage());
-            }
-        };*/
         RoutineModel.getAllRoutines(new ApolloCall.Callback<GetRoutinesQuery.Data>() {
             @Override
             public void onResponse(@NotNull Response<GetRoutinesQuery.Data> response) {
