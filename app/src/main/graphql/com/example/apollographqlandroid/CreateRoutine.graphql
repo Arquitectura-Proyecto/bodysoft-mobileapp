@@ -1,0 +1,9 @@
+mutation crearRutina($price:Float!,$name:String!,$description:String!,$link_preview:String!,$idType:Int!,$token:String!){
+    createRoutine(newRoutine:{
+        price:$price
+        name:$name
+        description:$description
+        link_preview:$link_preview
+        idType:$idType
+    },token:$token)
+}

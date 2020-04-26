@@ -1,0 +1,13 @@
+query getRoutines{
+  getAllRoutines{
+    id
+    idOwner
+    rating
+    numRaitings
+    price
+    name
+    description
+    linkPreview
+
+  }
+}
