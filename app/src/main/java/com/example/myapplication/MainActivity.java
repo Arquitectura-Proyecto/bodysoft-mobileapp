@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+/*Ejemplo mutacion
         apolloClient.mutate(CrearRutinaMutation.builder().price(200.3).name("nombre de android").description("desde el celular").link_preview("www.google.com").idType(2).token("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiUHJvZmlsZSI6ZmFsc2UsIlR5cGVJRCI6MSwiZXhwIjoxNTg3OTI5ODczfQ.rX3r7JAEaWYfs1qc4-sS-_DQoV7WOuI12mw0vYTHp_Y").build()).enqueue(
                 new ApolloCall.Callback<CrearRutinaMutation.Data>() {
                     @Override
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                         System.out.println( e);
                     }
                 }
-        );
+        );*/
         ////
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
