@@ -69,7 +69,8 @@
             android:id="@+id/go_to_main"
             app:destination="@id/nav_home" />
     </fragment>
-<!--Daniela-->
+
+    <!--Daniela-->
 
 
 
@@ -118,7 +119,11 @@
 
 <!--Andres-->
 
-
+    <fragment
+        android:id="@+id/rootRoutineFragment"
+        android:name="com.example.myapplication.ui.Routine.RootRoutineFragment"
+        android:label="fragment_root_routine"
+        tools:layout="@layout/fragment_root_routine" />
 
 
 
