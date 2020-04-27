@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.login;
+package com.example.myapplication.ui.authentication.login;
 
 import android.os.Bundle;
 
@@ -12,19 +12,14 @@ import android.view.ViewGroup;
 import com.example.myapplication.R;
 import android.text.Editable;
 import android.view.KeyEvent;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.myapplication.ui.GlobalState;
-import com.example.myapplication.ui.slideshow.SlideshowViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
@@ -33,7 +28,7 @@ import androidx.navigation.Navigation;
 /**
  * Fragment representing the login screen for Shrine.
  */
-public class login extends Fragment {
+public class loginFragment extends Fragment {
 
     GlobalState globalState;
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,35 +41,46 @@ public class login extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         globalState= ViewModelProviders.of(getActivity()).get(GlobalState.class);
+
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         return view;
     }
 
-   /*
-        In reality, this will have more complex logic including, but not limited to, actual
-        authentication of the username and password.
-     */
 
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+        final NavController navController= Navigation.findNavController(view);
+        final Bundle prop=new Bundle();
         final TextInputLayout passwordTextInput = view.findViewById(R.id.password_text_input);
+
+        final TextInputLayout userTextInput = view.findViewById(R.id.User_text_input);
         final TextInputEditText passwordEditText = view.findViewById(R.id.password_edit_text);
         MaterialButton nextButton = view.findViewById(R.id.next_button);
 
-        final NavController navController= Navigation.findNavController(view);
-        final Bundle prop=new Bundle();
+        MaterialButton registerButton = view.findViewById(R.id.cancel_button);
+
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                navController.navigate(R.id.go_to_register);
+            }
+        });
+
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!isPasswordValid(passwordEditText.getText())) {
                     passwordTextInput.setError(getString(R.string.shr_error_password));
+                    userTextInput.setError("");
                 } else {
                     passwordTextInput.setError(null); // Clear the error
+                    userTextInput.setError(null);
                     NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.login, true).build();
-
                     navController.navigate(R.id.go_to_main,null,navOption);
+                    ((AppCompatActivity)getActivity()).getSupportActionBar().show();
                 }
 
             }
@@ -89,12 +95,9 @@ public class login extends Fragment {
             }
         });
     }
+
     private boolean isPasswordValid(@Nullable Editable text) {
         return text != null && text.length() >= 8;
     }
-    @Override
-    public void onStop() {
-        super.onStop();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
-    }
+
 }

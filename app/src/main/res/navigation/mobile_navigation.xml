@@ -63,14 +63,25 @@
 <fragment
         style = "AppTheme.NoActionBar"
         android:id="@+id/login"
-        android:name="com.example.myapplication.ui.login.login"
+        android:name="com.example.myapplication.ui.authentication.login.loginFragment"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/go_to_main"
+            app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/go_to_register"
+            app:destination="@id/Register" />
+    </fragment>
+<!--Daniela-->
+    <fragment
+        style = "AppTheme.NoActionBar"
+        android:id="@+id/Register"
+        android:name="com.example.myapplication.ui.authentication.register.RegisterFragment"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/go_to_main"
             app:destination="@id/nav_home" />
     </fragment>
-<!--Daniela-->
-
 
 
 

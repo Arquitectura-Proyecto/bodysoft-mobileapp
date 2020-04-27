@@ -17,7 +17,7 @@
     <string name="shr_hint_password">Contraseña</string>
 
     <string name="home_second">Home Second</string>
-    <string name="shr_error_password">Contraseña debe ser mayor a 8 caracteres</string>
+    <string name="shr_error_password">Contraseña o usuario incorrecto</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
