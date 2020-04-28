@@ -7,12 +7,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.api.Response;
@@ -36,8 +39,9 @@ import java.util.List;
 public class RootRoutineFragment extends Fragment {
     RoutineStore routineStore;
     private RecyclerView routineRecycler;
-
+    private Button goToRegisterRoutine;
     private RoutineModel routineModel;
+    NavController navController;
     public RootRoutineFragment() {
         // Required empty public constructor
     }
@@ -55,6 +59,7 @@ public class RootRoutineFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         this.routineStore= ViewModelProviders.of(getActivity()).get(RoutineStore.class);
         //listaRutinas=new ArrayList<>();
+        this.goToRegisterRoutine=(Button)view.findViewById(R.id.btnGotoRoutineRegister);
         routineRecycler=(RecyclerView)view.findViewById(R.id.recyclerListRoutine);
         routineStore.getListRoutine().observe(getViewLifecycleOwner(), new Observer<List<GetRoutinesByIdOwnerQuery.Routine>>() {
             @Override
@@ -65,8 +70,10 @@ public class RootRoutineFragment extends Fragment {
                 routineRecycler.setAdapter(adapter);
             }
         });
+        navController= Navigation.findNavController(view);
+        this.goToRegisterRoutine=(Button)view.findViewById(R.id.btnGotoRoutineRegister);
 
-
+        this.goToRegisterRoutine.setOnClickListener(new GoToRoutineRegisterListener());
 
 
 
@@ -76,7 +83,7 @@ public class RootRoutineFragment extends Fragment {
 
 
         //Test();
-        RoutineModel.getAllRoutinesByIdOwner(new getAllRotuinesByIdOwnerListener(),"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiUHJvZmlsZSI6ZmFsc2UsIlR5cGVJRCI6MSwiZXhwIjoxNTg4MDQ2MTU4fQ.mtegx-VwYto0DNRuHHJ0bHnoSZ1ZQPZx5Rv5d6tRUn0");
+        RoutineModel.getAllRoutinesByIdOwner(new getAllRotuinesByIdOwnerListener(),"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiUHJvZmlsZSI6ZmFsc2UsIlR5cGVJRCI6MSwiZXhwIjoxNTg4MDU0MDgyfQ.q-CU6b0FodwEZWM9-Fba5-aPC0PNmarKp0asaW8IMHM");
       /*  routineRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         //Test();
         AdapterCardRoutine adapter=new AdapterCardRoutine(listaRutinas,this.getContext());
@@ -117,5 +124,12 @@ public class RootRoutineFragment extends Fragment {
         List<GetRoutinesByIdOwnerQuery.Routine> listaRutinas=new ArrayList<>();
                 listaRutinas.add(routine);
                 routineStore.setRoutines(listaRutinas);
+    }
+    private class GoToRoutineRegisterListener implements View.OnClickListener{
+
+        @Override
+        public void onClick(View v) {
+            navController.navigate(R.id.fromRootRoutineToRegisterRoutine);
+        }
     }
 }
