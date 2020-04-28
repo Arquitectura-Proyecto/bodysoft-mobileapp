@@ -5,6 +5,7 @@ import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.example.apollographqlandroid.AuthAuthenticationQuery;
 import com.example.apollographqlandroid.AuthCreateUserMutation;
+import com.example.apollographqlandroid.AuthValidateAuthTokenQuery;
 import com.example.apollographqlandroid.AuthVerifyAcountMutation;
 import com.example.apollographqlandroid.GetRoutinesQuery;
 import com.example.myapplication.Model.Repositories.AuthRepository;
@@ -65,4 +66,20 @@ public class AuthModel {
             }
         });
     }
+
+    public static void authValidateAuthToken(String token,ApolloCall.Callback<AuthValidateAuthTokenQuery.Data>listener) {
+
+        authRepository.authValidateAuthToken(token, new ApolloCall.Callback<AuthValidateAuthTokenQuery.Data>() {
+            @Override
+            public void onResponse(@NotNull Response<AuthValidateAuthTokenQuery.Data> response) {
+                listener.onResponse(response);
+            }
+
+            @Override
+            public void onFailure(@NotNull ApolloException e) {
+
+            }
+        });
+    }
+
 }
