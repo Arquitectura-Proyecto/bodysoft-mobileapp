@@ -6,7 +6,11 @@
     android:orientation="vertical"
 
     tools:context=".ui.Routine.RootRoutineFragment">
-
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agregar Rutina"
+        android:layout_gravity="center_horizontal"/>
     <!-- TODO: Update blank fragment layout -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerListRoutine"
@@ -14,6 +18,8 @@
         android:layout_height="wrap_content"
 
         />
+
+
 
 
 </LinearLayout>
