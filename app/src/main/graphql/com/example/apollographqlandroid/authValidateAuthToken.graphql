@@ -1,0 +1,10 @@
+
+query authValidateAuthToken($token: String!){
+  authValidateAuthToken(token: $token){
+        ID
+        TypeID
+        Profile
+  }
+}
+
+
