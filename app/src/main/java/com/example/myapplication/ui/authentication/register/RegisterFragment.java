@@ -19,11 +19,19 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 
+import com.apollographql.apollo.ApolloCall;
+import com.apollographql.apollo.api.Response;
+import com.apollographql.apollo.exception.ApolloException;
+import com.example.apollographqlandroid.AuthCreateUserMutation;
+import com.example.apollographqlandroid.AuthVerifyAcountMutation;
+import com.example.myapplication.Model.Models.AuthModel;
 import com.example.myapplication.R;
 import com.example.myapplication.ui.GlobalState;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+
+import org.jetbrains.annotations.NotNull;
 
 
 public class RegisterFragment extends Fragment {
@@ -59,6 +67,7 @@ public class RegisterFragment extends Fragment {
         /** Botones */
         MaterialButton nextButton = view.findViewById(R.id.next_button);
         MaterialButton next_coach_button = view.findViewById(R.id.next_coach_button);
+        MaterialButton tengocodigo = view.findViewById(R.id.tengocodigo);
         MaterialButton corfirmButton = view.findViewById(R.id.confirm_button);
 
         /** Layout */
@@ -79,12 +88,53 @@ public class RegisterFragment extends Fragment {
         TextInputLayout password_text_input = view.findViewById(R.id.password_text_input);
 
         layoutCodigo.setVisibility(View.GONE);
+        tengocodigo.setVisibility(View.GONE);
 
         /** Coach register  */
         next_coach_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String email = user_edit_text.getText().toString().trim();
+                String password = password_edit_text.getText().toString();
+                AuthModel.authCreateUser(email,password,1,new ApolloCall.Callback<AuthCreateUserMutation.Data>() {
+                    @Override
+                    public void onResponse(@NotNull Response<AuthCreateUserMutation.Data> response) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override public void run() {
+                                if(response.hasErrors()){
+                                    String error = response.errors().get(0).message().toString().substring(3);
+                                    user_text_input.setError(error);
+                                    password_text_input.setError(" ");
+                                    tengocodigo.setVisibility(View.VISIBLE);
+                                }else{
+                                    registerLayout.setVisibility(view.GONE);
+                                    layoutCodigo.setVisibility(View.VISIBLE);
+
+                                }
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onFailure(@NotNull ApolloException e) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override public void run() {
+                                System.out.println(e.getMessage());
+                            }
+                        });
+                    }
+                });
+
+            }
+        });
+
+        /** Tengo codigo**/
+        tengocodigo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 registerLayout.setVisibility(view.GONE);
+                tengocodigo.setVisibility(View.GONE);
                 layoutCodigo.setVisibility(View.VISIBLE);
             }
         });
@@ -93,19 +143,78 @@ public class RegisterFragment extends Fragment {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registerLayout.setVisibility(view.GONE);
-                layoutCodigo.setVisibility(View.VISIBLE);
+                String email = user_edit_text.getText().toString().trim();
+                String password = password_edit_text.getText().toString();
+                AuthModel.authCreateUser(email,password,2,new ApolloCall.Callback<AuthCreateUserMutation.Data>() {
+                    @Override
+                    public void onResponse(@NotNull Response<AuthCreateUserMutation.Data> response) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override public void run() {
+                                if(response.hasErrors()){
+                                    String error = response.errors().get(0).message().toString().substring(3);
+                                    user_text_input.setError(error);
+                                    password_text_input.setError(" ");
+                                }else{
+                                    registerLayout.setVisibility(view.GONE);
+                                    layoutCodigo.setVisibility(View.VISIBLE);
+                                }
+
+                            }
+                        });
+                    }
+                    //authVerifyAcount
+                    @Override
+                    public void onFailure(@NotNull ApolloException e) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override public void run() {
+                                user_text_input.setError("");
+                                password_text_input.setError("");
+                            }
+                        });
+                    }
+                });
+
             }
+
         });
 
         corfirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                    NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.login, true).build();
-                    navController.navigate(R.id.go_to_main,null,navOption);
+                String email = user_edit_text.getText().toString().trim();
+                int vcode = Integer.parseInt(confirm_edit_text.getText().toString());
+                AuthModel.authVerifyAcount(email,vcode,new ApolloCall.Callback<AuthVerifyAcountMutation.Data>() {
+                    @Override
+                    public void onResponse(@NotNull Response<AuthVerifyAcountMutation.Data> response) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override public void run() {
+                                if(response.hasErrors()){
+                                    String error = response.errors().get(0).message().toString().substring(3);
+                                    confirm_text_input.setError(error);
+                                }else{
+                                    NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.login, true).build();
+                                    navController.navigate(R.id.go_to_main,null,navOption);
 
-                     ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+                                    ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+                                }
+
+                            }
+                        });
+                    }
+                    //authVerifyAcount
+                    @Override
+                    public void onFailure(@NotNull ApolloException e) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override public void run() {
+                                user_text_input.setError("");
+                                password_text_input.setError("");
+                            }
+                        });
+                    }
+                });
+
+
 
             }
         });

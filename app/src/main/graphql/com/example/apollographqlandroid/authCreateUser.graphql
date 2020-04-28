@@ -1,7 +1,7 @@
-mutation authCreateUser($id:Int!,$TypeId:Int!,$profile:Boolean!){
+mutation authCreateUser($email:String!,$password:String!,$typeId:Int!){
     authCreateUser(authUserData:{
-        ID: $id
-        TypeID: $TypeId
-        Profile: $profile
+          Email: $email
+          Password: $password
+          TypeID: $typeId
     })
 }

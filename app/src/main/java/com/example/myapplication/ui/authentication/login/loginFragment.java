@@ -9,6 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.apollographql.apollo.ApolloCall;
+import com.apollographql.apollo.api.Response;
+import com.apollographql.apollo.exception.ApolloException;
+import com.example.apollographqlandroid.AuthAuthenticationQuery;
+import com.example.myapplication.Model.Models.AuthModel;
 import com.example.myapplication.R;
 import android.text.Editable;
 import android.view.KeyEvent;
@@ -24,6 +29,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
+
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Fragment representing the login screen for Shrine.
@@ -51,14 +58,19 @@ public class loginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        final NavController navController= Navigation.findNavController(view);
-        final Bundle prop=new Bundle();
+        final NavController navController = Navigation.findNavController(view);
+        final Bundle prop = new Bundle();
+
+
         final TextInputLayout passwordTextInput = view.findViewById(R.id.password_text_input);
-
         final TextInputLayout userTextInput = view.findViewById(R.id.User_text_input);
-        final TextInputEditText passwordEditText = view.findViewById(R.id.password_edit_text);
-        MaterialButton nextButton = view.findViewById(R.id.next_button);
 
+
+        final TextInputEditText userEditText = view.findViewById(R.id.User_edit_text);
+        final TextInputEditText passwordEditText = view.findViewById(R.id.password_edit_text);
+
+
+        MaterialButton nextButton = view.findViewById(R.id.next_button);
         MaterialButton registerButton = view.findViewById(R.id.cancel_button);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -72,32 +84,37 @@ public class loginFragment extends Fragment {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!isPasswordValid(passwordEditText.getText())) {
-                    passwordTextInput.setError(getString(R.string.shr_error_password));
-                    userTextInput.setError("");
-                } else {
-                    passwordTextInput.setError(null); // Clear the error
-                    userTextInput.setError(null);
-                    NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.login, true).build();
-                    navController.navigate(R.id.go_to_main,null,navOption);
-                    ((AppCompatActivity)getActivity()).getSupportActionBar().show();
-                }
+                String email = userEditText.getText().toString().trim();
+                String password = passwordEditText.getText().toString();
+                AuthModel.authAuthentication(email, password,new ApolloCall.Callback<AuthAuthenticationQuery.Data>() {
+                    @Override
+                    public void onResponse(@NotNull Response<AuthAuthenticationQuery.Data> response) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override public void run() {
+                                if (response.hasErrors()) {
+                                    String error = response.errors().get(0).message().toString().substring(3);
+                                    userTextInput.setError(error);
+                                    passwordTextInput.setError(" ");
+                                } else {
+                                    String token = response.data().authAuthentication().Token();
+                                    globalState.setString(token);
+                                    NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.login, true).build();
+                                    navController.navigate(R.id.go_to_main,null,navOption);
+
+                                    ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+                                }
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onFailure(@NotNull ApolloException e) {
+
+                    }
+                });
 
             }
         });
-        passwordEditText.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                if (isPasswordValid(passwordEditText.getText())) {
-                    passwordTextInput.setError(null); //Clear the error
-                }
-                return false;
-            }
-        });
-    }
-
-    private boolean isPasswordValid(@Nullable Editable text) {
-        return text != null && text.length() >= 8;
     }
 
 }

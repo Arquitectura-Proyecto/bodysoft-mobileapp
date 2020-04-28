@@ -1,30 +1,29 @@
-package com.example.myapplication.Model.Repositories;
+package com.example.myapplication.Model.Models;
 
 import com.apollographql.apollo.ApolloCall;
-import com.apollographql.apollo.ApolloClient;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.example.apollographqlandroid.AuthAuthenticationQuery;
 import com.example.apollographqlandroid.AuthCreateUserMutation;
 import com.example.apollographqlandroid.AuthVerifyAcountMutation;
 import com.example.apollographqlandroid.GetRoutinesQuery;
-import com.example.myapplication.Model.Repositories.Data.Client;
+import com.example.myapplication.Model.Repositories.AuthRepository;
+import com.example.myapplication.Model.Repositories.RoutineRepository;
+import com.example.myapplication.ui.AuthGlobalState;
+import com.example.myapplication.ui.GlobalState;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
+public class AuthModel {
+    private static AuthRepository authRepository;
+    public AuthModel(){}
 
-public class AuthRepository {
 
-    public static ApolloClient apolloClient= Client.getApolloClient();
+    AuthGlobalState globalState;
 
-    public AuthRepository(){
+    public static  void authCreateUser(String email, String password, int typeId, ApolloCall.Callback<AuthCreateUserMutation.Data>listener){
 
-    }
-    public static void authCreateUser(String email, String password, int typeId, ApolloCall.Callback<AuthCreateUserMutation.Data>listener){
-        apolloClient.mutate(AuthCreateUserMutation
-                .builder().email(email).password(password).typeId(typeId)
-                .build()).enqueue(new ApolloCall.Callback<AuthCreateUserMutation.Data>() {
+        authRepository.authCreateUser(email,password,typeId,new ApolloCall.Callback<AuthCreateUserMutation.Data>() {
             @Override
             public void onResponse(@NotNull Response<AuthCreateUserMutation.Data> response) {
                 listener.onResponse(response);
@@ -35,13 +34,11 @@ public class AuthRepository {
 
             }
         });
-
     }
 
-    public static void authVerifyAcount(String email, int vcode, ApolloCall.Callback<AuthVerifyAcountMutation.Data>listener){
-        apolloClient.mutate(AuthVerifyAcountMutation
-                .builder().email(email).vcode(vcode)
-                .build()).enqueue(new ApolloCall.Callback<AuthVerifyAcountMutation.Data>() {
+    public static  void authVerifyAcount(String email,int vcode, ApolloCall.Callback<AuthVerifyAcountMutation.Data>listener){
+
+        authRepository.authVerifyAcount(email,vcode,new ApolloCall.Callback<AuthVerifyAcountMutation.Data>() {
             @Override
             public void onResponse(@NotNull Response<AuthVerifyAcountMutation.Data> response) {
                 listener.onResponse(response);
@@ -52,26 +49,20 @@ public class AuthRepository {
 
             }
         });
-
     }
 
+    public static void authAuthentication(String email, String password,ApolloCall.Callback<AuthAuthenticationQuery.Data>listener){
 
-    public static void authAuthentication(String email, String password, ApolloCall.Callback<AuthAuthenticationQuery.Data>listener){
-        apolloClient.query(AuthAuthenticationQuery
-                .builder().email(email).password(password)
-                .build()).enqueue(new ApolloCall.Callback<AuthAuthenticationQuery.Data>() {
+        authRepository.authAuthentication(email,password,new ApolloCall.Callback<AuthAuthenticationQuery.Data>() {
             @Override
             public void onResponse(@NotNull Response<AuthAuthenticationQuery.Data> response) {
-
                 listener.onResponse(response);
             }
 
             @Override
             public void onFailure(@NotNull ApolloException e) {
 
-
             }
         });
-
     }
 }
