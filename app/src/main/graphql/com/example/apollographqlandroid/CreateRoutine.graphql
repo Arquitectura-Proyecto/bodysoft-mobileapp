@@ -7,3 +7,28 @@ mutation crearRutina($price:Float!,$name:String!,$description:String!,$link_prev
         idType:$idType
     },token:$token)
 }
+
+query getRoutinesByIdOwner($token:String!){
+    Routines:getRoutineByIdOwner(token:$token){
+        getId:id
+        getIdOwner:idOwner
+        getRaiting:rating
+        getNumRaitings:numRaitings
+        getPrice:price
+        getName:name
+        getDescription:description
+        getLinkPreview:linkPreview
+        #type {...type} asi es si quiere usar el fragmento de abajo
+        getType: type{
+            getId:id
+            getName:name
+        }
+    }
+}
+
+
+
+#fragment type on TypeRoutine{
+ #   getId:id
+  #  getName:name
+#}

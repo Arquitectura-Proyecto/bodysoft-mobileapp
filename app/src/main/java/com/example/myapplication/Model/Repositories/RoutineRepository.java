@@ -4,6 +4,7 @@ import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.ApolloClient;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
+import com.example.apollographqlandroid.GetRoutinesByIdOwnerQuery;
 import com.example.apollographqlandroid.GetRoutinesQuery;
 import com.example.myapplication.Model.Models.ModelListener;
 import com.example.myapplication.Model.Repositories.Data.Client;
@@ -23,6 +24,7 @@ public class RoutineRepository {
     public static void getAllRoutines(ApolloCall.Callback<GetRoutinesQuery.Data>listener){
         apolloClient.query(GetRoutinesQuery.builder().build()).enqueue(new ApolloCall.Callback<GetRoutinesQuery.Data>() {
             @Override
+
             public void onResponse(@NotNull Response<GetRoutinesQuery.Data> response) {
                 System.out.println("los datos son "+response.data().toString());
                 List<GetRoutinesQuery.GetAllRoutine> array= response.data().getAllRoutines();
@@ -41,8 +43,29 @@ public class RoutineRepository {
         });
 
     }
+    public static void getRoutinesByIdOwner(ApolloCall.Callback<GetRoutinesByIdOwnerQuery.Data>listener,String token){
+    apolloClient.query(GetRoutinesByIdOwnerQuery.builder().token(token).build()).enqueue(new RoutineGraphQLListener<GetRoutinesByIdOwnerQuery.Data>(listener));
+    }
 
 
+
+private static class RoutineGraphQLListener <T> extends ApolloCall.Callback<T> {
+        ApolloCall.Callback<T> callback;
+        public RoutineGraphQLListener(ApolloCall.Callback<T>callback){
+            this.callback=callback;
+        }
+
+
+    @Override
+    public void onResponse(@NotNull Response<T> response) {
+        callback.onResponse(response);
+    }
+
+    @Override
+    public void onFailure(@NotNull ApolloException e) {
+    callback.onFailure(e);
+    }
+}
 
 
 }

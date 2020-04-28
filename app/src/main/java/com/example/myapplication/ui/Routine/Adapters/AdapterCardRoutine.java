@@ -21,6 +21,7 @@ import android.widget.VideoView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.apollographqlandroid.GetRoutinesByIdOwnerQuery;
 import com.example.myapplication.Model.Entities.RoutineEntity;
 import com.example.myapplication.R;
 
@@ -30,9 +31,9 @@ import java.util.List;
 
 public class AdapterCardRoutine extends RecyclerView.Adapter<AdapterCardRoutine.ViewHolderCardRoutine> {
 
-    List<RoutineEntity> routineList;
+    List<GetRoutinesByIdOwnerQuery.Routine> routineList;
     private Context context;
-    public AdapterCardRoutine(List<RoutineEntity>listaRutinas,Context context){
+    public AdapterCardRoutine(List<GetRoutinesByIdOwnerQuery.Routine>listaRutinas, Context context){
         this.routineList=listaRutinas;
         this.context=context;
     }
@@ -55,7 +56,7 @@ public class AdapterCardRoutine extends RecyclerView.Adapter<AdapterCardRoutine.
             System.out.println("el error es "+e);
         }*/
 
-        Uri uri=Uri.parse(routineList.get(position).getLink_preview());
+        Uri uri=Uri.parse(routineList.get(position).getLinkPreview());
         holder.video.setVideoURI(uri);
         //holder.video.start();
         MediaController mediaController=new MediaController(this.context);

@@ -1,6 +1,8 @@
 package com.example.myapplication.Model.Entities;
 
-public class RoutineEntity {
+import com.example.apollographqlandroid.GetRoutinesByIdOwnerQuery;
+
+public class RoutineEntity  {
     private  int id;
     private int idOwner;
     private float raiting;
