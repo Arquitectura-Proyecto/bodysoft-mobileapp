@@ -7,11 +7,8 @@ import com.example.apollographqlandroid.AuthAuthenticationQuery;
 import com.example.apollographqlandroid.AuthCreateUserMutation;
 import com.example.apollographqlandroid.AuthValidateAuthTokenQuery;
 import com.example.apollographqlandroid.AuthVerifyAcountMutation;
-import com.example.apollographqlandroid.GetRoutinesQuery;
 import com.example.myapplication.Model.Repositories.AuthRepository;
-import com.example.myapplication.Model.Repositories.RoutineRepository;
-import com.example.myapplication.ui.AuthGlobalState;
-import com.example.myapplication.ui.GlobalState;
+import com.example.myapplication.Model.Store.AuthGlobalState;
 
 import org.jetbrains.annotations.NotNull;
 

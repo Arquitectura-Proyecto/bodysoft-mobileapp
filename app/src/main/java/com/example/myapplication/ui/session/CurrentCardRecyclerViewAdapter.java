@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.myapplication.Model.Entities.SessionEntity;
 import com.example.myapplication.R;
 
 import androidx.annotation.NonNull;
@@ -16,9 +17,9 @@ import java.util.List;
  */
 public class CurrentCardRecyclerViewAdapter extends RecyclerView.Adapter<ProductCardViewHolder> {
 
-    private List<Session> productList;
+    private List<SessionEntity> productList;
 
-    CurrentCardRecyclerViewAdapter(List<Session> productList) {
+    CurrentCardRecyclerViewAdapter(List<SessionEntity> productList) {
         this.productList = productList;
     }
 
@@ -32,7 +33,7 @@ public class CurrentCardRecyclerViewAdapter extends RecyclerView.Adapter<Product
     @Override
     public void onBindViewHolder(@NonNull ProductCardViewHolder holder, int position) {
         if (productList != null && position < productList.size()) {
-            Session product = productList.get(position);
+            SessionEntity product = productList.get(position);
             holder.productTitle.setText(product.getDate());
             holder.productSubtitle.setText(product.getIniTime().substring(0,5));
             holder.productSubtitle2.setText(product.getEndTime());

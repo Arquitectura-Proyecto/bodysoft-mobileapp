@@ -14,6 +14,7 @@ import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.example.apollographqlandroid.AuthAuthenticationQuery;
 import com.example.myapplication.Model.Models.AuthModel;
+import com.example.myapplication.Model.Store.AuthGlobalState;
 import com.example.myapplication.R;
 import android.text.Editable;
 import android.view.KeyEvent;
@@ -37,7 +38,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public class loginFragment extends Fragment {
 
-    GlobalState globalState;
+    AuthGlobalState globalState;
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -47,7 +48,7 @@ public class loginFragment extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
-        globalState= ViewModelProviders.of(getActivity()).get(GlobalState.class);
+        globalState= ViewModelProviders.of(getActivity()).get(AuthGlobalState.class);
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         return view;
@@ -57,6 +58,9 @@ public class loginFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+        this.globalState= ViewModelProviders.of(getActivity()).get(AuthGlobalState.class);
+
         super.onViewCreated(view, savedInstanceState);
         final NavController navController = Navigation.findNavController(view);
         final Bundle prop = new Bundle();

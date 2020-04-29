@@ -1,10 +1,10 @@
-package com.example.myapplication.ui;
+package com.example.myapplication.Model.Store;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class AuthGlobalState extends ViewModel {
+public class AuthGlobalState extends ViewModel{
 
         private MutableLiveData<String> sharedString;
         public AuthGlobalState(){
