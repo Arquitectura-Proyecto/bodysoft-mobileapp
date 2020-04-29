@@ -63,7 +63,7 @@ public class ListRoutineFragment extends Fragment {
             public void onResponse(@NotNull Response<GetRoutinesQuery.Data> response) {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override public void run() {
-                        txt.setText(response.data().getAllRoutines().get(0).name());
+                        //txt.setText(response.data().getAllRoutines().get(0).name());
                     }
                 });
             }

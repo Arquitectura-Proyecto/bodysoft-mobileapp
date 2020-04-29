@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/sessionFragment">
+    app:startDestination="@+id/login">
 
     <fragment
         android:id="@+id/nav_home"
@@ -72,6 +72,7 @@
             android:id="@+id/go_to_register"
             app:destination="@id/Register" />
     </fragment>
+
 <!--Daniela-->
     <fragment
         style = "AppTheme.NoActionBar"
@@ -82,6 +83,10 @@
             android:id="@+id/go_to_main"
             app:destination="@id/nav_home" />
     </fragment>
+
+
+    <!--Daniela-->
+
 
     <fragment
         android:id="@+id/sessionFragment"
@@ -133,73 +138,24 @@
 
 <!--Andres-->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--Fin Andres-->
+    <fragment
+        android:id="@+id/rootRoutineFragment"
+        android:name="com.example.myapplication.ui.Routine.RootRoutineFragment"
+        android:label="fragment_root_routine"
+        tools:layout="@layout/fragment_root_routine" >
+        <action
+            android:id="@+id/fromRootRoutineToRegisterRoutine"
+            app:destination="@id/registerRoutineFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerRoutineFragment"
+        android:name="com.example.myapplication.ui.Routine.RegisterRoutineFragment"
+        android:label="fragment_register_routine"
+        tools:layout="@layout/fragment_register_routine" />
+
+
+    <!--Fin Andres-->
 
 <!--Sergio-->
 
