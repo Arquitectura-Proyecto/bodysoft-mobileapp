@@ -37,6 +37,7 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class RootRoutineFragment extends Fragment {
+
     RoutineStore routineStore;
     private RecyclerView routineRecycler;
     private Button goToRegisterRoutine;
@@ -83,7 +84,7 @@ public class RootRoutineFragment extends Fragment {
 
 
         //Test();
-        RoutineModel.getAllRoutinesByIdOwner(new getAllRotuinesByIdOwnerListener(),"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiUHJvZmlsZSI6ZmFsc2UsIlR5cGVJRCI6MSwiZXhwIjoxNTg4MDU0MDgyfQ.q-CU6b0FodwEZWM9-Fba5-aPC0PNmarKp0asaW8IMHM");
+        RoutineModel.getAllRoutinesByIdOwner(new getAllRotuinesByIdOwnerListener(),"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiUHJvZmlsZSI6ZmFsc2UsIlR5cGVJRCI6MSwiZXhwIjoxNTg4MTQ4NjIxfQ.KZz6TiiIFGEqFfLrItLcaUb6VMeCnqm-fckO6TTTN7I");
       /*  routineRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         //Test();
         AdapterCardRoutine adapter=new AdapterCardRoutine(listaRutinas,this.getContext());

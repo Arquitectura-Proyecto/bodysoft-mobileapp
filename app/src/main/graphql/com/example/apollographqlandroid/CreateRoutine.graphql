@@ -26,6 +26,12 @@ query getRoutinesByIdOwner($token:String!){
     }
 }
 
+query getAllTypeRoutine{
+    TypeRoutines:getAllTypeRoutine{
+       getId: id
+        getName:name
+    }
+}
 
 
 #fragment type on TypeRoutine{

@@ -11,9 +11,10 @@ public class RoutineEntity  {
     private String name;
     private String description;
     private String link_preview;
-    private TypeRoutineEntity type;
+    private int idtype;
     public RoutineEntity(){}
-    public RoutineEntity(int id, int idOwner, float raiting, int numRaitings, float price, String name, String description, String link_preview, TypeRoutineEntity type) {
+
+    public RoutineEntity(int id, int idOwner, float raiting, int numRaitings, float price, String name, String description, String link_preview, int idtype) {
         this.id = id;
         this.idOwner = idOwner;
         this.raiting = raiting;
@@ -22,7 +23,7 @@ public class RoutineEntity  {
         this.name = name;
         this.description = description;
         this.link_preview = link_preview;
-        this.type = type;
+        this.idtype = idtype;
     }
 
     public int getId() {
@@ -89,11 +90,11 @@ public class RoutineEntity  {
         this.link_preview = link_preview;
     }
 
-    public TypeRoutineEntity getType() {
-        return type;
+    public int getIdtype() {
+        return idtype;
     }
 
-    public void setType(TypeRoutineEntity type) {
-        this.type = type;
+    public void setIdtype(int idtype) {
+        this.idtype = idtype;
     }
 }

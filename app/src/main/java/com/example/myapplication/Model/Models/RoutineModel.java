@@ -5,6 +5,8 @@ import android.graphics.ColorSpace;
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
+import com.example.apollographqlandroid.CrearRutinaMutation;
+import com.example.apollographqlandroid.GetAllTypeRoutineQuery;
 import com.example.apollographqlandroid.GetRoutinesByIdOwnerQuery;
 import com.example.apollographqlandroid.GetRoutinesQuery;
 import com.example.myapplication.Model.Entities.RoutineEntity;
@@ -54,4 +56,32 @@ public class RoutineModel {
         };
         RoutineRepository.getRoutinesByIdOwner(ModelListener,token);
 }
+
+
+    public static void getAllTypeRoutine(ApolloCall.Callback<GetAllTypeRoutineQuery.Data>listener){
+        RoutineRepository.getAllTypeRoutine(new ApolloCall.Callback<GetAllTypeRoutineQuery.Data>() {
+            @Override
+            public void onResponse(@NotNull Response<GetAllTypeRoutineQuery.Data> response) {
+                listener.onResponse(response);
+            }
+
+            @Override
+            public void onFailure(@NotNull ApolloException e) {
+            listener.onFailure(e);
+            }
+        });
+    }
+    public static void RegisterRoutine(ApolloCall.Callback<CrearRutinaMutation.Data>listener,RoutineEntity newroutineEntity,String token){
+        RoutineRepository.registerRoutine(new ApolloCall.Callback<CrearRutinaMutation.Data>() {
+            @Override
+            public void onResponse(@NotNull Response<CrearRutinaMutation.Data> response) {
+                listener.onResponse(response);
+            }
+
+            @Override
+            public void onFailure(@NotNull ApolloException e) {
+            listener.onFailure(e);
+            }
+        },newroutineEntity,token);
+    }
 }
