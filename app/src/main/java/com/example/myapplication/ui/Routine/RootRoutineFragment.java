@@ -26,6 +26,7 @@ import com.example.myapplication.Model.Entities.TypeRoutineEntity;
 import com.example.myapplication.Model.Models.RoutineModel;
 import com.example.myapplication.Model.Store.RoutineStore;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.GlobalState;
 import com.example.myapplication.ui.Routine.Adapters.AdapterCardRoutine;
 
 import org.jetbrains.annotations.NotNull;
@@ -84,7 +85,7 @@ public class RootRoutineFragment extends Fragment {
 
 
         //Test();
-        RoutineModel.getAllRoutinesByIdOwner(new getAllRotuinesByIdOwnerListener(),"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiUHJvZmlsZSI6ZmFsc2UsIlR5cGVJRCI6MSwiZXhwIjoxNTg4MTQ4NjIxfQ.KZz6TiiIFGEqFfLrItLcaUb6VMeCnqm-fckO6TTTN7I");
+        RoutineModel.getAllRoutinesByIdOwner(new getAllRotuinesByIdOwnerListener(), GlobalState.getToken());
       /*  routineRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         //Test();
         AdapterCardRoutine adapter=new AdapterCardRoutine(listaRutinas,this.getContext());

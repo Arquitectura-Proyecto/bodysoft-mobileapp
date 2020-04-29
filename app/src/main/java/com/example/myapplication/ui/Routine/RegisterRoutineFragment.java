@@ -28,6 +28,7 @@ import com.example.myapplication.Model.Models.RoutineModel;
 import com.example.myapplication.Model.Repositories.RoutineRepository;
 import com.example.myapplication.Model.Store.RoutineStore;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.GlobalState;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.jaredrummler.materialspinner.MaterialSpinner;
@@ -137,7 +138,7 @@ public class RegisterRoutineFragment extends Fragment {
                     public void onFailure(@NotNull ApolloException e) {
                         System.out.println("error es "+e.getMessage());
                     }
-                },routineEntity,"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiUHJvZmlsZSI6ZmFsc2UsIlR5cGVJRCI6MSwiZXhwIjoxNTg4MTQ4NjIxfQ.KZz6TiiIFGEqFfLrItLcaUb6VMeCnqm-fckO6TTTN7I");
+                },routineEntity, GlobalState.getToken());
 
             }catch (Exception e){
                 Toast.makeText(v.getContext(),
