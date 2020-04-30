@@ -24,6 +24,7 @@ public class RoutineRepository {
     public RoutineRepository(){
 
     }
+
     public static void getAllRoutines(ApolloCall.Callback<GetRoutinesQuery.Data>listener){
         apolloClient.query(GetRoutinesQuery.builder().build()).enqueue(new ApolloCall.Callback<GetRoutinesQuery.Data>() {
             @Override

@@ -11,6 +11,7 @@ import java.util.List;
 
 public class SessionStore extends ViewModel {
 
+    /*
     private MutableLiveData<List<GetCurrentbyIdQuery.Schedule>>listRoutine;
     private MutableLiveData<List<GetCurrentbyIdQuery.Schedule>>CurrentRoutine;
     private MutableLiveData<List<GetCurrentbyIdQuery.Schedule>>AvaibleRutine;
@@ -41,11 +42,11 @@ public class SessionStore extends ViewModel {
         List<GetCurrentbyIdQuery.Schedule> list = new ArrayList();
 
         for (GetCurrentbyIdQuery.Schedule schedule:listA) {
-            if(schedule.status().id_status()==status){
+            if(schedule.getStatus().getIdStatus()==status){
                 list.add(schedule);
             }
         }
         return list;
-    }
+    }*/
 
 }

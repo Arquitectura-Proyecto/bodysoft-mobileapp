@@ -23,13 +23,14 @@ public class SessionRepository {
                 .build()).enqueue(new ApolloCall.Callback<GetCurrentbyIdQuery.Data>() {
             @Override
             public void onResponse(@NotNull Response<GetCurrentbyIdQuery.Data> response) {
+                System.out.println("los datos son "+response.data().toString());
                 listener.onResponse(response);
             }
 
             @Override
             public void onFailure(@NotNull ApolloException e) {
-
-
+                System.out.println("++++++++++++++ error en repo");
+                e.printStackTrace();
             }
         });
 

@@ -47,29 +47,22 @@ public class SessionFragment extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment with the ProductGrid theme
         View view = inflater.inflate(R.layout.fragment_session, container, false);
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
         this.sessionStore= ViewModelProviders.of(getActivity()).get(SessionStore.class);
         this.globalState= ViewModelProviders.of(getActivity()).get(AuthGlobalState.class);
 
         String token = globalState.getSharedString().getValue();
-        System.out.println("hola    +++++++"+token);
-
         SessionModel.getCurrentbyId(token,new ApolloCall.Callback<GetCurrentbyIdQuery.Data>() {
             @Override
             public void onResponse(@NotNull Response<GetCurrentbyIdQuery.Data> response) {
+                System.out.println("+++++++ entre ++++++");
                 getActivity().runOnUiThread(new Runnable() {
                     @Override public void run() {
                         if (response.hasErrors()) {
                             String error = response.errors().get(0).message().toString().substring(3);
-
+                            System.out.println("++++++++++++ errorr+++++++++");
                         } else {
-                            sessionStore.setSession(response.data().schedule());
+                            System.out.println("++++++++++++ No    errorr+++++++++");
+                            //sessionStore.setSession(response.data().schedule());
 
                             RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
                             recyclerView.setHasFixedSize(true);
@@ -90,16 +83,24 @@ public class SessionFragment extends Fragment {
                             int largePadding = getResources().getDimensionPixelSize(R.dimen.shr_product_grid_spacing);
                             int smallPadding = getResources().getDimensionPixelSize(R.dimen.shr_product_grid_spacing_small);
                             recyclerView.addItemDecoration(new ProductGridItemDecoration(largePadding, smallPadding));
-                         }
+                        }
                     }
                 });
             }
 
             @Override
             public void onFailure(@NotNull ApolloException e) {
-
+                System.out.println("++++++++++++ error appollo r+++++++++");
             }
         });
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
 
 
         // Set up the RecyclerView
