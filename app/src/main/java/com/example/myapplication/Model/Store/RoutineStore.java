@@ -13,12 +13,14 @@ import com.example.myapplication.Model.Entities.RoutineEntity;
 import java.util.List;
 
 public class RoutineStore extends ViewModel {
+    private MutableLiveData<GetRoutinesByIdOwnerQuery.Routine>InformationRoutine;
     private MutableLiveData<List<GetAllTypeRoutineQuery.TypeRoutine>>listTypeRoutines;
     private MutableLiveData<List<GetRoutinesByIdOwnerQuery.Routine>>listRoutine;
     public RoutineStore(){
 
         this.listRoutine=new MutableLiveData<>();
         this.listTypeRoutines=new MutableLiveData<>() ;
+        this.InformationRoutine=new MutableLiveData<>();
     }
     public void setRoutines(List<GetRoutinesByIdOwnerQuery.Routine> listRoutine){
         this.listRoutine.setValue(listRoutine);
@@ -32,4 +34,11 @@ public class RoutineStore extends ViewModel {
     public LiveData<List<GetAllTypeRoutineQuery.TypeRoutine>> getTypeRoutines(){
         return this.listTypeRoutines;
     }
+    public void setRoutineInformation(GetRoutinesByIdOwnerQuery.Routine routine){
+        this.InformationRoutine.setValue(routine);
+    }
+    public LiveData<GetRoutinesByIdOwnerQuery.Routine>getInformationRoutine(){
+        return this.InformationRoutine;
+    };
+
 }

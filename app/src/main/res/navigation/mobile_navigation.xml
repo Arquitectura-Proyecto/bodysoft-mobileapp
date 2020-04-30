@@ -128,12 +128,20 @@
             android:id="@+id/fromRootRoutineToRegisterRoutine"
             app:destination="@id/registerRoutineFragment"
             app:enterAnim="@anim/nav_default_pop_enter_anim" />
+        <action
+            android:id="@+id/fromRootRoutineFragment_to_routineInformationFragment"
+            app:destination="@id/routineInformationFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerRoutineFragment"
         android:name="com.example.myapplication.ui.Routine.RegisterRoutineFragment"
         android:label="fragment_register_routine"
         tools:layout="@layout/fragment_register_routine" />
+    <fragment
+        android:id="@+id/routineInformationFragment"
+        android:name="com.example.myapplication.ui.Routine.RoutineInformationFragment"
+        android:label="fragment_routine_information"
+        tools:layout="@layout/fragment_routine_information" />
 
 
     <!--Fin Andres-->

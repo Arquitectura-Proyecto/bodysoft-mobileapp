@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.Routine.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,34 +14,42 @@ import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apollographqlandroid.GetRoutinesByIdOwnerQuery;
 import com.example.myapplication.Model.Entities.RoutineEntity;
+import com.example.myapplication.Model.Store.RoutineStore;
 import com.example.myapplication.R;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
-public class AdapterCardRoutine extends RecyclerView.Adapter<AdapterCardRoutine.ViewHolderCardRoutine> {
+public class AdapterCardRoutine extends RecyclerView.Adapter<AdapterCardRoutine.ViewHolderCardRoutine>  {
 
     List<GetRoutinesByIdOwnerQuery.Routine> routineList;
+    NavController navigationController;
     private Context context;
-    public AdapterCardRoutine(List<GetRoutinesByIdOwnerQuery.Routine>listaRutinas, Context context){
+    public AdapterCardRoutine(List<GetRoutinesByIdOwnerQuery.Routine>listaRutinas, Context context,NavController navController){
         this.routineList=listaRutinas;
         this.context=context;
+        this.navigationController=navController;
     }
     @NonNull
     @Override
     public ViewHolderCardRoutine onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_routines,parent,false);//parent para ajustarlo al layout del padre
+        //view.setOnClickListener(this);
         return new ViewHolderCardRoutine(view);
     }
 
@@ -69,7 +78,7 @@ public class AdapterCardRoutine extends RecyclerView.Adapter<AdapterCardRoutine.
         holder.title.setText(routineList.get(position).getName());
         holder.description.setText(routineList.get(position).getDescription());
         holder.type.setText(routineList.get(position).getType().getName());
-
+        holder.btnGoToRoutineInformationFragment.setOnClickListener(new GoToRoutineInformationFragmentLister(routineList.get(position)));
     }
 
     @Override
@@ -77,16 +86,36 @@ public class AdapterCardRoutine extends RecyclerView.Adapter<AdapterCardRoutine.
         return this.routineList.size();
     }
 
+
+
     public class ViewHolderCardRoutine extends RecyclerView.ViewHolder {
      VideoView video;
      TextView description,title,type;
+     Button btnGoToRoutineInformationFragment;
         public ViewHolderCardRoutine(@NonNull View itemView) {
             super(itemView);
             video=(VideoView)itemView.findViewById(R.id.imgRoutine);
             description=(TextView)itemView.findViewById(R.id.txtdescriptionRoutine);
             title=(TextView)itemView.findViewById(R.id.txtnameRoutine);
             type=(TextView)itemView.findViewById(R.id.txtTypeRoutine);
+            btnGoToRoutineInformationFragment=(Button)itemView.findViewById(R.id.btnGoToInformationRoutine);
+            //btnGoToRoutineInformationFragment.setOnClickListener(listener);
         }
 
+    }
+    private class GoToRoutineInformationFragmentLister implements View.OnClickListener{
+        private GetRoutinesByIdOwnerQuery.Routine routine;
+
+        public GoToRoutineInformationFragmentLister(GetRoutinesByIdOwnerQuery.Routine routine) {
+            this.routine = routine;
+        }
+
+        @Override
+        public void onClick(View v) {
+            //System.out.println("THE ROUTINE IS "+routine.getDescription());
+            RoutineStore routineStore= ViewModelProviders.of((FragmentActivity) context).get(RoutineStore.class);
+            routineStore.setRoutineInformation(routine);
+            navigationController.navigate(R.id.fromRootRoutineFragment_to_routineInformationFragment);
+        }
     }
 }

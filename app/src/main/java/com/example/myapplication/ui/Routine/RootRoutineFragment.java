@@ -63,16 +63,18 @@ public class RootRoutineFragment extends Fragment {
         //listaRutinas=new ArrayList<>();
         this.goToRegisterRoutine=(Button)view.findViewById(R.id.btnGotoRoutineRegister);
         routineRecycler=(RecyclerView)view.findViewById(R.id.recyclerListRoutine);
+        navController= Navigation.findNavController(view);
         routineStore.getListRoutine().observe(getViewLifecycleOwner(), new Observer<List<GetRoutinesByIdOwnerQuery.Routine>>() {
             @Override
             public void onChanged(List<GetRoutinesByIdOwnerQuery.Routine> routines) {
                 routineRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
                 //Test();
-                AdapterCardRoutine adapter=new AdapterCardRoutine(routineStore.getListRoutine().getValue(),getContext());
+                AdapterCardRoutine adapter=new AdapterCardRoutine(routineStore.getListRoutine().getValue(),getContext(),navController);
+                //adapter.setOnClickListener();
                 routineRecycler.setAdapter(adapter);
             }
         });
-        navController= Navigation.findNavController(view);
+
         this.goToRegisterRoutine=(Button)view.findViewById(R.id.btnGotoRoutineRegister);
 
         this.goToRegisterRoutine.setOnClickListener(new GoToRoutineRegisterListener());
@@ -134,4 +136,5 @@ public class RootRoutineFragment extends Fragment {
             navController.navigate(R.id.fromRootRoutineToRegisterRoutine);
         }
     }
+
 }
