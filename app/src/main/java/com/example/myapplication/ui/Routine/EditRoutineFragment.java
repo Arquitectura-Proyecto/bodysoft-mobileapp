@@ -64,11 +64,16 @@ public class EditRoutineFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        this.spinnerTypeRoutines = (MaterialSpinner) view.findViewById(R.id.spinnerEditRoutine);
         this.routineStore= ViewModelProviders.of(getActivity()).get(RoutineStore.class);
+        GetRoutinesByIdOwnerQuery.Routine routine=routineStore.getInformationRoutine().getValue();
+        this.spinnerTypeRoutines = (MaterialSpinner) view.findViewById(R.id.spinnerEditRoutine);
+
         this.priceTextInput=view.findViewById(R.id.txtInputPriceEditRoutine);
+        this.priceTextInput.setText(""+routine.getPrice());
         this.nameTextInput=(TextInputEditText)view.findViewById(R.id.txtInputNameEditRoutine);
+        this.nameTextInput.setText(routine.getName());
         this.descriptionTextInput=(TextInputEditText)view.findViewById(R.id.txtInputDescriptionEditRoutine);
+        this.descriptionTextInput.setText(routine.getDescription());
         this.ListTypeRoutines=new TreeMap<>();
         this.btnRoutineEdit=(Button)view.findViewById(R.id.btnRoutineEdit);
         this.btnRoutineEdit.setOnClickListener(new btnEditRoutineListener());
@@ -81,6 +86,9 @@ public class EditRoutineFragment extends Fragment {
 
                 }
                 spinnerTypeRoutines.setItems(ListTypeRoutines.keySet().toArray());
+
+
+
 
             }
         });
