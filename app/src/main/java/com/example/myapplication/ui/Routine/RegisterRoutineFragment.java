@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -29,6 +30,7 @@ import com.example.myapplication.Model.Repositories.RoutineRepository;
 import com.example.myapplication.Model.Store.RoutineStore;
 import com.example.myapplication.R;
 import com.example.myapplication.ui.GlobalState;
+import com.example.myapplication.ui.Routine.EventListener.GetAllTypesRoutineListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.jaredrummler.materialspinner.MaterialSpinner;
@@ -66,7 +68,7 @@ public class RegisterRoutineFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        this.routineStore=new RoutineStore();
+        this.routineStore= ViewModelProviders.of(getActivity()).get(RoutineStore.class);
         this.ListTypeRoutines=new TreeMap<>();
         this.priceTextInput=view.findViewById(R.id.txtInputPriceRegisterRoutine);
         this.nameTextInput=(TextInputEditText)view.findViewById(R.id.txtInputNameRegisterRoutine);
@@ -90,11 +92,11 @@ public class RegisterRoutineFragment extends Fragment {
 
             }
         });
-        RoutineModel.getAllTypeRoutine(new getAllTypesRoutineListener());
+        RoutineModel.getAllTypeRoutine(new GetAllTypesRoutineListener(getActivity(),routineStore));
 
     }
 
-
+/*
     private class getAllTypesRoutineListener extends ApolloCall.Callback<GetAllTypeRoutineQuery.Data>{
 
         @Override
@@ -111,7 +113,7 @@ public class RegisterRoutineFragment extends Fragment {
 
         }
     }
-
+*/
     private class btnClickListener implements View.OnClickListener{
 
         @Override

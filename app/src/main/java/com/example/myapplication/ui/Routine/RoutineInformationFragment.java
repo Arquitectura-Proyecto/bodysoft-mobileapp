@@ -7,10 +7,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.apollographqlandroid.GetRoutinesByIdOwnerQuery;
@@ -30,6 +33,8 @@ public class RoutineInformationFragment extends Fragment {
     private TextView txtRaitingRoutineInformation;
     private TextView txtNumRaitingRoutineInformation;
     private TextView txtTypeRoutineRoutineInformation;
+    private Button btnGoToEditRoutine;
+    private NavController navController;
     public RoutineInformationFragment() {
         // Required empty public constructor
     }
@@ -52,6 +57,10 @@ public class RoutineInformationFragment extends Fragment {
          this.txtRaitingRoutineInformation=(TextView)view.findViewById(R.id.txtRaitingRoutineInformation);
          this.txtNumRaitingRoutineInformation=(TextView)view.findViewById(R.id.txtNumRaitingRoutineInformation);
          this.txtTypeRoutineRoutineInformation=(TextView)view.findViewById(R.id.txtTypeRoutineRoutineInformation);
+         this.navController= Navigation.findNavController(view);
+         this.btnGoToEditRoutine=(Button)view.findViewById(R.id.btnGoToEditRoutine);
+         this.btnGoToEditRoutine.setOnClickListener(new btnGoToEditRoutineListener());
+
          this.routineStore.getInformationRoutine().observe(getViewLifecycleOwner(), new Observer<GetRoutinesByIdOwnerQuery.Routine>() {
             @Override
             public void onChanged(GetRoutinesByIdOwnerQuery.Routine routine) {
@@ -64,5 +73,12 @@ public class RoutineInformationFragment extends Fragment {
 
             }
         });
+    }
+    private class btnGoToEditRoutineListener implements View.OnClickListener{
+
+        @Override
+        public void onClick(View v) {
+            navController.navigate(R.id.fromRoutineInformationFragment_to_editRoutineFragment);
+        }
     }
 }

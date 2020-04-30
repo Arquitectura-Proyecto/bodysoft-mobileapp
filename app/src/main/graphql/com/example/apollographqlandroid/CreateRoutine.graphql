@@ -38,3 +38,16 @@ query getAllTypeRoutine{
  #   getId:id
   #  getName:name
 #}
+
+mutation updateRoutine($idRoutine:Int!,$price:Float!,$name:String!,$description:String!,$linkPreview:String!,$idType:Int!,$token:String!){
+    updateRoutine(
+        idRoutine:$idRoutine,
+        routine:{
+
+        price:$price
+        name:$name
+        description:$description
+        link_preview:$linkPreview
+        idType:$idType
+    },token:$token)
+}

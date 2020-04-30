@@ -1,125 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+
+
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.Routine.RoutineInformationFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+    android:background="@color/loginPageBackgroundColor"
+    tools:context=".ui.Routine.EditRoutineFragment"
+    >
     <LinearLayout
-        android:layout_margin="10dp"
-
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nombre:"
-            android:textSize="20sp"
-            android:layout_marginRight="12dp"/>
-        <TextView
-            android:id="@+id/txtNameRoutineInformation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_margin="10dp"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Precio:"
-            android:textSize="20sp"
-            android:layout_marginRight="12dp"/>
-        <TextView
-            android:id="@+id/txtPriceRoutineInformation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_margin="10dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Descripcion:"
-            android:textSize="20sp"
-            android:layout_marginRight="12dp"/>
-        <TextView
-            android:id="@+id/txtDescriptionRoutineInformation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_margin="10dp"
+        tools:context=".ui.Routine.RoutineInformationFragment">
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Calificacion:"
-            android:textSize="20sp"
-            android:layout_marginRight="12dp"/>
-        <TextView
-            android:id="@+id/txtRaitingRoutineInformation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_margin="10dp"
+        <!-- TODO: Update blank fragment layout -->
+        <LinearLayout
+            android:layout_margin="10dp"
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Numero de Calificaciones:"
-            android:textSize="20sp"
-            android:layout_marginRight="12dp"/>
-        <TextView
-            android:id="@+id/txtNumRaitingRoutineInformation"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_margin="10dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre:"
+                android:textSize="20sp"
+                android:layout_marginRight="12dp"/>
+            <TextView
+                android:id="@+id/txtNameRoutineInformation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_margin="10dp"
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tipo:"
-            android:textSize="20sp"
-            android:layout_marginRight="12dp"/>
-        <TextView
-            android:id="@+id/txtTypeRoutineRoutineInformation"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            />
-    </LinearLayout>
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Precio:"
+                android:textSize="20sp"
+                android:layout_marginRight="12dp"/>
+            <TextView
+                android:id="@+id/txtPriceRoutineInformation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Descripcion:"
+                android:textSize="20sp"
+                android:layout_marginRight="12dp"/>
+            <TextView
+                android:id="@+id/txtDescriptionRoutineInformation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_margin="10dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calificacion:"
+                android:textSize="20sp"
+                android:layout_marginRight="12dp"/>
+            <TextView
+                android:id="@+id/txtRaitingRoutineInformation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_margin="10dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Numero de Calificaciones:"
+                android:textSize="20sp"
+                android:layout_marginRight="12dp"/>
+            <TextView
+                android:id="@+id/txtNumRaitingRoutineInformation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_margin="10dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tipo:"
+                android:textSize="20sp"
+                android:layout_marginRight="12dp"/>
+            <TextView
+                android:id="@+id/txtTypeRoutineRoutineInformation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                />
+        </LinearLayout>
         <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Editar"/>
+            android:id="@+id/btnGoToEditRoutine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Editar"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -128,4 +140,5 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Administrar Recursos"/>
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

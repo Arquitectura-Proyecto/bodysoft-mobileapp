@@ -8,10 +8,12 @@ import com.example.apollographqlandroid.CrearRutinaMutation;
 import com.example.apollographqlandroid.GetAllTypeRoutineQuery;
 import com.example.apollographqlandroid.GetRoutinesByIdOwnerQuery;
 import com.example.apollographqlandroid.GetRoutinesQuery;
+import com.example.apollographqlandroid.UpdateRoutineMutation;
 import com.example.myapplication.Model.Entities.RoutineEntity;
 import com.example.myapplication.Model.Models.ModelListener;
 import com.example.myapplication.Model.Repositories.Data.Client;
 import com.example.myapplication.ui.GlobalState;
+import com.example.myapplication.ui.Routine.RegisterRoutineFragment;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -64,7 +66,21 @@ public class RoutineRepository {
                         .build()).enqueue(new CreateRoutineListener<CrearRutinaMutation.Data>(listener));
 
     }
+    public static void editRoutine(ApolloCall.Callback<UpdateRoutineMutation.Data>listener,RoutineEntity edited,String token){
 
+        apolloClient.mutate(
+                UpdateRoutineMutation.builder().
+                        description(edited.getDescription())
+                        .idRoutine(edited.getId())
+                        .idType(edited.getIdtype())
+                        .linkPreview(edited.getLink_preview())
+                        .price(edited.getPrice())
+                        .name(edited.getName())
+                        .token(token)
+
+                        .build()
+        ).enqueue(new RoutineGraphQLListener<UpdateRoutineMutation.Data>(listener));
+    }
 
 
 private static class RoutineGraphQLListener <T> extends ApolloCall.Callback<T> {
@@ -116,5 +132,6 @@ private static class CreateRoutineListener<T> extends ApolloCall.Callback<T>{
     this.callback.onFailure(e);
     }
 }
+
 
 }

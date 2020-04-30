@@ -141,7 +141,16 @@
         android:id="@+id/routineInformationFragment"
         android:name="com.example.myapplication.ui.Routine.RoutineInformationFragment"
         android:label="fragment_routine_information"
-        tools:layout="@layout/fragment_routine_information" />
+        tools:layout="@layout/fragment_routine_information" >
+        <action
+            android:id="@+id/fromRoutineInformationFragment_to_editRoutineFragment"
+            app:destination="@id/editRoutineFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editRoutineFragment"
+        android:name="com.example.myapplication.ui.Routine.EditRoutineFragment"
+        android:label="fragment_edit_routine"
+        tools:layout="@layout/fragment_edit_routine" />
 
 
     <!--Fin Andres-->
