@@ -55,16 +55,34 @@ public class MainActivity extends AppCompatActivity {
                 }
         );*/
         ////
-        setContentView(R.layout.activity_main);
+
+        int des = 2;
+        if(des==1){
+            setContentView(R.layout.activity_main);
+        }else{
+            setContentView(R.layout.activity_main_trainer);
+        }
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        DrawerLayout drawer;
+        NavigationView navigationView;
+        if(des==1){
+            drawer = findViewById(R.id.drawer_layout);
+            navigationView = findViewById(R.id.nav_view);
+        }else{
+            drawer = findViewById(R.id.drawer_trainer_layout);
+            navigationView = findViewById(R.id.nav_view_trainer);
+        }
+
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,R.id.listRoutineFragment)/////los que esten aqui tendra tendran el boton para ver el navigation viewer
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,R.id.listRoutineFragment, R.id.fragment_profile)/////los que esten aqui tendra tendran el boton para ver el navigation viewer
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

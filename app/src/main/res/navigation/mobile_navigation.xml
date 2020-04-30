@@ -235,65 +235,42 @@
     <!--Valentina-->
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <fragment
+        android:id="@+id/fragment_profile"
+        android:name="com.example.myapplication.ui.Profile.UserProfileFragment"
+        android:label="Perfil"
+        tools:layout="@layout/fragment_user_profile" >
+        <action
+            android:id="@+id/go_to_edit_user"
+            app:destination="@id/userEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userEditFragment"
+        android:name="com.example.myapplication.ui.Profile.UserEditFragment"
+        android:label="Editar usuario"
+        tools:layout="@layout/fragment_user_edit" >
+        <action
+            android:id="@+id/go_to_user_profile"
+            app:destination="@id/fragment_profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/trainerFragment"
+        android:name="com.example.myapplication.ui.Profile.TrainerFragment"
+        android:label="Perfil"
+        tools:layout="@layout/fragment_trainer" >
+        <action
+            android:id="@+id/go_to_edit_trainer"
+            app:destination="@id/trainerEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/trainerEditFragment"
+        android:name="com.example.myapplication.ui.Profile.TrainerEditFragment"
+        android:label="fragment_trainer_edit"
+        tools:layout="@layout/fragment_trainer_edit" >
+        <action
+            android:id="@+id/go_to_trainer_profile"
+            app:destination="@id/trainerFragment" />
+    </fragment>
 
 
     <!--fin valentina-->
