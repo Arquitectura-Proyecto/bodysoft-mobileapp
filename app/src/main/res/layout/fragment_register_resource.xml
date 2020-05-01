@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/loginPageBackgroundColor"
+    tools:context=".ui.Routine.RegisterResourceFragment"
+    >
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.Routine.RegisterRoutineFragment">
+
+        <!-- TODO: Update blank fragment layout -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="29sp"
+            android:text="Registro Recurso" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Shrine.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:hint="@string/resource_register_title_input_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtInputNameRegisterResource"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            style="@style/Widget.Shrine.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:hint="@string/resource_register_position_input_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtInputPositionRegisterResource"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            style="@style/Widget.Shrine.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:hint="@string/routine__register_description_input_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtInputDescriptionRegisterResource"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            style="@style/Widget.Shrine.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:hint="@string/routine__register_linkPreview_input_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtInputLinkPreviewRegisterResource"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/btnRoutineResource"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Registrar"
+            android:layout_gravity="center_horizontal"/>
+
+
+
+    </LinearLayout>
+</ScrollView>
