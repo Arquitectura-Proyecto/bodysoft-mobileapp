@@ -62,21 +62,7 @@ public class ListResourcesFragment extends Fragment {
         this.goToRegisterResource=(Button)view.findViewById(R.id.btnGotoResourceRegister);
         this.resourceRecycler=(RecyclerView)view.findViewById(R.id.recyclerListResource);
         this.navController= Navigation.findNavController(view);
-        /*routineStore.getListRoutine().observe(getViewLifecycleOwner(), new Observer<List<GetRoutinesByIdOwnerQuery.Routine>>() {
-            @Override
-            public void onChanged(List<GetRoutinesByIdOwnerQuery.Routine> routines) {
-                routineRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-                //Test();
-                AdapterCardRoutine adapter=new AdapterCardRoutine(routineStore.getListRoutine().getValue(),getContext(),navController);
-                //adapter.setOnClickListener();
-                routineRecycler.setAdapter(adapter);
-            }
-        });
-
-        this.goToRegisterRoutine=(Button)view.findViewById(R.id.btnGotoRoutineRegister);
-
-        this.goToRegisterRoutine.setOnClickListener(new RootRoutineFragment.GoToRoutineRegisterListener());
-*/
+        this.goToRegisterResource.setOnClickListener(new btnGoToRegisterResourceListener());
         routineStore.getListResources().observe(getViewLifecycleOwner(), new Observer<List<GetResourcesByIdRoutineMutation.Resource>>() {
             @Override
             public void onChanged(List<GetResourcesByIdRoutineMutation.Resource> resources) {
@@ -116,4 +102,12 @@ public class ListResourcesFragment extends Fragment {
             e.printStackTrace();
         }
     }
+    private class btnGoToRegisterResourceListener implements View.OnClickListener{
+
+        @Override
+        public void onClick(View v) {
+            navController.navigate(R.id.fromListResourcesFragment_to_registerResourceFragment);
+        }
+    }
+
 }

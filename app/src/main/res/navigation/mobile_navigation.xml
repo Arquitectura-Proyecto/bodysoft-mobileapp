@@ -158,7 +158,16 @@
         android:id="@+id/listResourcesFragment"
         android:name="com.example.myapplication.ui.Routine.ListResourcesFragment"
         android:label="fragment_list_resources"
-        tools:layout="@layout/fragment_list_resources" />
+        tools:layout="@layout/fragment_list_resources" >
+        <action
+            android:id="@+id/fromListResourcesFragment_to_registerResourceFragment"
+            app:destination="@id/registerResourceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerResourceFragment"
+        android:name="com.example.myapplication.ui.Routine.RegisterResourceFragment"
+        android:label="fragment_register_resource"
+        tools:layout="@layout/fragment_register_resource" />
 
 
     <!--Fin Andres-->

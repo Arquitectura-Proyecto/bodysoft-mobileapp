@@ -14,11 +14,17 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.apollographql.apollo.ApolloCall;
+import com.apollographql.apollo.api.Response;
+import com.apollographql.apollo.exception.ApolloException;
 import com.example.apollographqlandroid.RegisterResourceMutation;
 import com.example.myapplication.Model.Entities.ResourceEntity;
+import com.example.myapplication.Model.Repositories.RoutineRepository;
 import com.example.myapplication.Model.Store.RoutineStore;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.GlobalState;
 import com.google.android.material.textfield.TextInputEditText;
+
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,7 +56,9 @@ public class RegisterResourceFragment extends Fragment {
         this.TitleTextInput=(TextInputEditText)view.findViewById(R.id.txtInputNameRegisterResource);
         this.positionTextInput=(TextInputEditText)view.findViewById(R.id.txtInputPositionRegisterResource);
         this.linkTextInpunt=(TextInputEditText)view.findViewById(R.id.txtInputLinkPreviewRegisterResource);
+        this.linkTextInpunt.setText("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4");
         this.btnRegiserResource=(Button)view.findViewById(R.id.btnRoutineResource);
+        this.btnRegiserResource.setOnClickListener(new btnRegisterResourceListener());
 
 
 
@@ -64,9 +72,21 @@ private class btnRegisterResourceListener implements View.OnClickListener{
             newResource.setIdRoutine(Integer.parseInt(routineStore.getInformationRoutine().getValue().getId()));
             newResource.setIdType(DEFAULT_TYPE_RESOURCE);
             newResource.setLink(linkTextInpunt.getText().toString());
+
             newResource.setPosition(Integer.parseInt(positionTextInput.getText().toString().trim()));
             newResource.setTitle(TitleTextInput.getText().toString());
             newResource.setDescription(descriptionTextInput.getText().toString());
+            RoutineRepository.registerResource(new ApolloCall.Callback<RegisterResourceMutation.Data>() {
+                @Override
+                public void onResponse(@NotNull Response<RegisterResourceMutation.Data> response) {
+
+                }
+
+                @Override
+                public void onFailure(@NotNull ApolloException e) {
+
+                }
+            },newResource, GlobalState.getToken());
         }catch (Exception e){
             Toast.makeText(v.getContext(),
                     e.getMessage(), Toast.LENGTH_SHORT).show();
