@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.myapplication.R;
+import com.example.myapplication.ui.AuthGlobalState;
 
 public class HomeFragment extends Fragment {
 
