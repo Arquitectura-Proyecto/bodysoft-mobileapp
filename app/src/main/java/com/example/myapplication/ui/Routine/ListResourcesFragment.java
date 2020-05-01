@@ -17,6 +17,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.apollographql.apollo.ApolloCall;
+import com.apollographql.apollo.api.Response;
+import com.apollographql.apollo.exception.ApolloException;
 import com.example.apollographqlandroid.GetResourcesByIdRoutineMutation;
 import com.example.apollographqlandroid.GetRoutinesByIdOwnerQuery;
 import com.example.myapplication.Model.Models.RoutineModel;
@@ -25,6 +28,9 @@ import com.example.myapplication.R;
 import com.example.myapplication.ui.GlobalState;
 import com.example.myapplication.ui.Routine.Adapters.AdapterCardResource;
 import com.example.myapplication.ui.Routine.Adapters.AdapterCardRoutine;
+import com.google.gson.internal.bind.util.ISO8601Utils;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -79,6 +85,7 @@ public class ListResourcesFragment extends Fragment {
                 resourceRecycler.setAdapter(adapter);
             }
         });
+        RoutineModel.getResourcesByIdRoutine(new getResourcesByIdRoutineListener(),Integer.parseInt(routineStore.getInformationRoutine().getValue().getId()),GlobalState.getToken());
 
 
 
@@ -88,5 +95,25 @@ public class ListResourcesFragment extends Fragment {
 
 
 
+    }
+    private class getResourcesByIdRoutineListener extends ApolloCall.Callback<GetResourcesByIdRoutineMutation.Data>{
+
+
+        @Override
+        public void onResponse(@NotNull Response<GetResourcesByIdRoutineMutation.Data> response) {
+
+            getActivity().runOnUiThread(new Runnable() {
+                @Override public void run() {
+                    routineStore.setListResources(response.data().Resources());
+                }
+            });
+
+        }
+
+        @Override
+        public void onFailure(@NotNull ApolloException e) {
+
+            e.printStackTrace();
+        }
     }
 }
