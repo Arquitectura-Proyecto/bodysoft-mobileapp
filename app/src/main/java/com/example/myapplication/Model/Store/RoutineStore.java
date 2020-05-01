@@ -17,6 +17,7 @@ import java.util.List;
 public class RoutineStore extends ViewModel {
     private MutableLiveData<List<GetResourcesByIdRoutineMutation.Resource>>listResources;
     private MutableLiveData<GetRequestByIdRoutineQuery.Request>InformationRequest;
+    private MutableLiveData<List<GetRequestByIdRoutineQuery.Request>>listRequest;
     private MutableLiveData<GetRoutinesByIdOwnerQuery.Routine>InformationRoutine;
     private MutableLiveData<List<GetAllTypeRoutineQuery.TypeRoutine>>listTypeRoutines;
     private MutableLiveData<List<GetRoutinesByIdOwnerQuery.Routine>>listRoutine;
@@ -26,6 +27,8 @@ public class RoutineStore extends ViewModel {
         this.listTypeRoutines=new MutableLiveData<>() ;
         this.InformationRoutine=new MutableLiveData<>();
         this.listResources=new MutableLiveData<>();
+        this.InformationRequest=new MutableLiveData<>();
+        this.listRequest=new MutableLiveData<>();
     }
     public void setRoutines(List<GetRoutinesByIdOwnerQuery.Routine> listRoutine){
         this.listRoutine.setValue(listRoutine);
@@ -51,5 +54,18 @@ public class RoutineStore extends ViewModel {
     public LiveData<List<GetResourcesByIdRoutineMutation.Resource>>getListResources(){
         return this.listResources;
     }
+    public void setInformationRequest(GetRequestByIdRoutineQuery.Request request){
+        this.InformationRequest.setValue(request);
+    }
+    public LiveData<GetRequestByIdRoutineQuery.Request>getInformationRequest(){
+        return this.InformationRequest;
+    }
 
+    public LiveData<List<GetRequestByIdRoutineQuery.Request>> getListRequest() {
+        return listRequest;
+    }
+
+    public void setListRequest(List<GetRequestByIdRoutineQuery.Request> listRequest) {
+        this.listRequest.setValue(listRequest);
+    }
 }

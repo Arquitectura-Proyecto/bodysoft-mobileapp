@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -40,7 +41,8 @@ public class RequestAdapter   extends RecyclerView.Adapter<RequestAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull RequestAdapter.ViewHolderRequest holder, int position) {
-        holder.btnVer.setOnClickListener(new GoToRequestInformationFragmentLister(routineList.get(position)));
+        holder.btnVer.setOnClickListener(new GoToRequestInformationFragmentLister(requestList.get(position)));
+        holder.txt.setText("Solicitud "+(position+1));
     }
 
     @Override
@@ -51,10 +53,12 @@ public class RequestAdapter   extends RecyclerView.Adapter<RequestAdapter.ViewHo
     public class ViewHolderRequest extends RecyclerView.ViewHolder {
 
         private Button btnVer;
+        private TextView txt;
 
         public ViewHolderRequest(@NonNull View itemView) {
             super(itemView);
             this.btnVer=(Button) itemView.findViewById(R.id.btnViewRequest);
+            this.txt=(TextView)itemView.findViewById(R.id.txtRequestEnumeration);
         }
     }
     private class GoToRequestInformationFragmentLister implements View.OnClickListener {
@@ -68,7 +72,7 @@ public class RequestAdapter   extends RecyclerView.Adapter<RequestAdapter.ViewHo
         public void onClick(View v) {
             RoutineStore routineStore= ViewModelProviders.of((FragmentActivity) context).get(RoutineStore.class);
             //routineStore.setRoutineInformation();
-
+            routineStore.setInformationRequest(request);
             navigationController.navigate(R.id.fromRootRoutineFragment_to_routineInformationFragment);
         }
     }
