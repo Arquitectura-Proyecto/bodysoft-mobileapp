@@ -51,3 +51,21 @@ mutation updateRoutine($idRoutine:Int!,$price:Float!,$name:String!,$description:
         idType:$idType
     },token:$token)
 }
+
+
+mutation getResourcesByIdRoutine($idRoutine:Int!,$token:String!){
+
+    Resources:getResourceByIdRoutine(idRoutine:1,token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiUHJvZmlsZSI6ZmFsc2UsIlR5cGVJRCI6MSwiZXhwIjoxNTg4MjcyMjU4fQ.nXyAIoKenNWJXnI_KTQmU1wzL3191LUGHeM7B8X-eOw"){
+        getId:id
+        getLink:link
+        getTitle:title
+        getDescription:description
+        getPosition:position
+        getType:type{
+            getId:id
+            getName:name
+        }
+
+    }
+
+}

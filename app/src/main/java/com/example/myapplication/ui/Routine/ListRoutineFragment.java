@@ -34,6 +34,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
+///esta clase se puede eliminar
 public class ListRoutineFragment extends Fragment {
     private ListView listview;
     private ArrayAdapter<String>adaptador;

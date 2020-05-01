@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class GlobalState extends ViewModel {
-    private static  String token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiUHJvZmlsZSI6ZmFsc2UsIlR5cGVJRCI6MSwiZXhwIjoxNTg4MjI4MDI5fQ.cI8OBAdCdgPDjdH6Y1IaDdZK34Hm90oswGl-wgJsAIU";
+    private static  String token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiUHJvZmlsZSI6ZmFsc2UsIlR5cGVJRCI6MSwiZXhwIjoxNTg4Mjk5NzgwfQ.mmTyIlOi0L99p8EMyfRpb9Zw2IBrtcrcczi7fuqd1Ho";
     private MutableLiveData<String>  sharedString;
     public GlobalState(){
         this.sharedString=new MutableLiveData<>();

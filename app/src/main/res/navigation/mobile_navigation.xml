@@ -145,12 +145,20 @@
         <action
             android:id="@+id/fromRoutineInformationFragment_to_editRoutineFragment"
             app:destination="@id/editRoutineFragment" />
+        <action
+            android:id="@+id/fromRoutineInformationFragment_to_listResourcesFragment"
+            app:destination="@id/listResourcesFragment" />
     </fragment>
     <fragment
         android:id="@+id/editRoutineFragment"
         android:name="com.example.myapplication.ui.Routine.EditRoutineFragment"
         android:label="fragment_edit_routine"
         tools:layout="@layout/fragment_edit_routine" />
+    <fragment
+        android:id="@+id/listResourcesFragment"
+        android:name="com.example.myapplication.ui.Routine.ListResourcesFragment"
+        android:label="fragment_list_resources"
+        tools:layout="@layout/fragment_list_resources" />
 
 
     <!--Fin Andres-->

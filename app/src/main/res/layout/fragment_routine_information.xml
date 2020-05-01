@@ -137,6 +137,7 @@
             android:layout_height="wrap_content"
             android:text="Ver Solicitudes"/>
         <Button
+            android:id="@+id/btnGoToResources"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Administrar Recursos"/>
