@@ -6,16 +6,26 @@ public class ResourceEntity {
     private String title;
     private int position;
     private int IdType;
+    private String description;
 
     public ResourceEntity() {
     }
 
-    public ResourceEntity(int idRoutine, String link, String title, int position, int idType) {
+    public ResourceEntity(int idRoutine, String link, String title, int position, int idType, String description) {
         this.idRoutine = idRoutine;
         this.link = link;
         this.title = title;
         this.position = position;
         IdType = idType;
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getIdRoutine() {
