@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.apollographql.apollo.ApolloCall;
+import com.example.apollographqlandroid.RegisterResourceMutation;
 import com.example.myapplication.R;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -47,5 +49,11 @@ public class RegisterResourceFragment extends Fragment {
 
 
     }
+private class btnRegisterResourceListener implements View.OnClickListener{
 
+    @Override
+    public void onClick(View v) {
+
+    }
+}
 }
