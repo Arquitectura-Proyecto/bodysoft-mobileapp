@@ -9,7 +9,9 @@ import com.example.apollographqlandroid.GetAllTypeRoutineQuery;
 import com.example.apollographqlandroid.GetResourcesByIdRoutineMutation;
 import com.example.apollographqlandroid.GetRoutinesByIdOwnerQuery;
 import com.example.apollographqlandroid.GetRoutinesQuery;
+import com.example.apollographqlandroid.RegisterResourceMutation;
 import com.example.apollographqlandroid.UpdateRoutineMutation;
+import com.example.myapplication.Model.Entities.ResourceEntity;
 import com.example.myapplication.Model.Entities.RoutineEntity;
 import com.example.myapplication.Model.Models.ModelListener;
 import com.example.myapplication.Model.Repositories.Data.Client;
@@ -84,6 +86,18 @@ public class RoutineRepository {
     }
     public static void getResourcesByIdRoutine(ApolloCall.Callback<GetResourcesByIdRoutineMutation.Data>listener,int idRoutine,String token){
         apolloClient.mutate(GetResourcesByIdRoutineMutation.builder().idRoutine(idRoutine).token(token).build()).enqueue(new RoutineGraphQLListener<GetResourcesByIdRoutineMutation.Data>(listener));
+    }
+    public static void registerResource(ApolloCall.Callback<RegisterResourceMutation.Data>listener, ResourceEntity resource,String token){
+        apolloClient.mutate(RegisterResourceMutation.builder()
+                .idRoutine(resource.getIdRoutine())
+                .link(resource.getLink())
+                .title(resource.getTitle())
+                .position(resource.getPosition())
+                .idType(resource.getIdType())
+                .token(token)
+                .description(resource.getDescription())
+
+                .build()).enqueue(new RoutineGraphQLListener<RegisterResourceMutation.Data>(listener));
     }
 
 

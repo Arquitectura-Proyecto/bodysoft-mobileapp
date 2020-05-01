@@ -10,7 +10,9 @@ import com.example.apollographqlandroid.GetAllTypeRoutineQuery;
 import com.example.apollographqlandroid.GetResourcesByIdRoutineMutation;
 import com.example.apollographqlandroid.GetRoutinesByIdOwnerQuery;
 import com.example.apollographqlandroid.GetRoutinesQuery;
+import com.example.apollographqlandroid.RegisterResourceMutation;
 import com.example.apollographqlandroid.UpdateRoutineMutation;
+import com.example.myapplication.Model.Entities.ResourceEntity;
 import com.example.myapplication.Model.Entities.RoutineEntity;
 import com.example.myapplication.Model.Repositories.RoutineRepository;
 
@@ -114,6 +116,21 @@ public class RoutineModel {
             listener.onFailure(e);
             }
         },idRoutine,token);
+
+    }
+    public static void registerResource(ApolloCall.Callback<RegisterResourceMutation.Data>listener, ResourceEntity resource,String token){
+
+        RoutineRepository.registerResource(new ApolloCall.Callback<RegisterResourceMutation.Data>() {
+            @Override
+            public void onResponse(@NotNull Response<RegisterResourceMutation.Data> response) {
+                listener.onResponse(response);
+            }
+
+            @Override
+            public void onFailure(@NotNull ApolloException e) {
+            listener.onFailure(e);
+            }
+        },resource,token);
 
     }
 }
