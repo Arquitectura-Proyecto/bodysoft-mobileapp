@@ -70,7 +70,7 @@ public class AuthRepository {
             @Override
             public void onFailure(@NotNull ApolloException e) {
 
-
+                e.printStackTrace();
             }
         });
 

@@ -1,12 +1,5 @@
-query getCurrentbyId($Token:String!){
-  schedule:getCurrentbyId(Token: $Token){
-        getIdCoach:idCoach
-        getDaySession:daySession
-        getIniTime:iniTime
-        getEndTime:endTime
-        getStatus:status{
-               getIdStatus:id_status
-            }
-        getIdUser:idUser
+query getCurrentbyId($token:String!){
+  getCurrentbyId(Token: $token){
+    idUser
   }
 }
