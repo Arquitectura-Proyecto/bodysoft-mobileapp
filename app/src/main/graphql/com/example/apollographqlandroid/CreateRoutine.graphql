@@ -80,3 +80,10 @@ mutation registerResource($idRoutine:Int!,$link:String!,$title:String!,$descript
 
     },token:$token)
 }
+query getRequestByIdRoutine($idRoutine:Int!){
+    Requests:getRequestByIdRoutine(idRoutine:$idRoutine){
+        id
+        idUser
+
+    }
+}
