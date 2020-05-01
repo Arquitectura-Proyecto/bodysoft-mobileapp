@@ -10,17 +10,13 @@
         android:text="Nombre"
         android:gravity="center_vertical"
         android:layout_weight="2"/>
-    <Button
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Aprobar"
-        />
     <Button
+        android:id="@+id/btnViewRequest"
         android:layout_marginLeft="6dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="rechazar"/>
+        android:text="ver"/>
 
 
 </LinearLayout>

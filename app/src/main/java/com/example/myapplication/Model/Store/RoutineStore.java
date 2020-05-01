@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.apollographqlandroid.GetAllTypeRoutineQuery;
+import com.example.apollographqlandroid.GetRequestByIdRoutineQuery;
 import com.example.apollographqlandroid.GetResourcesByIdRoutineMutation;
 import com.example.apollographqlandroid.GetRoutinesByIdOwnerQuery;
 import com.example.myapplication.Model.Entities.RoutineEntity;
@@ -15,6 +16,7 @@ import java.util.List;
 
 public class RoutineStore extends ViewModel {
     private MutableLiveData<List<GetResourcesByIdRoutineMutation.Resource>>listResources;
+    private MutableLiveData<GetRequestByIdRoutineQuery.Request>InformationRequest;
     private MutableLiveData<GetRoutinesByIdOwnerQuery.Routine>InformationRoutine;
     private MutableLiveData<List<GetAllTypeRoutineQuery.TypeRoutine>>listTypeRoutines;
     private MutableLiveData<List<GetRoutinesByIdOwnerQuery.Routine>>listRoutine;
