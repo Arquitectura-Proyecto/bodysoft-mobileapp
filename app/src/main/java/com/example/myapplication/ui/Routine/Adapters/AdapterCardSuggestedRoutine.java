@@ -35,22 +35,24 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
-public class AdapterCardRoutine extends RecyclerView.Adapter<AdapterCardRoutine.ViewHolderCardRoutine>  {
+public class AdapterCardSuggestedRoutine extends RecyclerView.Adapter<AdapterCardSuggestedRoutine.ViewHolderCardSuggestedRoutine> {
 
     List<GetRoutinesByIdOwnerQuery.Routine> routineList;
     NavController navigationController;
     private Context context;
-    public AdapterCardRoutine(List<GetRoutinesByIdOwnerQuery.Routine>listaRutinas, Context context,NavController navController){
-        this.routineList=listaRutinas;
-        this.context=context;
-        this.navigationController=navController;
+
+    public AdapterCardSuggestedRoutine(List<GetRoutinesByIdOwnerQuery.Routine> listaRutinas, Context context, NavController navController) {
+        this.routineList = listaRutinas;
+        this.context = context;
+        this.navigationController = navController;
     }
+
     @NonNull
     @Override
-    public ViewHolderCardRoutine onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_routines,parent,false);//parent para ajustarlo al layout del padre
+    public ViewHolderCardSuggestedRoutine onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_suggested_routines, parent, false);//parent para ajustarlo al layout del padre
         //view.setOnClickListener(this);
-        return new ViewHolderCardRoutine(view);
+        return new ViewHolderCardSuggestedRoutine(view);
     }
 //    cardSuggestedRoutine
 //    imgResource
@@ -60,21 +62,12 @@ public class AdapterCardRoutine extends RecyclerView.Adapter<AdapterCardRoutine.
 //    btnGoToRoutinePreview
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolderCardRoutine holder, int position) {
-        /*URL url = null;
-        Bitmap bmp;
-        try {
-            url = new URL(routineList.get(position).getLink_preview());
-           bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-            holder.image.setImageBitmap(bmp);
-        } catch (Exception e) {
-            System.out.println("el error es "+e);
-        }*/
+    public void onBindViewHolder(@NonNull ViewHolderCardSuggestedRoutine holder, int position) {
 
-        Uri uri=Uri.parse(routineList.get(position).getLinkPreview());
+        Uri uri = Uri.parse(routineList.get(position).getLinkPreview());
         holder.video.setVideoURI(uri);
         //holder.video.start();
-        MediaController mediaController=new MediaController(this.context);
+        MediaController mediaController = new MediaController(this.context);
         // holder.video.setBackgroundResource(R.drawable.ic_launcher_background);
         mediaController.setAnchorView(holder.video);
         holder.video.setMediaController(mediaController);
@@ -84,7 +77,7 @@ public class AdapterCardRoutine extends RecyclerView.Adapter<AdapterCardRoutine.
         holder.title.setText(routineList.get(position).getName());
         holder.description.setText(routineList.get(position).getDescription());
         holder.type.setText(routineList.get(position).getType().getName());
-        holder.btnGoToRoutineInformationFragment.setOnClickListener(new GoToRoutineInformationFragmentLister(routineList.get(position)));
+        holder.btnGotoMyRoutinesListFragment.setOnClickListener(new GoToRoutineInformationFragmentLister(routineList.get(position)));
     }
 
     @Override
@@ -93,23 +86,24 @@ public class AdapterCardRoutine extends RecyclerView.Adapter<AdapterCardRoutine.
     }
 
 
+    public class ViewHolderCardSuggestedRoutine extends RecyclerView.ViewHolder {
+        VideoView video;
+        TextView description, title, type;
+        Button btnGotoMyRoutinesListFragment;
 
-    public class ViewHolderCardRoutine extends RecyclerView.ViewHolder {
-     VideoView video;
-     TextView description,title,type;
-     Button btnGoToRoutineInformationFragment;
-        public ViewHolderCardRoutine(@NonNull View itemView) {
+        public ViewHolderCardSuggestedRoutine(@NonNull View itemView) {
             super(itemView);
-            video=(VideoView)itemView.findViewById(R.id.imgRoutine);
-            description=(TextView)itemView.findViewById(R.id.txtdescriptionRoutine);
-            title=(TextView)itemView.findViewById(R.id.txtnameRoutine);
-            type=(TextView)itemView.findViewById(R.id.txtTypeRoutine);
-            btnGoToRoutineInformationFragment=(Button)itemView.findViewById(R.id.btnGoToInformationRoutine);
+            video = (VideoView) itemView.findViewById(R.id.imgRoutine);
+            description = (TextView) itemView.findViewById(R.id.txtdescriptionRoutine);
+            title = (TextView) itemView.findViewById(R.id.txtnameRoutine);
+            type = (TextView) itemView.findViewById(R.id.txtTypeRoutine);
+            btnGotoMyRoutinesListFragment = (Button) itemView.findViewById(R.id.btnGotoMyRoutinesList);
             //btnGoToRoutineInformationFragment.setOnClickListener(listener);
         }
 
     }
-    private class GoToRoutineInformationFragmentLister implements View.OnClickListener{
+
+    private class GoToRoutineInformationFragmentLister implements View.OnClickListener {
         private GetRoutinesByIdOwnerQuery.Routine routine;
 
         public GoToRoutineInformationFragmentLister(GetRoutinesByIdOwnerQuery.Routine routine) {
@@ -119,9 +113,9 @@ public class AdapterCardRoutine extends RecyclerView.Adapter<AdapterCardRoutine.
         @Override
         public void onClick(View v) {
             //System.out.println("THE ROUTINE IS "+routine.getDescription());
-            RoutineStore routineStore= ViewModelProviders.of((FragmentActivity) context).get(RoutineStore.class);
+            RoutineStore routineStore = ViewModelProviders.of((FragmentActivity) context).get(RoutineStore.class);
             routineStore.setRoutineInformation(routine);
-            navigationController.navigate(R.id.fromRootRoutineFragment_to_routineInformationFragment);
+            navigationController.navigate(R.id.action_userRoutineListFragment_to_userRoutinePreviewFragment);
         }
     }
 }

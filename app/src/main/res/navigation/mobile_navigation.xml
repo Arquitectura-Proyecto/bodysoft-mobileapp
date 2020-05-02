@@ -159,6 +159,33 @@
         android:name="com.example.myapplication.ui.Routine.ListResourcesFragment"
         android:label="fragment_list_resources"
         tools:layout="@layout/fragment_list_resources" />
+    <fragment
+        android:id="@+id/userMyRoutineFragment"
+        android:name="com.example.myapplication.ui.Routine.User.UserMyRoutineFragment"
+        android:label="fragment_user_my_routine"
+        tools:layout="@layout/fragment_user_my_routine" />
+    <fragment
+        android:id="@+id/userRoutineListFragment"
+        android:name="com.example.myapplication.ui.Routine.User.UserRoutineListFragment"
+        android:label="fragment_user_routine_list"
+        tools:layout="@layout/fragment_user_routine_list" >
+        <action
+            android:id="@+id/action_userRoutineListFragment_to_userMyRoutinesListFragment"
+            app:destination="@id/userMyRoutinesListFragment" />
+        <action
+            android:id="@+id/action_userRoutineListFragment_to_userRoutinePreviewFragment"
+            app:destination="@id/userRoutinePreviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userMyRoutinesListFragment"
+        android:name="com.example.myapplication.ui.Routine.User.UserMyRoutinesListFragment"
+        android:label="fragment_user_my_routines_list"
+        tools:layout="@layout/fragment_user_my_routines_list" />
+    <fragment
+        android:id="@+id/userRoutinePreviewFragment"
+        android:name="com.example.myapplication.ui.Routine.User.UserRoutinePreviewFragment"
+        android:label="fragment_user_routine_preview"
+        tools:layout="@layout/fragment_user_routine_preview" />
 
 
     <!--Fin Andres-->

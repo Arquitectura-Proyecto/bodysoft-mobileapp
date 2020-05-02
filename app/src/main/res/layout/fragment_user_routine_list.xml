@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+
+tools:context=".ui.Routine.User.UserRoutineListFragment">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Tipo"
+            android:layout_margin="2dp"/>
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/spinnerRoutineTypes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <Button
+    android:id="@+id/btnGotoMyRoutinesList"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Mis Rutinas"
+    android:layout_gravity="center_horizontal"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rutinas Recomendadas:"
+        android:textSize="20sp"
+        android:layout_marginRight="12dp"/>
+<!-- TODO: Update blank fragment layout -->
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/recyclerListMyRoutines"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    />
+</LinearLayout>
