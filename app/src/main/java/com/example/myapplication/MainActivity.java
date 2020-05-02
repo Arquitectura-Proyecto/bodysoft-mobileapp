@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ApolloClient apolloClient=ApolloClient.builder().serverUrl("http://192.168.0.12:3000/graphql").build();
+        //http://192.168.0.12:3000/graphql
+        ApolloClient apolloClient=ApolloClient.builder().serverUrl("http://192.168.0.41:3800/graphql").build();
 
 
 
