@@ -107,41 +107,6 @@ public class recoverPasswordFragment extends Fragment {
         });
 
 
-/*
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = userEditText.getText().toString().trim();
-                String password = passwordEditText.getText().toString();
-                AuthModel.authAuthentication(email, password,new ApolloCall.Callback<AuthAuthenticationQuery.Data>() {
-                    @Override
-                    public void onResponse(@NotNull Response<AuthAuthenticationQuery.Data> response) {
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override public void run() {
-                                if (response.hasErrors()) {
-                                    String error = response.errors().get(0).message().toString().substring(3);
-                                    userTextInput.setError(error);
-                                    passwordTextInput.setError(" ");
-                                    changeButton.setVisibility(view.VISIBLE);
-                                } else {
-                                    String token = response.data().authAuthentication().Token();
-                                    NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.login, true).build();
-                                    navController.navigate(R.id.go_to_main,null,navOption);
-
-                                    ((AppCompatActivity)getActivity()).getSupportActionBar().show();
-                                }
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onFailure(@NotNull ApolloException e) {
-
-                    }
-                });
-
-            }
-        });*/
     }
 
 }

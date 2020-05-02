@@ -5,6 +5,7 @@ import com.apollographql.apollo.ApolloClient;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.example.apollographqlandroid.AuthAuthenticationQuery;
+import com.example.apollographqlandroid.AuthChagePasswordMutation;
 import com.example.apollographqlandroid.AuthCreateUserMutation;
 import com.example.apollographqlandroid.AuthRecoverPasswordQuery;
 import com.example.apollographqlandroid.AuthValidateAuthTokenQuery;
@@ -114,6 +115,25 @@ public class AuthRepository {
         });
 
     }
+
+    public static void authChagePassword(String token,String password, String newpassword, ApolloCall.Callback<AuthChagePasswordMutation.Data>listener){
+        apolloClient.mutate(AuthChagePasswordMutation
+                .builder().token(token).password(password).newpassword(newpassword)
+                .build()).enqueue(new ApolloCall.Callback<AuthChagePasswordMutation.Data>() {
+            @Override
+            public void onResponse(@NotNull Response<AuthChagePasswordMutation.Data> response) {
+                listener.onResponse(response);
+            }
+
+            @Override
+            public void onFailure(@NotNull ApolloException e) {
+
+            }
+        });
+
+    }
+
+
 }
 
 

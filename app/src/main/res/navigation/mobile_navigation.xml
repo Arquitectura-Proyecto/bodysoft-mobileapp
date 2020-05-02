@@ -96,6 +96,15 @@
             app:destination="@id/login" />
     </fragment>
 
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.example.myapplication.ui.authentication.changePassword.changePasswordFragment"
+        android:label="Cambiar Contraseña"
+        tools:layout="@layout/fragment_change_password" >
+        <action
+            android:id="@+id/go_to_main"
+            app:destination="@id/nav_home" />
+    </fragment>
 
 
     <!--Fin Daniela-->
@@ -172,6 +181,7 @@
         android:name="com.example.myapplication.ui.Routine.RequestInformationFragment"
         android:label="fragment_request_information"
         tools:layout="@layout/fragment_request_information" />
+
 
 
     <!--Fin Andres-->
