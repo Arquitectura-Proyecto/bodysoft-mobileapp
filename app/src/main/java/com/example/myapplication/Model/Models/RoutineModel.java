@@ -11,6 +11,8 @@ import com.example.apollographqlandroid.GetResourcesByIdRoutineMutation;
 import com.example.apollographqlandroid.GetRoutinesByIdOwnerQuery;
 import com.example.apollographqlandroid.GetRoutinesByIdTypeQuery;
 import com.example.apollographqlandroid.GetRoutinesQuery;
+import com.example.apollographqlandroid.GetUserRoutineByIdUserQuery;
+import com.example.apollographqlandroid.RegisterRequestMutation;
 import com.example.apollographqlandroid.UpdateRoutineMutation;
 import com.example.myapplication.Model.Entities.RoutineEntity;
 import com.example.myapplication.Model.Repositories.RoutineRepository;
@@ -129,5 +131,32 @@ public class RoutineModel {
                 listener.onFailure(e);
             }
         },idType);
+    }
+
+    public static void getRoutinesByIdUser(ApolloCall.Callback<GetUserRoutineByIdUserQuery.Data>listener,String token){
+        RoutineRepository.getRoutinesByIdUser(new ApolloCall.Callback<GetUserRoutineByIdUserQuery.Data>() {
+            @Override
+            public void onResponse(@NotNull Response<GetUserRoutineByIdUserQuery.Data> response) {
+                listener.onResponse(response);
+            }
+
+            @Override
+            public void onFailure(@NotNull ApolloException e) {
+            listener.onFailure(e);
+            }
+        },token);
+    }
+    public static void registerRequest(ApolloCall.Callback<RegisterRequestMutation.Data>listener,int idRoutine,String token){
+        RoutineRepository.registerRequest(new ApolloCall.Callback<RegisterRequestMutation.Data>() {
+            @Override
+            public void onResponse(@NotNull Response<RegisterRequestMutation.Data> response) {
+                listener.onResponse(response);
+            }
+
+            @Override
+            public void onFailure(@NotNull ApolloException e) {
+            listener.onFailure(e);
+            }
+        } ,idRoutine,token);
     }
 }
