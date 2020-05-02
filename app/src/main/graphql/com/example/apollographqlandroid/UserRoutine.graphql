@@ -1,0 +1,16 @@
+query getRoutinesByIdType($idType:Int!){
+    Routines:getRoutinesByType(idType:$idType){
+        getId:id
+        getIdOwner:idOwner
+        getRaiting:rating
+        getNumRaitings:numRaitings
+        getPrice:price
+        getName:name
+        getDescription:description
+        getLinkPreview:linkPreview
+        getType:type{
+            getId:id
+            getName:name
+        }
+    }
+}

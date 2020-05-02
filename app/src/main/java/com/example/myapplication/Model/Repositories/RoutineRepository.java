@@ -8,6 +8,7 @@ import com.example.apollographqlandroid.CrearRutinaMutation;
 import com.example.apollographqlandroid.GetAllTypeRoutineQuery;
 import com.example.apollographqlandroid.GetResourcesByIdRoutineMutation;
 import com.example.apollographqlandroid.GetRoutinesByIdOwnerQuery;
+import com.example.apollographqlandroid.GetRoutinesByIdTypeQuery;
 import com.example.apollographqlandroid.GetRoutinesQuery;
 import com.example.apollographqlandroid.UpdateRoutineMutation;
 import com.example.myapplication.Model.Entities.RoutineEntity;
@@ -84,6 +85,9 @@ public class RoutineRepository {
     }
     public static void getResourcesByIdRoutine(ApolloCall.Callback<GetResourcesByIdRoutineMutation.Data>listener,int idRoutine,String token){
         apolloClient.mutate(GetResourcesByIdRoutineMutation.builder().idRoutine(idRoutine).token(token).build()).enqueue(new RoutineGraphQLListener<GetResourcesByIdRoutineMutation.Data>(listener));
+    }
+    public static void getRoutinesByIdType(ApolloCall.Callback<GetRoutinesByIdTypeQuery.Data>listener,int idType){
+        apolloClient.query(GetRoutinesByIdTypeQuery.builder().idType(idType).build()).enqueue(new RoutineGraphQLListener<GetRoutinesByIdTypeQuery.Data>(listener));
     }
 
 
