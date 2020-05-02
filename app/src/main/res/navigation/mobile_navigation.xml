@@ -159,11 +159,7 @@
         android:name="com.example.myapplication.ui.Routine.ListResourcesFragment"
         android:label="fragment_list_resources"
         tools:layout="@layout/fragment_list_resources" />
-    <fragment
-        android:id="@+id/userMyRoutineFragment"
-        android:name="com.example.myapplication.ui.Routine.User.UserMyRoutineFragment"
-        android:label="fragment_user_my_routine"
-        tools:layout="@layout/fragment_user_my_routine" />
+
     <fragment
         android:id="@+id/userRoutineListFragment"
         android:name="com.example.myapplication.ui.Routine.User.UserRoutineListFragment"
@@ -180,7 +176,11 @@
         android:id="@+id/userMyRoutinesListFragment"
         android:name="com.example.myapplication.ui.Routine.User.UserMyRoutinesListFragment"
         android:label="fragment_user_my_routines_list"
-        tools:layout="@layout/fragment_user_my_routines_list" />
+        tools:layout="@layout/fragment_user_my_routines_list" >
+        <action
+            android:id="@+id/action_userMyRoutinesListFragment_to_userMyResourcesFragment"
+            app:destination="@id/userMyResourcesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userRoutinePreviewFragment"
         android:name="com.example.myapplication.ui.Routine.User.UserRoutinePreviewFragment"
@@ -195,6 +195,16 @@
         android:name="com.example.myapplication.ui.Routine.User.UserRoutineRequestFragment"
         android:label="fragment_user_routine_request"
         tools:layout="@layout/fragment_user_routine_request" />
+    <fragment
+        android:id="@+id/userRoutinesFragment"
+        android:name="com.example.myapplication.ui.Routine.User.UserRoutinesFragment"
+        android:label="fragment_user_routines"
+        tools:layout="@layout/fragment_user_routines" />
+    <fragment
+        android:id="@+id/userMyResourcesFragment"
+        android:name="com.example.myapplication.ui.Routine.User.UserMyResourcesFragment"
+        android:label="fragment_user_my_routine"
+        tools:layout="@layout/fragment_user_my_routine" />
 
 
     <!--Fin Andres-->

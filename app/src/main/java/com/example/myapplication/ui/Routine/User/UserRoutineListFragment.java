@@ -74,7 +74,7 @@ public class UserRoutineListFragment extends Fragment {
         this.spinnerRoutineTypes = (MaterialSpinner) view.findViewById(R.id.spinnerRoutineTypes);
         this.btnGotoMyRoutinesList.setOnClickListener(new GoToMyRoutinesListener());
        // RoutineModel.getAllRoutinesByIdOwner(new UserRoutineListFragment.getAllRotuinesByIdOwnerListener(), GlobalState.getToken());
-        RoutineModel.getRoutinesByIdType(new getAllRoutinesByIdTypeListener(),2);
+        RoutineModel.getRoutinesByIdType(new getAllRoutinesByIdTypeListener(),1);
 
     }
     private class getAllRoutinesByIdTypeListener extends ApolloCall.Callback<GetRoutinesByIdTypeQuery.Data>{
