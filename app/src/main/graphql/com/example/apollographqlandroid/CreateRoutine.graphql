@@ -87,3 +87,16 @@ query getRequestByIdRoutine($idRoutine:Int!){
 
     }
 }
+
+
+mutation registerUserRoutine($idUser:Int!,$idRoutine:Int!,$idStatus:Int!,$token:String!){
+    registerUserRoutine(registerUserRoutinePOJO:{
+        idUser:$idUser
+        idRoutine:$idRoutine
+        idStatus:$idStatus
+    },token:$token)
+}
+
+mutation deleteRequest($idRequest:Int!){
+    deleteRequest(idRequest:$idRequest)
+}
