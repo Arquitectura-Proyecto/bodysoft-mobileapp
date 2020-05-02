@@ -73,7 +73,7 @@ public class RequestAdapter   extends RecyclerView.Adapter<RequestAdapter.ViewHo
             RoutineStore routineStore= ViewModelProviders.of((FragmentActivity) context).get(RoutineStore.class);
             //routineStore.setRoutineInformation();
             routineStore.setInformationRequest(request);
-            navigationController.navigate(R.id.fromRootRoutineFragment_to_routineInformationFragment);
+            navigationController.navigate(R.id.fromListRequestFragment_to_requestInformationFragment);
         }
     }
 }

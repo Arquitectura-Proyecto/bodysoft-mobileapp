@@ -6,6 +6,7 @@ import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.example.apollographqlandroid.CrearRutinaMutation;
 import com.example.apollographqlandroid.GetAllTypeRoutineQuery;
+import com.example.apollographqlandroid.GetRequestByIdRoutineQuery;
 import com.example.apollographqlandroid.GetResourcesByIdRoutineMutation;
 import com.example.apollographqlandroid.GetRoutinesByIdOwnerQuery;
 import com.example.apollographqlandroid.GetRoutinesQuery;
@@ -99,7 +100,12 @@ public class RoutineRepository {
 
                 .build()).enqueue(new RoutineGraphQLListener<RegisterResourceMutation.Data>(listener));
     }
+    public static  void getRequestByIdRoutine(ApolloCall.Callback<GetRequestByIdRoutineQuery.Data>listener,int idRoutine){
+        apolloClient.query(GetRequestByIdRoutineQuery.builder().idRoutine(idRoutine).build()).enqueue(new RoutineGraphQLListener<>(listener));
+    }
+    public static void registerUserRoutine(){
 
+    }
 
 private static class RoutineGraphQLListener <T> extends ApolloCall.Callback<T> {
         ApolloCall.Callback<T> callback;

@@ -148,6 +148,9 @@
         <action
             android:id="@+id/fromRoutineInformationFragment_to_listResourcesFragment"
             app:destination="@id/listResourcesFragment" />
+        <action
+            android:id="@+id/fromRoutineInformationFragment_to_listRequestFragment"
+            app:destination="@id/listRequestFragment" />
     </fragment>
     <fragment
         android:id="@+id/editRoutineFragment"
@@ -168,6 +171,20 @@
         android:name="com.example.myapplication.ui.Routine.RegisterResourceFragment"
         android:label="fragment_register_resource"
         tools:layout="@layout/fragment_register_resource" />
+    <fragment
+        android:id="@+id/listRequestFragment"
+        android:name="com.example.myapplication.ui.Routine.ListRequestFragment"
+        android:label="fragment_list_request"
+        tools:layout="@layout/fragment_list_request" >
+        <action
+            android:id="@+id/fromListRequestFragment_to_requestInformationFragment"
+            app:destination="@id/requestInformationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/requestInformationFragment"
+        android:name="com.example.myapplication.ui.Routine.RequestInformationFragment"
+        android:label="fragment_request_information"
+        tools:layout="@layout/fragment_request_information" />
 
 
     <!--Fin Andres-->
