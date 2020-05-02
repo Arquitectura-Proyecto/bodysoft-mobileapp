@@ -21,6 +21,7 @@ import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.example.apollographqlandroid.GetRoutinesByIdOwnerQuery;
+import com.example.apollographqlandroid.GetRoutinesByIdTypeQuery;
 import com.example.myapplication.Model.Models.RoutineModel;
 import com.example.myapplication.Model.Store.RoutineStore;
 import com.example.myapplication.R;
@@ -62,29 +63,27 @@ public class UserRoutineListFragment extends Fragment {
         this.btnGotoMyRoutinesList = (Button) view.findViewById(R.id.btnGotoMyRoutinesList);
         recyclerListMyRoutines = (RecyclerView) view.findViewById(R.id.recyclerListMyRoutines);
         navController = Navigation.findNavController(view);
-        routineStore.getListRoutine().observe(getViewLifecycleOwner(), new Observer<List<GetRoutinesByIdOwnerQuery.Routine>>() {
+        routineStore.getListSuggestedRoutines().observe(getViewLifecycleOwner(), new Observer<List<GetRoutinesByIdTypeQuery.Routine>>() {
             @Override
-            public void onChanged(List<GetRoutinesByIdOwnerQuery.Routine> routines) {
+            public void onChanged(List<GetRoutinesByIdTypeQuery.Routine> routines) {
                 recyclerListMyRoutines.setLayoutManager(new LinearLayoutManager(getContext()));
-                //Test();
-                //AdapterCardRoutine adapter=new AdapterCardRoutine(routineStore.getListRoutine().getValue(),getContext(),navController);
-                AdapterCardSuggestedRoutine adapter = new AdapterCardSuggestedRoutine(routineStore.getListRoutine().getValue(), getContext(), navController);
-                //adapter.setOnClickListener();
+                AdapterCardSuggestedRoutine adapter=new AdapterCardSuggestedRoutine(routines,navController,getContext());
                 recyclerListMyRoutines.setAdapter(adapter);
             }
         });
         this.spinnerRoutineTypes = (MaterialSpinner) view.findViewById(R.id.spinnerRoutineTypes);
         this.btnGotoMyRoutinesList.setOnClickListener(new GoToMyRoutinesListener());
-        RoutineModel.getAllRoutinesByIdOwner(new UserRoutineListFragment.getAllRotuinesByIdOwnerListener(), GlobalState.getToken());
+       // RoutineModel.getAllRoutinesByIdOwner(new UserRoutineListFragment.getAllRotuinesByIdOwnerListener(), GlobalState.getToken());
+        RoutineModel.getRoutinesByIdType(new getAllRoutinesByIdTypeListener(),1);
+
     }
-    private class getAllRotuinesByIdOwnerListener extends ApolloCall.Callback<GetRoutinesByIdOwnerQuery.Data>{
+    private class getAllRoutinesByIdTypeListener extends ApolloCall.Callback<GetRoutinesByIdTypeQuery.Data>{
+
         @Override
-        public void onResponse(@NotNull Response<GetRoutinesByIdOwnerQuery.Data> response) {
-
-
+        public void onResponse(@NotNull Response<GetRoutinesByIdTypeQuery.Data> response) {
             getActivity().runOnUiThread(new Runnable() {
                 @Override public void run() {
-                    routineStore.setRoutines(response.data().Routines());
+                    routineStore.setListSuggestedRoutines(response.data().Routines());
                 }
             });
         }
@@ -107,4 +106,5 @@ public class UserRoutineListFragment extends Fragment {
             navController.navigate(R.id.action_userRoutineListFragment_to_userMyRoutinesListFragment);
         }
     }
+
 }

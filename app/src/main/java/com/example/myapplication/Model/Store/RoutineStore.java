@@ -9,11 +9,13 @@ import androidx.lifecycle.ViewModel;
 import com.example.apollographqlandroid.GetAllTypeRoutineQuery;
 import com.example.apollographqlandroid.GetResourcesByIdRoutineMutation;
 import com.example.apollographqlandroid.GetRoutinesByIdOwnerQuery;
+import com.example.apollographqlandroid.GetRoutinesByIdTypeQuery;
 import com.example.myapplication.Model.Entities.RoutineEntity;
 
 import java.util.List;
 
 public class RoutineStore extends ViewModel {
+    private MutableLiveData<List<GetRoutinesByIdTypeQuery.Routine>>listSuggestedRoutines;
     private MutableLiveData<List<GetResourcesByIdRoutineMutation.Resource>>listResources;
     private MutableLiveData<GetRoutinesByIdOwnerQuery.Routine>InformationRoutine;
     private MutableLiveData<List<GetAllTypeRoutineQuery.TypeRoutine>>listTypeRoutines;
@@ -24,6 +26,7 @@ public class RoutineStore extends ViewModel {
         this.listTypeRoutines=new MutableLiveData<>() ;
         this.InformationRoutine=new MutableLiveData<>();
         this.listResources=new MutableLiveData<>();
+        this.listSuggestedRoutines=new MutableLiveData<>();
     }
     public void setRoutines(List<GetRoutinesByIdOwnerQuery.Routine> listRoutine){
         this.listRoutine.setValue(listRoutine);
@@ -48,6 +51,12 @@ public class RoutineStore extends ViewModel {
     }
     public LiveData<List<GetResourcesByIdRoutineMutation.Resource>>getListResources(){
         return this.listResources;
+    }
+    public void setListSuggestedRoutines(List<GetRoutinesByIdTypeQuery.Routine>newlistSuggestedRoutines){
+        this.listSuggestedRoutines.setValue(newlistSuggestedRoutines);
+    }
+    public LiveData<List<GetRoutinesByIdTypeQuery.Routine>>getListSuggestedRoutines(){
+        return this.listSuggestedRoutines;
     }
 
 }

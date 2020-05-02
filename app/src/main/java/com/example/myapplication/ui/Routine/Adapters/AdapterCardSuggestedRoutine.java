@@ -27,6 +27,7 @@ import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apollographqlandroid.GetRoutinesByIdOwnerQuery;
+import com.example.apollographqlandroid.GetRoutinesByIdTypeQuery;
 import com.example.myapplication.Model.Entities.RoutineEntity;
 import com.example.myapplication.Model.Store.RoutineStore;
 import com.example.myapplication.R;
@@ -37,14 +38,14 @@ import java.util.List;
 
 public class AdapterCardSuggestedRoutine extends RecyclerView.Adapter<AdapterCardSuggestedRoutine.ViewHolderCardSuggestedRoutine> {
 
-    List<GetRoutinesByIdOwnerQuery.Routine> routineList;
+    List<GetRoutinesByIdTypeQuery.Routine> routineList;
     NavController navigationController;
     private Context context;
 
-    public AdapterCardSuggestedRoutine(List<GetRoutinesByIdOwnerQuery.Routine> listaRutinas, Context context, NavController navController) {
-        this.routineList = listaRutinas;
+    public AdapterCardSuggestedRoutine(List<GetRoutinesByIdTypeQuery.Routine> routineList, NavController navigationController, Context context) {
+        this.routineList = routineList;
+        this.navigationController = navigationController;
         this.context = context;
-        this.navigationController = navController;
     }
 
     @NonNull
@@ -104,18 +105,21 @@ public class AdapterCardSuggestedRoutine extends RecyclerView.Adapter<AdapterCar
     }
 
     private class GoToRoutineInformationFragmentLister implements View.OnClickListener {
-        private GetRoutinesByIdOwnerQuery.Routine routine;
+        private GetRoutinesByIdTypeQuery.Routine routine;
 
-        public GoToRoutineInformationFragmentLister(GetRoutinesByIdOwnerQuery.Routine routine) {
+        public GoToRoutineInformationFragmentLister(GetRoutinesByIdTypeQuery.Routine routine) {
             this.routine = routine;
         }
 
         @Override
         public void onClick(View v) {
             //System.out.println("THE ROUTINE IS "+routine.getDescription());
-            RoutineStore routineStore = ViewModelProviders.of((FragmentActivity) context).get(RoutineStore.class);
+            /*RoutineStore routineStore = ViewModelProviders.of((FragmentActivity) context).get(RoutineStore.class);
             routineStore.setRoutineInformation(routine);
             navigationController.navigate(R.id.action_userRoutineListFragment_to_userRoutinePreviewFragment);
+
+        */
         }
+
     }
 }
