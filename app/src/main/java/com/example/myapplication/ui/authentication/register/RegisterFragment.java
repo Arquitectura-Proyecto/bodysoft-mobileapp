@@ -113,16 +113,6 @@ public class RegisterFragment extends Fragment {
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
 
-        NotificationCompat.Builder builder2 = new NotificationCompat.Builder(getActivity().getApplicationContext(), "Notification")
-                .setSmallIcon(R.mipmap.logo)
-                .setContentTitle("Verificacion de Cuenta")
-                .setContentText("Su codigo de verificación ha sido enviado a su correo")
-                .setStyle(new NotificationCompat.BigTextStyle()
-                        .bigText("Su codigo de verificación ha sido enviado a su correo"))
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setContentIntent(pendingIntent)
-                .setAutoCancel(true);
-
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getActivity().getApplicationContext());
 
         layoutCodigo.setVisibility(View.GONE);
@@ -148,8 +138,6 @@ public class RegisterFragment extends Fragment {
                                 }else{
                                     registerLayout.setVisibility(view.GONE);
                                     tengocodigo.setVisibility(View.GONE);
-                                    // notificationId is a unique int for each notification that you must define
-                                    notificationManager.notify(2, builder2.build());
 
                                 }
 
@@ -203,7 +191,7 @@ public class RegisterFragment extends Fragment {
                                     registerLayout.setVisibility(view.GONE);
                                     layoutCodigo.setVisibility(View.VISIBLE);
                                     // notificationId is a unique int for each notification that you must define
-                                    notificationManager.notify(2, builder2.build());
+
                                 }
 
                             }

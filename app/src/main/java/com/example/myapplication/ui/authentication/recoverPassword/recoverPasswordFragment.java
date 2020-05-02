@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.authentication.changePassword;
+package com.example.myapplication.ui.authentication.recoverPassword;
 
 import android.os.Bundle;
 
@@ -14,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.api.Response;

@@ -87,7 +87,7 @@
     </fragment>
     <fragment
         android:id="@+id/recoverPasswordFragment"
-        android:name="com.example.myapplication.ui.authentication.changePassword.recoverPasswordFragment"
+        android:name="com.example.myapplication.ui.authentication.recoverPassword.recoverPasswordFragment"
         android:label="changePasswordFragment" >
         <action
             android:id="@+id/go_to_login"

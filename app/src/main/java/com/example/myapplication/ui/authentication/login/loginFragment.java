@@ -99,15 +99,8 @@ public class loginFragment extends Fragment {
                                 Integer typeId = response.data().authValidateAuthToken().TypeID();
                                 Boolean profile = response.data().authValidateAuthToken().Profile();
                                 globalState.setTypeID(typeId);
-                                NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.login, true).build();
-                                if(profile){
-                                    navController.navigate(R.id.go_to_main,null,navOption);
-                                }else{
-                                    //Navegar funcion de vale
-                                    navController.navigate(R.id.go_to_main,null,navOption);
-                                }
 
-
+                                navegateTo(profile,typeId,navController);
                                 //authValidateAuthToken
 
                                 ((AppCompatActivity)getActivity()).getSupportActionBar().show();
@@ -173,13 +166,8 @@ public class loginFragment extends Fragment {
                                                         Integer typeId = response.data().authValidateAuthToken().TypeID();
                                                         Boolean profile = response.data().authValidateAuthToken().Profile();
                                                         globalState.setTypeID(typeId);
-                                                        NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.login, true).build();
-                                                            if(profile){
-                                                                navController.navigate(R.id.go_to_main,null,navOption);
-                                                            }else{
-                                                                //Navegar funcion de vale
-                                                               navController.navigate(R.id.go_to_main,null,navOption);
-                                                            }
+
+                                                        navegateTo(profile,typeId,navController);
 
 
                                                         //authValidateAuthToken
@@ -210,6 +198,30 @@ public class loginFragment extends Fragment {
 
             }
         });
+    }
+
+    private void navegateTo(Boolean profile, Integer typeId,NavController navController){
+        NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.login, true).build();
+        if(profile){
+            if(typeId==1){
+                //ir a enteredaror
+                navController.navigate(R.id.go_to_main,null,navOption);
+            }else{
+                //ir a usuario
+                navController.navigate(R.id.go_to_main,null,navOption);
+            }
+
+        }else{
+            //Navegar funcion de vale
+            if(typeId==1){
+                //registrar entrenador
+                navController.navigate(R.id.go_to_main,null,navOption);
+            }else{
+                //registrar usuario
+                navController.navigate(R.id.go_to_main,null,navOption);
+            }
+        }
+
     }
 
 }
