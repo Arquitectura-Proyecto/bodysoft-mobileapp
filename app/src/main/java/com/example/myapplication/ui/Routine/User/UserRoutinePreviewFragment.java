@@ -91,6 +91,7 @@ public class UserRoutinePreviewFragment extends Fragment {
         );
         this.btnRequestRoutine = (Button) view.findViewById(R.id.btnRequestRoutine);
         this.btnRequestRoutine.setOnClickListener(new GoToRequestRoutineListener());
+        //This is a test for github
 
     }
     private class GoToRequestRoutineListener implements View.OnClickListener {
