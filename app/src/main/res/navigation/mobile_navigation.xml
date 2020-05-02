@@ -71,7 +71,11 @@
         <action
             android:id="@+id/go_to_register"
             app:destination="@id/Register" />
-    </fragment>
+
+        <action
+            android:id="@+id/go_to_changePassword"
+            app:destination="@id/recoverPasswordFragment" />
+</fragment>
 
 <!--Daniela-->
     <fragment
@@ -80,51 +84,22 @@
         android:name="com.example.myapplication.ui.authentication.register.RegisterFragment"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/go_to_main"
-            app:destination="@id/nav_home" />
+            android:id="@+id/go_to_login"
+            app:destination="@id/login" />
+    </fragment>
+    <fragment
+        android:id="@+id/recoverPasswordFragment"
+        android:name="com.example.myapplication.ui.authentication.changePassword.recoverPasswordFragment"
+        android:label="changePasswordFragment" >
+        <action
+            android:id="@+id/go_to_login"
+            app:destination="@id/login" />
     </fragment>
 
 
 
+    <!--Fin Daniela-->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--Fin Daniela-->
 
 
 

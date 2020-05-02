@@ -1,10 +1,14 @@
 package com.example.myapplication.ui.authentication.register;
 
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
@@ -24,6 +28,7 @@ import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.example.apollographqlandroid.AuthCreateUserMutation;
 import com.example.apollographqlandroid.AuthVerifyAcountMutation;
+import com.example.myapplication.MainActivity;
 import com.example.myapplication.Model.Models.AuthModel;
 import com.example.myapplication.R;
 import com.example.myapplication.ui.GlobalState;
@@ -35,6 +40,7 @@ import org.jetbrains.annotations.NotNull;
 
 
 public class RegisterFragment extends Fragment {
+    private Integer typeID;
     GlobalState globalState;
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,26 +75,58 @@ public class RegisterFragment extends Fragment {
         MaterialButton next_coach_button = view.findViewById(R.id.next_coach_button);
         MaterialButton tengocodigo = view.findViewById(R.id.tengocodigo);
         MaterialButton corfirmButton = view.findViewById(R.id.confirm_button);
+        MaterialButton corfirmButton2 = view.findViewById(R.id.confirm2_button);
 
         /** Layout */
         LinearLayout registerLayout = view.findViewById(R.id.registerLayout);
         LinearLayout layoutCodigo  = view.findViewById(R.id.LayoutCodigo);
+        LinearLayout layoutCodigo2  = view.findViewById(R.id.LayoutCodigo2);
 
         /** Text input edit */
 
 
         TextInputEditText confirm_edit_text = view.findViewById(R.id.confirm_edit_text);
         TextInputEditText user_edit_text = view.findViewById(R.id.User_edit_text);
+        TextInputEditText confirm_edit_text2 = view.findViewById(R.id.confirm2_edit_text);
+        TextInputEditText user_edit_text2 = view.findViewById(R.id.email_edit_text);
         TextInputEditText password_edit_text = view.findViewById(R.id.password_edit_text);
 
 
         /** Text input*/
         TextInputLayout confirm_text_input = view.findViewById(R.id.confirm_text_input);
         TextInputLayout user_text_input = view.findViewById(R.id.User_text_input);
+        TextInputLayout confirm_text_input2 = view.findViewById(R.id.confirm2_text_input);
+        TextInputLayout user_text_input2 = view.findViewById(R.id.email_text_input);
         TextInputLayout password_text_input = view.findViewById(R.id.password_text_input);
 
+        Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(getActivity().getApplicationContext(), 0, intent, 0);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getActivity().getApplicationContext(), "Notification")
+                .setSmallIcon(R.mipmap.logo)
+                .setContentTitle("Registro exitoso")
+                .setContentText("Su codigo de verificación ha sido validado correctamente")
+                .setStyle(new NotificationCompat.BigTextStyle()
+                        .bigText("Su codigo de verificación ha sido validado correctamente"))
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+
+        NotificationCompat.Builder builder2 = new NotificationCompat.Builder(getActivity().getApplicationContext(), "Notification")
+                .setSmallIcon(R.mipmap.logo)
+                .setContentTitle("Verificacion de Cuenta")
+                .setContentText("Su codigo de verificación ha sido enviado a su correo")
+                .setStyle(new NotificationCompat.BigTextStyle()
+                        .bigText("Su codigo de verificación ha sido enviado a su correo"))
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getActivity().getApplicationContext());
+
         layoutCodigo.setVisibility(View.GONE);
-        tengocodigo.setVisibility(View.GONE);
+        layoutCodigo2.setVisibility(View.GONE);
 
         /** Coach register  */
         next_coach_button.setOnClickListener(new View.OnClickListener() {
@@ -96,7 +134,8 @@ public class RegisterFragment extends Fragment {
             public void onClick(View v) {
                 String email = user_edit_text.getText().toString().trim();
                 String password = password_edit_text.getText().toString();
-                AuthModel.authCreateUser(email,password,1,new ApolloCall.Callback<AuthCreateUserMutation.Data>() {
+                typeID = 1;
+                AuthModel.authCreateUser(email,password,typeID,new ApolloCall.Callback<AuthCreateUserMutation.Data>() {
                     @Override
                     public void onResponse(@NotNull Response<AuthCreateUserMutation.Data> response) {
                         getActivity().runOnUiThread(new Runnable() {
@@ -108,7 +147,9 @@ public class RegisterFragment extends Fragment {
                                     tengocodigo.setVisibility(View.VISIBLE);
                                 }else{
                                     registerLayout.setVisibility(view.GONE);
-                                    layoutCodigo.setVisibility(View.VISIBLE);
+                                    tengocodigo.setVisibility(View.GONE);
+                                    // notificationId is a unique int for each notification that you must define
+                                    notificationManager.notify(2, builder2.build());
 
                                 }
 
@@ -135,7 +176,9 @@ public class RegisterFragment extends Fragment {
             public void onClick(View v) {
                 registerLayout.setVisibility(view.GONE);
                 tengocodigo.setVisibility(View.GONE);
-                layoutCodigo.setVisibility(View.VISIBLE);
+                layoutCodigo2.setVisibility(View.VISIBLE);
+
+
             }
         });
 
@@ -145,7 +188,8 @@ public class RegisterFragment extends Fragment {
             public void onClick(View v) {
                 String email = user_edit_text.getText().toString().trim();
                 String password = password_edit_text.getText().toString();
-                AuthModel.authCreateUser(email,password,2,new ApolloCall.Callback<AuthCreateUserMutation.Data>() {
+                typeID = 2;
+                AuthModel.authCreateUser(email,password,typeID,new ApolloCall.Callback<AuthCreateUserMutation.Data>() {
                     @Override
                     public void onResponse(@NotNull Response<AuthCreateUserMutation.Data> response) {
                         getActivity().runOnUiThread(new Runnable() {
@@ -154,9 +198,12 @@ public class RegisterFragment extends Fragment {
                                     String error = response.errors().get(0).message().toString().substring(3);
                                     user_text_input.setError(error);
                                     password_text_input.setError(" ");
+                                    tengocodigo.setVisibility(View.VISIBLE);
                                 }else{
                                     registerLayout.setVisibility(view.GONE);
                                     layoutCodigo.setVisibility(View.VISIBLE);
+                                    // notificationId is a unique int for each notification that you must define
+                                    notificationManager.notify(2, builder2.build());
                                 }
 
                             }
@@ -193,10 +240,19 @@ public class RegisterFragment extends Fragment {
                                     String error = response.errors().get(0).message().toString().substring(3);
                                     confirm_text_input.setError(error);
                                 }else{
+
                                     NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.login, true).build();
-                                    navController.navigate(R.id.go_to_main,null,navOption);
+
+                                    navController.navigate(R.id.go_to_login,null,navOption);
+
+
+
+                                    // notificationId is a unique int for each notification that you must define
+                                    notificationManager.notify(1, builder.build());
 
                                     ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+
+
                                 }
 
                             }
@@ -218,6 +274,52 @@ public class RegisterFragment extends Fragment {
 
             }
         });
+        corfirmButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String email = user_edit_text2.getText().toString().trim();
+                int vcode = Integer.parseInt(confirm_edit_text2.getText().toString());
+                AuthModel.authVerifyAcount(email,vcode,new ApolloCall.Callback<AuthVerifyAcountMutation.Data>() {
+                    @Override
+                    public void onResponse(@NotNull Response<AuthVerifyAcountMutation.Data> response) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override public void run() {
+                                if(response.hasErrors()){
+                                    String error = response.errors().get(0).message().toString().substring(3);
+                                    confirm_text_input2.setError(error);
+                                }else{
+
+                                    NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.login, true).build();
+
+                                    navController.navigate(R.id.go_to_login,null,navOption);
+                                    // notificationId is a unique int for each notification that you must define
+                                    notificationManager.notify(1, builder.build());
+
+                                    ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+
+
+                                }
+
+                            }
+                        });
+                    }
+                    //authVerifyAcount
+                    @Override
+                    public void onFailure(@NotNull ApolloException e) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override public void run() {
+                            }
+                        });
+                    }
+                });
+
+
+
+            }
+        });
 
     }
+
+
 }

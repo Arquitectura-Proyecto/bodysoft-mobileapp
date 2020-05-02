@@ -6,15 +6,25 @@ import androidx.lifecycle.ViewModel;
 
 public class AuthGlobalState extends ViewModel {
 
-        private MutableLiveData<String> sharedString;
-        public AuthGlobalState(){
-            this.sharedString=new MutableLiveData<>();
+    private MutableLiveData<String> token;
+    private MutableLiveData<Integer> typeID;
 
-        }
-        public void setString(String s){
-            this.sharedString.setValue(s);
-        }
-        public LiveData<String> getSharedString(){
-            return this.sharedString;
-        }
+    public AuthGlobalState() {
+        this.token =  new MutableLiveData<>();
+        this.typeID = new MutableLiveData<>();
+    }
+
+    public void setToken(String s){
+        this.token.setValue(s);
+    }
+    public LiveData<String> getToken(){
+        return this.token;
+    }
+
+    public void setTypeID(Integer s){
+        this.typeID.setValue(s);
+    }
+    public LiveData<Integer> getTypeId(){
+        return this.typeID;
+    }
 }
