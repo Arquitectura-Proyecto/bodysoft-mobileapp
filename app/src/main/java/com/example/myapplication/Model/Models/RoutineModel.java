@@ -164,6 +164,21 @@ public class RoutineModel {
             }
         },idRequest);
     }
+    public static void rejectRequest(int idRequest){
+
+        RoutineRepository.deleteRequest(new ApolloCall.Callback<DeleteRequestMutation.Data>() {
+            @Override
+            public void onResponse(@NotNull Response<DeleteRequestMutation.Data> response) {
+
+            }
+
+            @Override
+            public void onFailure(@NotNull ApolloException e) {
+
+            }
+        },idRequest);
+
+    }
 
 
     private static class ModelListener<T>extends ApolloCall.Callback<T>{
