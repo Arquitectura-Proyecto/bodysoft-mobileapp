@@ -7,3 +7,96 @@ mutation crearRutina($price:Float!,$name:String!,$description:String!,$link_prev
         idType:$idType
     },token:$token)
 }
+
+query getRoutinesByIdOwner($token:String!){
+    Routines:getRoutineByIdOwner(token:$token){
+        getId:id
+        getIdOwner:idOwner
+        getRaiting:rating
+        getNumRaitings:numRaitings
+        getPrice:price
+        getName:name
+        getDescription:description
+        getLinkPreview:linkPreview
+        #type {...type} asi es si quiere usar el fragmento de abajo
+        getType: type{
+            getId:id
+            getName:name
+        }
+    }
+}
+
+query getAllTypeRoutine{
+    TypeRoutines:getAllTypeRoutine{
+       getId: id
+        getName:name
+    }
+}
+
+
+#fragment type on TypeRoutine{
+ #   getId:id
+  #  getName:name
+#}
+
+mutation updateRoutine($idRoutine:Int!,$price:Float!,$name:String!,$description:String!,$linkPreview:String!,$idType:Int!,$token:String!){
+    updateRoutine(
+        idRoutine:$idRoutine,
+        routine:{
+
+        price:$price
+        name:$name
+        description:$description
+        link_preview:$linkPreview
+        idType:$idType
+    },token:$token)
+}
+
+
+mutation getResourcesByIdRoutine($idRoutine:Int!,$token:String!){
+
+    Resources:getResourceByIdRoutine(idRoutine:$idRoutine,token:$token){
+        getId:id
+        getLink:link
+        getTitle:title
+        getDescription:description
+        getPosition:position
+        getType:type{
+            getId:id
+            getName:name
+        }
+
+    }
+
+}
+
+mutation registerResource($idRoutine:Int!,$link:String!,$title:String!,$description:String!,$position:Int!,$idType:Int!,$token:String!) {
+    registerResource(idRoutine:$idRoutine,registerResourcePOJO:{
+        link:$link
+        title:$title
+        description:$description
+        position:$position
+        idType:$idType
+
+    },token:$token)
+}
+query getRequestByIdRoutine($idRoutine:Int!){
+    Requests:getRequestByIdRoutine(idRoutine:$idRoutine){
+        id
+        idUser
+
+    }
+}
+
+
+mutation registerUserRoutine($idUser:Int!,$idRoutine:Int!,$idStatus:Int!,$token:String!){
+    registerUserRoutine(registerUserRoutinePOJO:{
+        idUser:$idUser
+        idRoutine:$idRoutine
+        idStatus:$idStatus
+    },token:$token)
+}
+
+mutation deleteRequest($idRequest:Int!){
+    deleteRequest(idRequest:$idRequest)
+}

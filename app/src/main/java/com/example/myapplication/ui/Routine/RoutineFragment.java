@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.ui.GlobalState;
-
+///esta clase se puede eliminar
 public class RoutineFragment extends Fragment {
 
     private RoutineViewModel mViewModel;
