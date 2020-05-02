@@ -31,9 +31,10 @@
                 android:background="@drawable/bg_circle"/>
 
             <TextView
+                android:id="@+id/nameTrainerProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dug"
+                android:text=""
                 android:layout_marginTop="10dp"
                 style="@style/TextAppearance.AppCompat.Headline"
                 android:textColor="#ffffff"/>
@@ -107,9 +108,10 @@
                         android:text="Edad"/>
 
                     <TextView
+                        android:id="@+id/ageTrainerProfile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="21"/>
+                        android:text=""/>
 
                 </LinearLayout>
 
@@ -142,9 +144,10 @@
                         android:text="Telefono"/>
 
                     <TextView
+                        android:id="@+id/telephoneTrainerProfile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="30000000000"/>
+                        android:text=""/>
 
                 </LinearLayout>
 
@@ -177,9 +180,10 @@
                         android:text="Ciudad"/>
 
                     <TextView
+                        android:id="@+id/cityTrainerProfile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Bogotá"/>
+                        android:text=""/>
 
                 </LinearLayout>
 
@@ -214,9 +218,10 @@
                         android:text="Calificación"/>
 
                     <TextView
+                        android:id="@+id/degreeTrainerProfile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="4.5"/>
+                        android:text=""/>
 
                 </LinearLayout>
 
@@ -250,9 +255,10 @@
                         android:text="Descripción"/>
 
                     <TextView
+                        android:id="@+id/descriptionTrainerProfile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="El mejor entrenador del mundo, con conocimientos en multiples areas."/>
+                        android:text=""/>
 
                 </LinearLayout>
 
@@ -286,9 +292,10 @@
                         android:text="Experiencia Laboral"/>
 
                     <TextView
+                        android:id="@+id/experienceTrainerProfile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="5 años"/>
+                        android:text=""/>
 
                 </LinearLayout>
 
@@ -322,9 +329,10 @@
                         android:text="Recursos"/>
 
                     <TextView
+                        android:id="@+id/resourcesTrainerProfile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Pesas, mancuernas"/>
+                        android:text=""/>
 
                 </LinearLayout>
 

@@ -14,10 +14,22 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.apollographql.apollo.ApolloCall;
+import com.apollographql.apollo.api.Response;
+import com.apollographql.apollo.exception.ApolloException;
+import com.example.apollographqlandroid.ProfileUserQuery;
+import com.example.apollographqlandroid.ProfileTrainerQuery;
+import com.example.myapplication.Model.Repositories.ProfileRepository;
+import com.example.myapplication.Model.Repositories.ProfileTrainerRepository;
 import com.example.myapplication.R;
 import com.example.myapplication.ui.GlobalState;
 import com.google.android.material.button.MaterialButton;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.StringTokenizer;
 
 public class TrainerFragment extends Fragment {
 
@@ -39,8 +51,52 @@ public class TrainerFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+        TextView user_name = view.findViewById(R.id.nameTrainerProfile);
+        TextView telephone = view.findViewById(R.id.telephoneTrainerProfile);
+        TextView city = view.findViewById(R.id.cityTrainerProfile);
+        TextView age = view.findViewById(R.id.ageTrainerProfile);
+        TextView degree = view.findViewById(R.id.degreeTrainerProfile);
+        TextView description = view.findViewById(R.id.descriptionTrainerProfile);
+        TextView experience = view.findViewById(R.id.experienceTrainerProfile);
+        TextView resources = view.findViewById(R.id.resourcesTrainerProfile);
+
         MaterialButton buttonEditTrainer = view.findViewById(R.id.buttonEditTrainer);
         final NavController navController= Navigation.findNavController(view);
+
+
+        ProfileTrainerRepository.getProfileTrainer(new ApolloCall.Callback<ProfileTrainerQuery.Data>() {
+            @Override
+            public void onResponse(@NotNull Response<ProfileTrainerQuery.Data> response) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override public void run() {
+
+                        user_name.setText(response.data().profileTrainer().trainer_name());
+                        age.setText(response.data().profileTrainer().age().toString());
+                        telephone.setText(response.data().profileTrainer().telephone());
+                        city.setText(response.data().profileTrainer().city());
+                        description.setText(response.data().profileTrainer().description());
+                        experience.setText(response.data().profileTrainer().work_experience());
+                        resources.setText(response.data().profileTrainer().resources());
+                        int div = response.data().profileTrainer().num_ratings();
+                        if (div!=0) {
+                            float calc = (float)response.data().profileTrainer().sum_ratings() / div;
+                            String val = String.format("%.1f",calc);
+                            degree.setText(val);
+                        }else {
+                            degree.setText("0");
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(@NotNull ApolloException e) {
+                System.out.println();
+            }
+        },"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MSwiUHJvZmlsZSI6dHJ1ZSwiVHlwZUlEIjoxLCJleHAiOjE1ODg0Mzg1NDN9.9X2JxE-JYSMfVBw8-kQYhH0dvF-g-r-eMF6yrHqP41U");
+
+
         buttonEditTrainer .setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +104,8 @@ public class TrainerFragment extends Fragment {
                 navController.navigate(R.id.go_to_edit_trainer,null,navOption);
             }
         });
+
+
     }
 
     @Override

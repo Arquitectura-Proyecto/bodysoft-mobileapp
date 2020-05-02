@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         );*/
         ////
 
-        int des = 1;
+        int des = 2;
         if(des==1){
             setContentView(R.layout.activity_main);
         }else{
