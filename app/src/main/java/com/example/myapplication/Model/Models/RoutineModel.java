@@ -6,15 +6,18 @@ import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.example.apollographqlandroid.CrearRutinaMutation;
+import com.example.apollographqlandroid.DeleteRequestMutation;
 import com.example.apollographqlandroid.GetAllTypeRoutineQuery;
 import com.example.apollographqlandroid.GetRequestByIdRoutineQuery;
 import com.example.apollographqlandroid.GetResourcesByIdRoutineMutation;
 import com.example.apollographqlandroid.GetRoutinesByIdOwnerQuery;
 import com.example.apollographqlandroid.GetRoutinesQuery;
 import com.example.apollographqlandroid.RegisterResourceMutation;
+import com.example.apollographqlandroid.RegisterUserRoutineMutation;
 import com.example.apollographqlandroid.UpdateRoutineMutation;
 import com.example.myapplication.Model.Entities.ResourceEntity;
 import com.example.myapplication.Model.Entities.RoutineEntity;
+import com.example.myapplication.Model.Entities.UserRoutineEntity;
 import com.example.myapplication.Model.Repositories.RoutineRepository;
 
 
@@ -136,6 +139,30 @@ public class RoutineModel {
     }
     public static void getRequestByIdRoutine(ApolloCall.Callback<GetRequestByIdRoutineQuery.Data>listener,int idRoutine){
         RoutineRepository.getRequestByIdRoutine(new ModelListener<GetRequestByIdRoutineQuery.Data>(listener),idRoutine);
+    }
+    public static void acceptRequest(UserRoutineEntity userRoutineEntity, int idRequest, String token){
+        RoutineRepository.registerUserRoutine(new ApolloCall.Callback<RegisterUserRoutineMutation.Data>() {
+            @Override
+            public void onResponse(@NotNull Response<RegisterUserRoutineMutation.Data> response) {
+
+            }
+
+            @Override
+            public void onFailure(@NotNull ApolloException e) {
+
+            }
+        },userRoutineEntity,token);
+        RoutineRepository.deleteRequest(new ApolloCall.Callback<DeleteRequestMutation.Data>() {
+            @Override
+            public void onResponse(@NotNull Response<DeleteRequestMutation.Data> response) {
+
+            }
+
+            @Override
+            public void onFailure(@NotNull ApolloException e) {
+
+            }
+        },idRequest);
     }
 
 
