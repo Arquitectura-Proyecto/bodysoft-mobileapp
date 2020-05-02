@@ -9,6 +9,7 @@ import com.apollographql.apollo.exception.ApolloException;
 import com.example.apollographqlandroid.ProfileUsersQuery;
 import com.example.apollographqlandroid.ProfileUserQuery;
 import com.example.apollographqlandroid.EditProfileUserMutation;
+import com.example.apollographqlandroid.CreateProfileMutation;
 import com.example.myapplication.Model.Models.ModelListener;
 import com.example.myapplication.Model.Repositories.Data.Client;
 import com.example.myapplication.ui.GlobalState;
@@ -62,6 +63,23 @@ public class ProfileRepository {
             @Override
             public void onResponse(@NotNull Response<EditProfileUserMutation.Data> response) {
                 EditProfileUserMutation.UpdateProfileUser user= response.data().updateProfileUser();
+                System.out.println("repo" + user);
+                listener.onResponse(response);
+            }
+
+            @Override
+            public void onFailure(@NotNull ApolloException e) {
+                System.out.println("el error es "+e.getMessage());
+            }
+        });
+    }
+
+
+    public static void createProfileUser(ApolloCall.Callback<CreateProfileMutation.Data>listener, String user_name, int age, String photo, String telephone, String city, String token){
+        apolloClient.mutate(CreateProfileMutation.builder().name(user_name).age(age).photo(photo).telephone(telephone).city(city).token(token).build()).enqueue(new ApolloCall.Callback<CreateProfileMutation.Data>() {
+            @Override
+            public void onResponse(@NotNull Response<CreateProfileMutation.Data> response) {
+                String user= response.data().createProfile();
                 System.out.println("repo" + user);
                 listener.onResponse(response);
             }

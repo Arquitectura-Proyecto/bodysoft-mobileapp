@@ -20,6 +20,7 @@ import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.example.apollographqlandroid.ProfileUserQuery;
 import com.example.apollographqlandroid.EditProfileUserMutation;
+import com.example.apollographqlandroid.CreateProfileMutation;
 import com.example.myapplication.Model.Repositories.ProfileRepository;
 import com.example.myapplication.R;
 import com.example.myapplication.ui.GlobalState;
@@ -34,18 +35,18 @@ import org.jetbrains.annotations.NotNull;
  * Use the {@link UserEditFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class UserEditFragment extends Fragment {
+public class CreateUserFragment extends Fragment {
 
     GlobalState globalState;
 
-    public static UserEditFragment newInstance() {
-        return new UserEditFragment();
+    public static CreateUserFragment newInstance() {
+        return new CreateUserFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_user_edit, container, false);
+        View view=inflater.inflate(R.layout.fragment_create_user, container, false);
         globalState = ViewModelProviders.of(getActivity()).get(GlobalState.class);
         return view;
     }
@@ -55,49 +56,27 @@ public class UserEditFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        TextView user_name = view.findViewById(R.id.nameUserEditProfile);
-        TextInputEditText telephone = view.findViewById(R.id.editTelephone);
-        TextInputEditText city = view.findViewById(R.id.editCity);
-        TextInputEditText age = view.findViewById(R.id.editAge);
+        TextInputEditText user_name = view.findViewById(R.id.createNameUser);
+        TextInputEditText telephone = view.findViewById(R.id.createTelephoneUser);
+        TextInputEditText city = view.findViewById(R.id.createCityUser);
+        TextInputEditText age = view.findViewById(R.id.createAgeUser);
 
-        MaterialButton buttonSaveEditUser = view.findViewById(R.id.buttonSaveEditUser);
+        MaterialButton buttonCreateUser = view.findViewById(R.id.buttonCreateUser);
         final NavController navController= Navigation.findNavController(view);
 
 
-        ProfileRepository.getProfileUser(new ApolloCall.Callback<ProfileUserQuery.Data>() {
-            @Override
-            public void onResponse(@NotNull Response<ProfileUserQuery.Data> response) {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override public void run() {
-                        user_name.setText(response.data().profileUser().user_name());
-                        age.setText(response.data().profileUser().age().toString());
-                        telephone.setText(response.data().profileUser().telephone());
-                        city.setText(response.data().profileUser().city());
-                    }
-                });
-            }
 
-            @Override
-            public void onFailure(@NotNull ApolloException e) {
-                System.out.println(e);
-            }
-        },"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MywiUHJvZmlsZSI6dHJ1ZSwiVHlwZUlEIjoyLCJleHAiOjE1ODg0NTkwMTl9.D--uz_85OIEDzmfgIlnrMTRA6fZ88qciwn70dVeZYsE");
-
-
-
-
-
-        buttonSaveEditUser .setOnClickListener(new View.OnClickListener() {
+        buttonCreateUser .setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                ProfileRepository.editProfileUser(new ApolloCall.Callback<EditProfileUserMutation.Data>() {
+                ProfileRepository.createProfileUser(new ApolloCall.Callback<CreateProfileMutation.Data>() {
                     @Override
-                    public void onResponse(@NotNull Response<EditProfileUserMutation.Data> response) {
+                    public void onResponse(@NotNull Response<CreateProfileMutation.Data> response) {
                         getActivity().runOnUiThread(new Runnable() {
                             @Override public void run() {
-                                NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.fragment_profile, true).build();
-                                navController.navigate(R.id.go_to_user_profile,null,navOption);
+                                NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.nav_home, true).build();
+                                navController.navigate(R.id.from_create_user_to_home,null,navOption);
                             }
                         });
                     }
@@ -106,7 +85,7 @@ public class UserEditFragment extends Fragment {
                     public void onFailure(@NotNull ApolloException e) {
                         System.out.println(e);
                     }
-                },user_name.getText().toString(),Integer.parseInt(age.getText().toString()),"aquifoto",telephone.getText().toString(),city.getText().toString(),"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MywiUHJvZmlsZSI6dHJ1ZSwiVHlwZUlEIjoyLCJleHAiOjE1ODg0NTkwMTl9.D--uz_85OIEDzmfgIlnrMTRA6fZ88qciwn70dVeZYsE");
+                },user_name.getText().toString(),Integer.parseInt(age.getText().toString()),"aquifoto",telephone.getText().toString(),city.getText().toString(),"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MSwiUHJvZmlsZSI6ZmFsc2UsIlR5cGVJRCI6MiwiZXhwIjoxNTg4NDY0MTY0fQ.dtXxC9CI3z6xa9QLjp5KS6Pmq3lsaT-YRanlarovk-Y");
 
 
 
@@ -125,3 +104,4 @@ public class UserEditFragment extends Fragment {
 
     }
 }
+

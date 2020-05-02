@@ -271,6 +271,24 @@
             android:id="@+id/go_to_trainer_profile"
             app:destination="@id/trainerFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/createUserFragment"
+        android:name="com.example.myapplication.ui.Profile.CreateUserFragment"
+        android:label="fragment_create_user"
+        tools:layout="@layout/fragment_create_user" >
+        <action
+            android:id="@+id/from_create_user_to_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/createTrainerFragment"
+        android:name="com.example.myapplication.ui.Profile.CreateTrainerFragment"
+        android:label="fragment_create_trainer"
+        tools:layout="@layout/fragment_create_trainer" >
+        <action
+            android:id="@+id/from_create_trainer_to_home"
+            app:destination="@id/nav_home" />
+    </fragment>
 
 
     <!--fin valentina-->

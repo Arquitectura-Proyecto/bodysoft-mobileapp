@@ -82,7 +82,7 @@ public class UserProfileFragment extends Fragment {
             public void onFailure(@NotNull ApolloException e) {
                 System.out.println();
             }
-        },"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MSwiUHJvZmlsZSI6dHJ1ZSwiVHlwZUlEIjoxLCJleHAiOjE1ODgzMTI0MzB9.aMeHGlf-kMfFbDVyWatqKqW8Tm68v7lfOPxA4mXBiyg");
+        },"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MywiUHJvZmlsZSI6dHJ1ZSwiVHlwZUlEIjoyLCJleHAiOjE1ODg0NTkwMTl9.D--uz_85OIEDzmfgIlnrMTRA6fZ88qciwn70dVeZYsE");
     }
 
     @Override

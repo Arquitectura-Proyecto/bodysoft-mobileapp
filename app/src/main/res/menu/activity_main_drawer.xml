@@ -24,6 +24,10 @@
             android:id="@+id/fragment_profile"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Perfil" />
+        <item
+            android:id="@+id/createUserFragment"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Crear Usuario" />
 
 
     </group>

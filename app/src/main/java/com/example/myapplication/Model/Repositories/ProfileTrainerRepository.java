@@ -11,6 +11,7 @@ import com.example.apollographqlandroid.ProfileUserQuery;
 import com.example.apollographqlandroid.ProfileTrainerQuery;
 import com.example.apollographqlandroid.EditProfileUserMutation;
 import com.example.apollographqlandroid.EditProfileTrainerMutation;
+import com.example.apollographqlandroid.CreateProfileMutation;
 import com.example.myapplication.Model.Models.ModelListener;
 import com.example.myapplication.Model.Repositories.Data.Client;
 import com.example.myapplication.ui.GlobalState;
@@ -75,7 +76,21 @@ public class ProfileTrainerRepository {
         });
     }
 
+    public static void createProfileTrainer(ApolloCall.Callback<CreateProfileMutation.Data>listener, String trainer_name, int age, String photo, String telephone, String city, String description, String resources, String work_experience, String token){
+        apolloClient.mutate(CreateProfileMutation.builder().name(trainer_name).age(age).photo(photo).telephone(telephone).city(city).sum_ratings(0).num_ratings(0).description(description).resources(resources).work_experience(work_experience).token(token).build()).enqueue(new ApolloCall.Callback<CreateProfileMutation.Data>() {
+            @Override
+            public void onResponse(@NotNull Response<CreateProfileMutation.Data> response) {
+                String trainer= response.data().createProfile();
+                System.out.println("repo" + trainer);
+                listener.onResponse(response);
+            }
 
+            @Override
+            public void onFailure(@NotNull ApolloException e) {
+                System.out.println("el error es "+e.getMessage());
+            }
+        });
+    }
 
 
 
