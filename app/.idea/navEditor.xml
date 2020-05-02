@@ -249,6 +249,27 @@
                             <option name="y" value="1151" />
                           </Point>
                         </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_userRoutineListFragment_to_userMyRoutinesListFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="userRoutinePreviewFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="104" />
+                            <option name="y" value="848" />
+                          </Point>
+                        </option>
                       </LayoutPositions>
                     </value>
                   </entry>
