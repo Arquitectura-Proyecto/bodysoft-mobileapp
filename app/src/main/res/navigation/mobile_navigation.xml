@@ -185,7 +185,16 @@
         android:id="@+id/userRoutinePreviewFragment"
         android:name="com.example.myapplication.ui.Routine.User.UserRoutinePreviewFragment"
         android:label="fragment_user_routine_preview"
-        tools:layout="@layout/fragment_user_routine_preview" />
+        tools:layout="@layout/fragment_user_routine_preview" >
+        <action
+            android:id="@+id/action_userRoutinePreviewFragment_to_userRoutineRequestFragment"
+            app:destination="@id/userRoutineRequestFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userRoutineRequestFragment"
+        android:name="com.example.myapplication.ui.Routine.User.UserRoutineRequestFragment"
+        android:label="fragment_user_routine_request"
+        tools:layout="@layout/fragment_user_routine_request" />
 
 
     <!--Fin Andres-->

@@ -74,7 +74,7 @@ public class UserRoutineListFragment extends Fragment {
         this.spinnerRoutineTypes = (MaterialSpinner) view.findViewById(R.id.spinnerRoutineTypes);
         this.btnGotoMyRoutinesList.setOnClickListener(new GoToMyRoutinesListener());
        // RoutineModel.getAllRoutinesByIdOwner(new UserRoutineListFragment.getAllRotuinesByIdOwnerListener(), GlobalState.getToken());
-        RoutineModel.getRoutinesByIdType(new getAllRoutinesByIdTypeListener(),1);
+        RoutineModel.getRoutinesByIdType(new getAllRoutinesByIdTypeListener(),2);
 
     }
     private class getAllRoutinesByIdTypeListener extends ApolloCall.Callback<GetRoutinesByIdTypeQuery.Data>{
@@ -93,12 +93,7 @@ public class UserRoutineListFragment extends Fragment {
 
         }
     }
-    private void Test(){
-        GetRoutinesByIdOwnerQuery.Routine routine=new GetRoutinesByIdOwnerQuery.Routine("CALISTENIA","1",2,2.3,3,3.4,"NOMBRE","dESCRIP","http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",new GetRoutinesByIdOwnerQuery.GetType("sd","ds","sd"));
-        List<GetRoutinesByIdOwnerQuery.Routine> listaRutinas=new ArrayList<>();
-        listaRutinas.add(routine);
-        routineStore.setRoutines(listaRutinas);
-    }
+
     private class GoToMyRoutinesListener implements View.OnClickListener {
 
         @Override

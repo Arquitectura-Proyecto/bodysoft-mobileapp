@@ -256,6 +256,11 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="action_userRoutineListFragment_to_userRoutinePreviewFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                           </map>
                         </option>
                       </LayoutPositions>
@@ -268,6 +273,18 @@
                           <Point>
                             <option name="x" value="104" />
                             <option name="y" value="848" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="userRoutineRequestFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="440" />
+                            <option name="y" value="925" />
                           </Point>
                         </option>
                       </LayoutPositions>

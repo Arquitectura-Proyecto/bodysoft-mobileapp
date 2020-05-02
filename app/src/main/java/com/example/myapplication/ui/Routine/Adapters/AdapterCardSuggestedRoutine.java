@@ -78,7 +78,7 @@ public class AdapterCardSuggestedRoutine extends RecyclerView.Adapter<AdapterCar
         holder.title.setText(routineList.get(position).getName());
         holder.description.setText(routineList.get(position).getDescription());
         holder.type.setText(routineList.get(position).getType().getName());
-        holder.btnGotoMyRoutinesListFragment.setOnClickListener(new GoToRoutineInformationFragmentLister(routineList.get(position)));
+        holder.btnGotoRoutinePreview.setOnClickListener(new GotoRoutinePreviewListener(routineList.get(position)));
     }
 
     @Override
@@ -90,7 +90,7 @@ public class AdapterCardSuggestedRoutine extends RecyclerView.Adapter<AdapterCar
     public class ViewHolderCardSuggestedRoutine extends RecyclerView.ViewHolder {
         VideoView video;
         TextView description, title, type;
-        Button btnGotoMyRoutinesListFragment;
+        Button btnGotoRoutinePreview;
 
         public ViewHolderCardSuggestedRoutine(@NonNull View itemView) {
             super(itemView);
@@ -98,27 +98,27 @@ public class AdapterCardSuggestedRoutine extends RecyclerView.Adapter<AdapterCar
             description = (TextView) itemView.findViewById(R.id.txtdescriptionRoutine);
             title = (TextView) itemView.findViewById(R.id.txtnameRoutine);
             type = (TextView) itemView.findViewById(R.id.txtTypeRoutine);
-            btnGotoMyRoutinesListFragment = (Button) itemView.findViewById(R.id.btnGotoMyRoutinesList);
-            //btnGoToRoutineInformationFragment.setOnClickListener(listener);
+
+            btnGotoRoutinePreview = (Button) itemView.findViewById(R.id.btnGotoRoutinePreview);
+
         }
 
     }
 
-    private class GoToRoutineInformationFragmentLister implements View.OnClickListener {
+    private class GotoRoutinePreviewListener implements View.OnClickListener {
         private GetRoutinesByIdTypeQuery.Routine routine;
 
-        public GoToRoutineInformationFragmentLister(GetRoutinesByIdTypeQuery.Routine routine) {
+        public GotoRoutinePreviewListener(GetRoutinesByIdTypeQuery.Routine routine) {
             this.routine = routine;
         }
 
         @Override
         public void onClick(View v) {
-            //System.out.println("THE ROUTINE IS "+routine.getDescription());
-            /*RoutineStore routineStore = ViewModelProviders.of((FragmentActivity) context).get(RoutineStore.class);
-            routineStore.setRoutineInformation(routine);
+
+            RoutineStore routineStore = ViewModelProviders.of((FragmentActivity) context).get(RoutineStore.class);
+            routineStore.setInformationRoutinePreview(routine);
             navigationController.navigate(R.id.action_userRoutineListFragment_to_userRoutinePreviewFragment);
 
-        */
         }
 
     }
