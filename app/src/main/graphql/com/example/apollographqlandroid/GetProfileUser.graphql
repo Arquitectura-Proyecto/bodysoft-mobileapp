@@ -1,0 +1,10 @@
+query profileUser($token:String!){
+  profileUser(token:$token){
+    user_id
+    user_name
+    age
+    photo
+    telephone
+    city
+  }
+}

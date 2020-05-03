@@ -1,0 +1,16 @@
+mutation createProfile($name:String!, $age:Int!, $photo:String!, $telephone:String!, $city:String!, $sum_ratings:Int, $num_ratings:Int
+  $description:String, $work_experience:String, $resources:String ,$token:String)
+{
+  createProfile(body:{
+    name: $name
+    age: $age
+    photo : $photo
+    telephone : $telephone
+    city : $city
+    sum_ratings : $sum_ratings
+    num_ratings: $num_ratings
+    description : $description
+    work_experience : $work_experience
+    resources : $resources
+  },token: $token)
+}

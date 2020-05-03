@@ -1,0 +1,8 @@
+query profileSpecialitiesToAdd($token:String!){
+  profileToAddSpecialitities(token:$token){
+    speciality_id
+    speciality_name
+  }
+}
+
+

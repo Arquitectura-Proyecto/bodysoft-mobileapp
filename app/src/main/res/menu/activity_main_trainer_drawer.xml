@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+    tools:showIn="navigation_view_user">
 
     <group android:checkableBehavior="single">
         <item
@@ -21,18 +21,23 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="lista rutinas" />
         <item
-            android:id="@+id/fragment_profile"
+            android:id="@+id/trainerFragment"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Perfil" />
         <item
-            android:id="@+id/createUserFragment"
+            android:id="@+id/createTrainerFragment"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Crear Usuario" />
 
-            android:id="@+id/rootRoutineFragment"
+        <item
+            android:id="@+id/listSpecialitiesTrainerFragment"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="lista rutinas" />
+            android:title="Lista especialidades" />
 
+        <item
+            android:id="@+id/addSpecialitiesTrainer"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Lista especialidades" />
 
     </group>
 </menu>
