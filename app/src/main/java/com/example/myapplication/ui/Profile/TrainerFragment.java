@@ -24,6 +24,7 @@ import com.example.apollographqlandroid.ProfileTrainerQuery;
 import com.example.myapplication.Model.Repositories.ProfileRepository;
 import com.example.myapplication.Model.Repositories.ProfileTrainerRepository;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.AuthGlobalState;
 import com.example.myapplication.ui.GlobalState;
 import com.google.android.material.button.MaterialButton;
 
@@ -34,6 +35,7 @@ import java.util.StringTokenizer;
 public class TrainerFragment extends Fragment {
 
     GlobalState globalState;
+    AuthGlobalState authGlobalState;
 
     public static TrainerFragment newInstance() {
         return new TrainerFragment();
@@ -43,7 +45,7 @@ public class TrainerFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_trainer, container, false);
-        globalState= ViewModelProviders.of(getActivity()).get(GlobalState.class);
+        this.authGlobalState= ViewModelProviders.of(getActivity()).get(AuthGlobalState.class);
         return view;
     }
 
@@ -66,27 +68,30 @@ public class TrainerFragment extends Fragment {
         MaterialButton buttonDegreesTrainer = view.findViewById(R.id.buttonDegreesTrainer);
         final NavController navController= Navigation.findNavController(view);
 
+        System.out.println("global: " + authGlobalState.getToken().getValue());
 
         ProfileTrainerRepository.getProfileTrainer(new ApolloCall.Callback<ProfileTrainerQuery.Data>() {
             @Override
             public void onResponse(@NotNull Response<ProfileTrainerQuery.Data> response) {
+                System.out.println("en funcion: " + response.data().profileTrainer());
                 getActivity().runOnUiThread(new Runnable() {
                     @Override public void run() {
-
-                        user_name.setText(response.data().profileTrainer().trainer_name());
-                        age.setText(response.data().profileTrainer().age().toString());
-                        telephone.setText(response.data().profileTrainer().telephone());
-                        city.setText(response.data().profileTrainer().city());
-                        description.setText(response.data().profileTrainer().description());
-                        experience.setText(response.data().profileTrainer().work_experience());
-                        resources.setText(response.data().profileTrainer().resources());
-                        int div = response.data().profileTrainer().num_ratings();
-                        if (div!=0) {
-                            float calc = (float)response.data().profileTrainer().sum_ratings() / div;
-                            String val = String.format("%.1f",calc);
-                            degree.setText(val);
-                        }else {
-                            degree.setText("0");
+                        if(response.data().profileTrainer()!=null) {
+                            user_name.setText(response.data().profileTrainer().trainer_name());
+                            age.setText(response.data().profileTrainer().age().toString());
+                            telephone.setText(response.data().profileTrainer().telephone());
+                            city.setText(response.data().profileTrainer().city());
+                            description.setText(response.data().profileTrainer().description());
+                            experience.setText(response.data().profileTrainer().work_experience());
+                            resources.setText(response.data().profileTrainer().resources());
+                            int div = response.data().profileTrainer().num_ratings();
+                            if (div != 0) {
+                                float calc = (float) response.data().profileTrainer().sum_ratings() / div;
+                                String val = String.format("%.1f", calc);
+                                degree.setText(val);
+                            } else {
+                                degree.setText("0");
+                            }
                         }
                     }
                 });
@@ -94,9 +99,9 @@ public class TrainerFragment extends Fragment {
 
             @Override
             public void onFailure(@NotNull ApolloException e) {
-                System.out.println();
+                System.out.println(e);
             }
-        },"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiUHJvZmlsZSI6ZmFsc2UsIlR5cGVJRCI6MSwiZXhwIjoxNTg4NDY2MzE5fQ.F96YzanVY2G6HJV_Y3jjuUpazFmigMPTuz2IbHe5hoE");
+        }, authGlobalState.getToken().getValue());
 
 
         buttonEditTrainer .setOnClickListener(new View.OnClickListener() {

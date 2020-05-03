@@ -29,6 +29,7 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Crear Usuario" />
 
+        <item
             android:id="@+id/rootRoutineFragment"
             android:icon="@drawable/baseline_lock_24"
             android:title="lista rutinas" />

@@ -23,6 +23,7 @@ import com.example.apollographqlandroid.ProfileTrainerQuery;
 import com.example.apollographqlandroid.CreateProfileMutation;
 import com.example.myapplication.Model.Repositories.ProfileTrainerRepository;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.AuthGlobalState;
 import com.example.myapplication.ui.GlobalState;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -37,7 +38,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public class CreateTrainerFragment extends Fragment {
 
-    GlobalState globalState;
+    AuthGlobalState authGlobalState;
 
     public static CreateTrainerFragment newInstance() {
         return new CreateTrainerFragment();
@@ -47,7 +48,7 @@ public class CreateTrainerFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_create_trainer, container, false);
-        globalState = ViewModelProviders.of(getActivity()).get(GlobalState.class);
+        authGlobalState = ViewModelProviders.of(getActivity()).get(AuthGlobalState.class);
         return view;
     }
 
@@ -78,8 +79,8 @@ public class CreateTrainerFragment extends Fragment {
                     public void onResponse(@NotNull Response<CreateProfileMutation.Data> response) {
                         getActivity().runOnUiThread(new Runnable() {
                             @Override public void run() {
-                                NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.nav_home, true).build();
-                                navController.navigate(R.id.from_create_trainer_to_home,null,navOption);
+                                    NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.nav_home, true).build();
+                                    navController.navigate(R.id.from_create_trainer_to_home, null, navOption);
                             }
                         });
                     }
@@ -88,7 +89,7 @@ public class CreateTrainerFragment extends Fragment {
                     public void onFailure(@NotNull ApolloException e) {
                         System.out.println(e);
                     }
-                },trainer_name.getText().toString(),Integer.parseInt(age.getText().toString()),"aquifoto",telephone.getText().toString(),city.getText().toString(),description.getText().toString(),resources.getText().toString(),experience.getText().toString(),"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiUHJvZmlsZSI6ZmFsc2UsIlR5cGVJRCI6MSwiZXhwIjoxNTg4NDY2MzE5fQ.F96YzanVY2G6HJV_Y3jjuUpazFmigMPTuz2IbHe5hoE");
+                },trainer_name.getText().toString(),Integer.parseInt(age.getText().toString()),"aquifoto",telephone.getText().toString(),city.getText().toString(),description.getText().toString(),resources.getText().toString(),experience.getText().toString(),authGlobalState.getToken().getValue());
 
             }
         });
