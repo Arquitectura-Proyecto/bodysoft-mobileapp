@@ -326,14 +326,14 @@
               "description": null,
               "args": [
                 {
-                  "name": "idTrainer",
+                  "name": "token",
                   "description": null,
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
                     "ofType": {
                       "kind": "SCALAR",
-                      "name": "ID",
+                      "name": "String",
                       "ofType": null
                     }
                   },

@@ -1,0 +1,17 @@
+mutation editProfileUser($user_name:String!, $age:Int!, $photo:String!, $telephone:String!, $city:String! ,$token:String!)
+{
+  updateProfileUser(body:{
+    user_name: $user_name
+    age: $age
+    photo: $photo
+    telephone: $telephone
+    city: $city
+  },token: $token){
+    user_id
+    user_name
+    age
+    photo
+    telephone
+    city
+  }
+}

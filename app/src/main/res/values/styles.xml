@@ -33,6 +33,12 @@
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
     </style>
 
+    <style name="TextAppearance.AppCompat.Body3" parent="TextAppearance.AppCompat">
+        <item name="android:theme">?theme</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+    </style>
+
 
     <!-- Campos de texto -->
     <style name="Widget.Shrine.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">

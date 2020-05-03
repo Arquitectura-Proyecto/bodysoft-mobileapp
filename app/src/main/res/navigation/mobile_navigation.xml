@@ -63,56 +63,52 @@
 <fragment
         style = "AppTheme.NoActionBar"
         android:id="@+id/login"
-        android:name="com.example.myapplication.ui.login.login"
+        android:name="com.example.myapplication.ui.authentication.login.loginFragment"
         tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/go_to_main"
+            app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/go_to_register"
+            app:destination="@id/Register" />
+
+        <action
+            android:id="@+id/go_to_changePassword"
+            app:destination="@id/recoverPasswordFragment" />
+</fragment>
+
+<!--Daniela-->
+    <fragment
+        style = "AppTheme.NoActionBar"
+        android:id="@+id/Register"
+        android:name="com.example.myapplication.ui.authentication.register.RegisterFragment"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/go_to_login"
+            app:destination="@id/login" />
+    </fragment>
+    <fragment
+        android:id="@+id/recoverPasswordFragment"
+        android:name="com.example.myapplication.ui.authentication.recoverPassword.recoverPasswordFragment"
+        android:label="changePasswordFragment" >
+        <action
+            android:id="@+id/go_to_login"
+            app:destination="@id/login" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.example.myapplication.ui.authentication.changePassword.changePasswordFragment"
+        android:label="Cambiar Contraseña"
+        tools:layout="@layout/fragment_change_password" >
         <action
             android:id="@+id/go_to_main"
             app:destination="@id/nav_home" />
     </fragment>
 
-    <!--Daniela-->
 
+    <!--Fin Daniela-->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--Fin Daniela-->
 
 
 
@@ -242,6 +238,7 @@
         tools:layout="@layout/fragment_user_routine_video" />
 
 
+
     <!--Fin Andres-->
 
 <!--Sergio-->
@@ -293,65 +290,102 @@
     <!--Valentina-->
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <fragment
+        android:id="@+id/fragment_profile"
+        android:name="com.example.myapplication.ui.Profile.UserProfileFragment"
+        android:label="Perfil"
+        tools:layout="@layout/fragment_user_profile" >
+        <action
+            android:id="@+id/go_to_edit_user"
+            app:destination="@id/userEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userEditFragment"
+        android:name="com.example.myapplication.ui.Profile.UserEditFragment"
+        android:label="Editar usuario"
+        tools:layout="@layout/fragment_user_edit" >
+        <action
+            android:id="@+id/go_to_user_profile"
+            app:destination="@id/fragment_profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/trainerFragment"
+        android:name="com.example.myapplication.ui.Profile.TrainerFragment"
+        android:label="Perfil"
+        tools:layout="@layout/fragment_trainer" >
+        <action
+            android:id="@+id/go_to_edit_trainer"
+            app:destination="@id/trainerEditFragment" />
+        <action
+            android:id="@+id/go_to_list_specialities"
+            app:destination="@id/listSpecialitiesTrainerFragment" />
+        <action
+            android:id="@+id/go_to_list_degrees"
+            app:destination="@id/listDegreesTrainerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/trainerEditFragment"
+        android:name="com.example.myapplication.ui.Profile.TrainerEditFragment"
+        android:label="fragment_trainer_edit"
+        tools:layout="@layout/fragment_trainer_edit" >
+        <action
+            android:id="@+id/go_to_trainer_profile"
+            app:destination="@id/trainerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createUserFragment"
+        android:name="com.example.myapplication.ui.Profile.CreateUserFragment"
+        android:label="fragment_create_user"
+        tools:layout="@layout/fragment_create_user" >
+        <action
+            android:id="@+id/from_create_user_to_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/createTrainerFragment"
+        android:name="com.example.myapplication.ui.Profile.CreateTrainerFragment"
+        android:label="fragment_create_trainer"
+        tools:layout="@layout/fragment_create_trainer" >
+        <action
+            android:id="@+id/from_create_trainer_to_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/listSpecialitiesTrainerFragment"
+        android:name="com.example.myapplication.ui.Profile.ListSpecialitiesTrainerFragment"
+        android:label="fragment_list_specialities_trainer"
+        tools:layout="@layout/fragment_list_specialities_trainer" >
+        <action
+            android:id="@+id/go_to_add_specialities"
+            app:destination="@id/addSpecialitiesTrainer" />
+    </fragment>
+    <fragment
+        android:id="@+id/listDegreesTrainerFragment"
+        android:name="com.example.myapplication.ui.Profile.ListDegreesTrainerFragment"
+        android:label="fragment_list_degrees_trainer"
+        tools:layout="@layout/fragment_list_degrees_trainer" >
+        <action
+            android:id="@+id/go_to_add_degrees"
+            app:destination="@id/addDegreesTrainerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addDegreesTrainerFragment"
+        android:name="com.example.myapplication.ui.Profile.AddDegreesTrainerFragment"
+        android:label="fragment_add_degrees_trainer"
+        tools:layout="@layout/fragment_add_degrees_trainer" >
+        <action
+            android:id="@+id/from_add_to_list_degrees"
+            app:destination="@id/listDegreesTrainerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addSpecialitiesTrainer"
+        android:name="com.example.myapplication.ui.Profile.AddSpecialitiesTrainer"
+        android:label="fragment_add_specialities_trainer"
+        tools:layout="@layout/fragment_add_specialities_trainer" >
+        <action
+            android:id="@+id/from_add_to_list_specialities"
+            app:destination="@id/listSpecialitiesTrainerFragment" />
+    </fragment>
 
 
     <!--fin valentina-->

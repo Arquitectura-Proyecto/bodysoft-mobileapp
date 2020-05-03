@@ -1,0 +1,6 @@
+query profileUsers{
+  profileUsers{
+    user_id
+    user_name
+  }
+}
