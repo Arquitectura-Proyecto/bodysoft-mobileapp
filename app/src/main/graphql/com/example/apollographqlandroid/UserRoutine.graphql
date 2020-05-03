@@ -38,7 +38,7 @@ query getUserRoutineByIdUser($token:String!){
             getId:id
             getName:name
         }
-        getQualified:qualified
+        getQualified:quailified
     }
 }
 

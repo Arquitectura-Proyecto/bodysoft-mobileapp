@@ -10,18 +10,21 @@ import com.example.apollographqlandroid.GetAllTypeRoutineQuery;
 import com.example.apollographqlandroid.GetResourcesByIdRoutineMutation;
 import com.example.apollographqlandroid.GetRoutinesByIdOwnerQuery;
 import com.example.apollographqlandroid.GetRoutinesByIdTypeQuery;
+import com.example.apollographqlandroid.GetUserRoutineByIdUserQuery;
 import com.example.myapplication.Model.Entities.RoutineEntity;
 
 import java.util.List;
 
 public class RoutineStore extends ViewModel {
+    private MutableLiveData<List<GetUserRoutineByIdUserQuery.UserRoutine>>userRoutineList;
+    private MutableLiveData<GetUserRoutineByIdUserQuery.UserRoutine>userRoutine;
     private MutableLiveData<List<GetRoutinesByIdTypeQuery.Routine>> listSuggestedRoutines;
     private MutableLiveData<List<GetResourcesByIdRoutineMutation.Resource>> listResources;
     private MutableLiveData<GetRoutinesByIdOwnerQuery.Routine> InformationRoutine;
     private MutableLiveData<List<GetAllTypeRoutineQuery.TypeRoutine>> listTypeRoutines;
     private MutableLiveData<List<GetRoutinesByIdOwnerQuery.Routine>> listRoutine;
     private MutableLiveData<GetRoutinesByIdTypeQuery.Routine> InformationRoutinePreview;
-
+    private MutableLiveData<GetResourcesByIdRoutineMutation.Resource>resourceInformation;
     public RoutineStore() {
         this.InformationRoutinePreview = new MutableLiveData<>();
         this.listRoutine = new MutableLiveData<>();
@@ -29,6 +32,9 @@ public class RoutineStore extends ViewModel {
         this.InformationRoutine = new MutableLiveData<>();
         this.listResources = new MutableLiveData<>();
         this.listSuggestedRoutines = new MutableLiveData<>();
+        this.userRoutineList=new MutableLiveData<>();
+        this.userRoutine=new MutableLiveData<>();
+        this.resourceInformation= new MutableLiveData<>();
     }
 
     public LiveData<GetRoutinesByIdTypeQuery.Routine> getInformationRoutinePreview() {
@@ -80,5 +86,22 @@ public class RoutineStore extends ViewModel {
     public LiveData<List<GetRoutinesByIdTypeQuery.Routine>> getListSuggestedRoutines() {
         return this.listSuggestedRoutines;
     }
+
+    public LiveData<GetUserRoutineByIdUserQuery.UserRoutine>getUserRoutine(){
+
+        return this.userRoutine;
+
+    };
+    public void setUserRoutine(GetUserRoutineByIdUserQuery.UserRoutine userRoutine){
+        this.userRoutine.setValue(userRoutine);
+    }
+    public LiveData<List<GetUserRoutineByIdUserQuery.UserRoutine>>getUserRoutineList(){
+        return this.userRoutineList;
+    }
+    public void setUserRoutineList(List<GetUserRoutineByIdUserQuery.UserRoutine> userRoutines){
+        this.userRoutineList.setValue(userRoutines);
+    }
+    //public LiveData<>
+
 
 }
