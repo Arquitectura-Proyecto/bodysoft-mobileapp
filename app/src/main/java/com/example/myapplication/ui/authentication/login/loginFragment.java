@@ -1,12 +1,15 @@
 package com.example.myapplication.ui.authentication.login;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.IdRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.preference.PreferenceManager;
+import android.text.util.Rfc822Tokenizer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +20,8 @@ import com.apollographql.apollo.exception.ApolloException;
 import com.example.apollographqlandroid.AuthAuthenticationQuery;
 import com.example.apollographqlandroid.AuthValidateAuthTokenQuery;
 import com.example.myapplication.MainActivity;
+import com.example.myapplication.MainActivityTrainer;
+import com.example.myapplication.MainActivityUser;
 import com.example.myapplication.Model.Models.AuthModel;
 import com.example.myapplication.R;
 import android.text.Editable;
@@ -100,7 +105,7 @@ public class loginFragment extends Fragment {
                                 Boolean profile = response.data().authValidateAuthToken().Profile();
                                 globalState.setTypeID(typeId);
 
-                                navegateTo(profile,typeId,navController);
+                                navegateTo(profile,typeId,navController,Initoken);
                                 //authValidateAuthToken
 
                                 ((AppCompatActivity)getActivity()).getSupportActionBar().show();
@@ -167,7 +172,7 @@ public class loginFragment extends Fragment {
                                                         Boolean profile = response.data().authValidateAuthToken().Profile();
                                                         globalState.setTypeID(typeId);
 
-                                                        navegateTo(profile,typeId,navController);
+                                                        navegateTo(profile,typeId,navController,token);
 
 
                                                         //authValidateAuthToken
@@ -200,25 +205,34 @@ public class loginFragment extends Fragment {
         });
     }
 
-    private void navegateTo(Boolean profile, Integer typeId,NavController navController){
+    private void navegateTo(Boolean profile, Integer typeId,NavController navController,String token){
         NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.login, true).build();
-        if(profile){
+        Bundle bundle = new Bundle();
+        bundle.putString("token", token);
+        if(!profile){
             if(typeId==1){
-                //ir a enteredaror
-                navController.navigate(R.id.go_to_main,null,navOption);
+                Intent intent = new Intent(getActivity().getApplicationContext(), MainActivityUser.class);
+                intent.putExtra("token", token);
+                intent.putExtra("fragment",R.id.createTrainerFragment);
+                startActivity(intent);
             }else{
-                //ir a usuario
-                navController.navigate(R.id.go_to_main,null,navOption);
+                Intent intent = new Intent(getActivity().getApplicationContext(), MainActivityUser.class);
+                intent.putExtra("token", token);
+                intent.putExtra("fragment",R.id.createUserFragment);
+                startActivity(intent);
             }
 
         }else{
             //Navegar funcion de vale
             if(typeId==1){
-                //registrar entrenador
-                navController.navigate(R.id.go_to_main,null,navOption);
+                Intent intent = new Intent(getActivity().getApplicationContext(), MainActivityTrainer.class);
+                intent.putExtra("token", token);
+                startActivity(intent);
+
             }else{
-                //registrar usuario
-                navController.navigate(R.id.go_to_main,null,navOption);
+                Intent intent = new Intent(getActivity().getApplicationContext(), MainActivityUser.class);
+                intent.putExtra("token", token);
+                startActivity(intent);
             }
         }
 

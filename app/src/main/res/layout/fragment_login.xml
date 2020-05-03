@@ -102,7 +102,7 @@
                 android:layout_marginEnd="12dp"
                 android:layout_marginRight="12dp"
                 android:layout_gravity="right"
-                android:text="Recupar contraseña" />
+                android:text="Recuperar contraseña" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
