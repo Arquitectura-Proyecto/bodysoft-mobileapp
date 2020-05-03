@@ -10,9 +10,15 @@ import com.example.apollographqlandroid.GetAllTypeRoutineQuery;
 import com.example.apollographqlandroid.GetRequestByIdRoutineQuery;
 import com.example.apollographqlandroid.GetResourcesByIdRoutineMutation;
 import com.example.apollographqlandroid.GetRoutinesByIdOwnerQuery;
+import com.example.apollographqlandroid.GetRoutinesByIdTypeQuery;
 import com.example.apollographqlandroid.GetRoutinesQuery;
+
 import com.example.apollographqlandroid.RegisterResourceMutation;
 import com.example.apollographqlandroid.RegisterUserRoutineMutation;
+
+import com.example.apollographqlandroid.GetUserRoutineByIdUserQuery;
+import com.example.apollographqlandroid.RegisterRequestMutation;
+
 import com.example.apollographqlandroid.UpdateRoutineMutation;
 import com.example.myapplication.Model.Entities.ResourceEntity;
 import com.example.myapplication.Model.Entities.RoutineEntity;
@@ -91,6 +97,7 @@ public class RoutineRepository {
     public static void getResourcesByIdRoutine(ApolloCall.Callback<GetResourcesByIdRoutineMutation.Data>listener,int idRoutine,String token){
         apolloClient.mutate(GetResourcesByIdRoutineMutation.builder().idRoutine(idRoutine).token(token).build()).enqueue(new RoutineGraphQLListener<GetResourcesByIdRoutineMutation.Data>(listener));
     }
+
     public static void registerResource(ApolloCall.Callback<RegisterResourceMutation.Data>listener, ResourceEntity resource,String token){
         apolloClient.mutate(RegisterResourceMutation.builder()
                 .idRoutine(resource.getIdRoutine())
@@ -119,6 +126,17 @@ public class RoutineRepository {
     public static void deleteRequest(ApolloCall.Callback<DeleteRequestMutation.Data>listener,int idRequest){
         apolloClient.mutate(DeleteRequestMutation.builder().idRequest(idRequest).build()).enqueue(new RoutineGraphQLListener<DeleteRequestMutation.Data>(listener));
 
+    }
+
+
+    public static void getRoutinesByIdType(ApolloCall.Callback<GetRoutinesByIdTypeQuery.Data>listener,int idType){
+        apolloClient.query(GetRoutinesByIdTypeQuery.builder().idType(idType).build()).enqueue(new RoutineGraphQLListener<GetRoutinesByIdTypeQuery.Data>(listener));
+    }
+    public static void getRoutinesByIdUser(ApolloCall.Callback<GetUserRoutineByIdUserQuery.Data>listener,String token){
+        apolloClient.query(GetUserRoutineByIdUserQuery.builder().token(token).build()).enqueue(new RoutineGraphQLListener<GetUserRoutineByIdUserQuery.Data>(listener));
+    }
+    public static void registerRequest(ApolloCall.Callback<RegisterRequestMutation.Data>listener,int idRoutine,String token){
+        apolloClient.mutate(RegisterRequestMutation.builder().idRoutine(idRoutine).token(token).build()).enqueue(new RoutineGraphQLListener<RegisterRequestMutation.Data>(listener));
     }
 
 

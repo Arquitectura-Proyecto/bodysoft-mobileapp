@@ -24,7 +24,10 @@
             android:id="@+id/rootRoutineFragment"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="lista rutinas" />
-
+        <item
+            android:id="@+id/userRoutineListFragment"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_home" />
 
     </group>
 </menu>
