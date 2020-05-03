@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.authentication.register;
 
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,7 +32,9 @@ import com.example.apollographqlandroid.AuthVerifyAcountMutation;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.Model.Models.AuthModel;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.AuthGlobalState;
 import com.example.myapplication.ui.GlobalState;
+import com.example.myapplication.ui.NotificationId;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -41,7 +44,9 @@ import org.jetbrains.annotations.NotNull;
 
 public class RegisterFragment extends Fragment {
     private Integer typeID;
-    GlobalState globalState;
+    AuthGlobalState globalState;
+    NotificationId notificationId;
+
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -51,7 +56,9 @@ public class RegisterFragment extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_register, container, false);
-        globalState= ViewModelProviders.of(getActivity()).get(GlobalState.class);
+        globalState= ViewModelProviders.of(getActivity()).get(AuthGlobalState.class);
+
+        notificationId= ViewModelProviders.of(getActivity()).get(NotificationId.class);
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
 
@@ -113,16 +120,6 @@ public class RegisterFragment extends Fragment {
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
 
-        NotificationCompat.Builder builder2 = new NotificationCompat.Builder(getActivity().getApplicationContext(), "Notification")
-                .setSmallIcon(R.mipmap.logo)
-                .setContentTitle("Verificacion de Cuenta")
-                .setContentText("Su codigo de verificación ha sido enviado a su correo")
-                .setStyle(new NotificationCompat.BigTextStyle()
-                        .bigText("Su codigo de verificación ha sido enviado a su correo"))
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setContentIntent(pendingIntent)
-                .setAutoCancel(true);
-
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getActivity().getApplicationContext());
 
         layoutCodigo.setVisibility(View.GONE);
@@ -148,8 +145,6 @@ public class RegisterFragment extends Fragment {
                                 }else{
                                     registerLayout.setVisibility(view.GONE);
                                     tengocodigo.setVisibility(View.GONE);
-                                    // notificationId is a unique int for each notification that you must define
-                                    notificationManager.notify(2, builder2.build());
 
                                 }
 
@@ -203,7 +198,7 @@ public class RegisterFragment extends Fragment {
                                     registerLayout.setVisibility(view.GONE);
                                     layoutCodigo.setVisibility(View.VISIBLE);
                                     // notificationId is a unique int for each notification that you must define
-                                    notificationManager.notify(2, builder2.build());
+
                                 }
 
                             }
@@ -246,9 +241,11 @@ public class RegisterFragment extends Fragment {
                                     navController.navigate(R.id.go_to_login,null,navOption);
 
 
-
+                                    int id = notificationId.getID().getValue();
                                     // notificationId is a unique int for each notification that you must define
-                                    notificationManager.notify(1, builder.build());
+                                    notificationManager.notify(id, builder.build());
+
+                                    notificationId.setID(id+1);
 
                                     ((AppCompatActivity)getActivity()).getSupportActionBar().show();
 

@@ -15,6 +15,9 @@ import com.apollographql.apollo.exception.ApolloException;
 
 import com.example.apollographqlandroid.CrearRutinaMutation;
 import com.example.apollographqlandroid.GetRoutinesQuery;
+
+import com.example.myapplication.ui.NotificationId;
+
 import com.example.apollographqlandroid.ProfileUsersQuery;
 
 import com.example.myapplication.Model.Models.ProfileModel;
@@ -23,6 +26,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -38,6 +42,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+
 
 
     @Override
@@ -131,4 +136,6 @@ public class MainActivity extends AppCompatActivity {
             notificationManager.createNotificationChannel(channel);
         }
     }
+
+
 }
