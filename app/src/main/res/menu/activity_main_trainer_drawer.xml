@@ -29,5 +29,15 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Crear Usuario" />
 
+        <item
+            android:id="@+id/listSpecialitiesTrainerFragment"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Lista especialidades" />
+
+        <item
+            android:id="@+id/addSpecialitiesTrainer"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Lista especialidades" />
+
     </group>
 </menu>

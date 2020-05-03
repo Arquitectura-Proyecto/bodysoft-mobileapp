@@ -1,65 +1,140 @@
 package com.example.myapplication.ui.Profile;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.apollographql.apollo.ApolloCall;
+import com.apollographql.apollo.api.Response;
+import com.apollographql.apollo.exception.ApolloException;
+import com.example.apollographqlandroid.EditProfileTrainerMutation;
+import com.example.apollographqlandroid.ProfileTrainerQuery;
+import com.example.apollographqlandroid.CreateProfileMutation;
+import com.example.apollographqlandroid.ProfileSpecialitiesToAddQuery;
+import com.example.apollographqlandroid.CreateProfileTrainerSpecialityMutation;
+import com.example.myapplication.Model.Repositories.ProfileTrainerRepository;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.GlobalState;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AddSpecialitiesTrainer#newInstance} factory method to
+ * Use the {@link UserEditFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class AddSpecialitiesTrainer extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    GlobalState globalState;
+    Context context;
 
-    public AddSpecialitiesTrainer() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AddSpecialitiesTrainer.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AddSpecialitiesTrainer newInstance(String param1, String param2) {
-        AddSpecialitiesTrainer fragment = new AddSpecialitiesTrainer();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public static AddSpecialitiesTrainer newInstance() {
+        return new AddSpecialitiesTrainer();
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        context = getContext();
+        View view=inflater.inflate(R.layout.fragment_add_specialities_trainer, container, false);
+        globalState = ViewModelProviders.of(getActivity()).get(GlobalState.class);
+        return view;
     }
 
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_specialities_trainer, container, false);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        ListView listSpecialities = view.findViewById(R.id.specialitiesAddList);
+
+        final NavController navController= Navigation.findNavController(view);
+        ArrayList<String> idSpec = new ArrayList<>();
+        ArrayList<String> specialities = new ArrayList<>();
+
+        ProfileTrainerRepository.getSpecialitiesToAdd(new ApolloCall.Callback<ProfileSpecialitiesToAddQuery.Data>() {
+            @Override
+            public void onResponse(@NotNull Response<ProfileSpecialitiesToAddQuery.Data> response) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override public void run() {
+
+
+                        List<ProfileSpecialitiesToAddQuery.ProfileToAddSpecialitity> array= response.data().profileToAddSpecialitities();
+                        for (ProfileSpecialitiesToAddQuery.ProfileToAddSpecialitity item: array) {
+                            specialities.add(item.speciality_name() );
+                            idSpec.add(item.speciality_id());
+                        }
+
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, specialities);
+                        listSpecialities.setAdapter(adapter);
+
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(@NotNull ApolloException e) {
+                System.out.println();
+            }
+        },"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiUHJvZmlsZSI6dHJ1ZSwiVHlwZUlEIjoxLCJleHAiOjE1ODg0OTQ3MTJ9.8oopJnrIthd_E06l5ntcjIUBSGVQeJaZ6ylyvoRJNfw");
+
+
+        listSpecialities.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                ProfileTrainerRepository.createProfileTrainerSpeciality(new ApolloCall.Callback<CreateProfileTrainerSpecialityMutation.Data>() {
+                    @Override
+                    public void onResponse(@NotNull Response<CreateProfileTrainerSpecialityMutation.Data> response) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override public void run() {
+                                System.out.println(response.data().createProfileTrainerSpeciality().speciality());
+                                idSpec.remove(position);
+                                specialities.remove(position);
+
+                                ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, specialities);
+                                listSpecialities.setAdapter(adapter);
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onFailure(@NotNull ApolloException e) {
+                        System.out.println(e);
+                    }
+                },idSpec.get(position),"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiUHJvZmlsZSI6dHJ1ZSwiVHlwZUlEIjoxLCJleHAiOjE1ODg0OTQ3MTJ9.8oopJnrIthd_E06l5ntcjIUBSGVQeJaZ6ylyvoRJNfw");
+
+            }
+        });
+
+    }
+
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
     }
 }
