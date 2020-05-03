@@ -15,7 +15,13 @@ import com.apollographql.apollo.exception.ApolloException;
 
 import com.example.apollographqlandroid.CrearRutinaMutation;
 import com.example.apollographqlandroid.GetRoutinesQuery;
+
 import com.example.myapplication.ui.NotificationId;
+
+import com.example.apollographqlandroid.ProfileUsersQuery;
+
+import com.example.myapplication.Model.Models.ProfileModel;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -48,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
 /*Ejemplo mutacion
         apolloClient.mutate(CrearRutinaMutation.builder().price(200.3).name("nombre de android").description("desde el celular").link_preview("www.google.com").idType(2).token("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiUHJvZmlsZSI6ZmFsc2UsIlR5cGVJRCI6MSwiZXhwIjoxNTg3OTI5ODczfQ.rX3r7JAEaWYfs1qc4-sS-_DQoV7WOuI12mw0vYTHp_Y").build()).enqueue(
                 new ApolloCall.Callback<CrearRutinaMutation.Data>() {
@@ -63,12 +71,30 @@ public class MainActivity extends AppCompatActivity {
                 }
         );*/
         ////
-        setContentView(R.layout.activity_main);
+
+        int des = 2;
+        if(des==1){
+            setContentView(R.layout.activity_main);
+        }else{
+            setContentView(R.layout.activity_main_trainer);
+        }
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        DrawerLayout drawer;
+        NavigationView navigationView;
+        if(des==1){
+            drawer = findViewById(R.id.drawer_layout);
+            navigationView = findViewById(R.id.nav_view);
+        }else{
+            drawer = findViewById(R.id.drawer_trainer_layout);
+            navigationView = findViewById(R.id.nav_view_trainer);
+        }
+
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(

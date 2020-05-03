@@ -1,0 +1,10 @@
+mutation createProfileTrainerSpeciality($speciality:ID!, $token:String)
+{
+  createProfileTrainerSpeciality(body:
+  {
+    speciality: $speciality
+  }, token:$token){
+    speciality
+  }
+}
+
