@@ -22,6 +22,7 @@ import com.example.apollographqlandroid.ProfileUserQuery;
 import com.example.apollographqlandroid.EditProfileUserMutation;
 import com.example.myapplication.Model.Repositories.ProfileRepository;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.AuthGlobalState;
 import com.example.myapplication.ui.GlobalState;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -36,7 +37,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public class UserEditFragment extends Fragment {
 
-    GlobalState globalState;
+    AuthGlobalState authGlobalState;
 
     public static UserEditFragment newInstance() {
         return new UserEditFragment();
@@ -46,7 +47,7 @@ public class UserEditFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_user_edit, container, false);
-        globalState = ViewModelProviders.of(getActivity()).get(GlobalState.class);
+        authGlobalState = ViewModelProviders.of(getActivity()).get(AuthGlobalState.class);
         return view;
     }
 
@@ -69,10 +70,12 @@ public class UserEditFragment extends Fragment {
             public void onResponse(@NotNull Response<ProfileUserQuery.Data> response) {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override public void run() {
-                        user_name.setText(response.data().profileUser().user_name());
-                        age.setText(response.data().profileUser().age().toString());
-                        telephone.setText(response.data().profileUser().telephone());
-                        city.setText(response.data().profileUser().city());
+                        if(response.data().profileUser()!=null) {
+                            user_name.setText(response.data().profileUser().user_name());
+                            age.setText(response.data().profileUser().age().toString());
+                            telephone.setText(response.data().profileUser().telephone());
+                            city.setText(response.data().profileUser().city());
+                        }
                     }
                 });
             }
@@ -81,7 +84,7 @@ public class UserEditFragment extends Fragment {
             public void onFailure(@NotNull ApolloException e) {
                 System.out.println(e);
             }
-        },"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MywiUHJvZmlsZSI6dHJ1ZSwiVHlwZUlEIjoyLCJleHAiOjE1ODg0NTkwMTl9.D--uz_85OIEDzmfgIlnrMTRA6fZ88qciwn70dVeZYsE");
+        },authGlobalState.getToken().getValue());
 
 
 
@@ -106,7 +109,7 @@ public class UserEditFragment extends Fragment {
                     public void onFailure(@NotNull ApolloException e) {
                         System.out.println(e);
                     }
-                },user_name.getText().toString(),Integer.parseInt(age.getText().toString()),"aquifoto",telephone.getText().toString(),city.getText().toString(),"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MywiUHJvZmlsZSI6dHJ1ZSwiVHlwZUlEIjoyLCJleHAiOjE1ODg0NTkwMTl9.D--uz_85OIEDzmfgIlnrMTRA6fZ88qciwn70dVeZYsE");
+                },user_name.getText().toString(),Integer.parseInt(age.getText().toString()),"aquifoto",telephone.getText().toString(),city.getText().toString(),authGlobalState.getToken().getValue());
 
 
 

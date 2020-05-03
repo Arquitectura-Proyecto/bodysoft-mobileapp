@@ -29,6 +29,7 @@ import com.example.apollographqlandroid.ProfileSpecialitiesToAddQuery;
 import com.example.apollographqlandroid.CreateProfileTrainerSpecialityMutation;
 import com.example.myapplication.Model.Repositories.ProfileTrainerRepository;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.AuthGlobalState;
 import com.example.myapplication.ui.GlobalState;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -47,7 +48,7 @@ import java.util.List;
  */
 public class AddSpecialitiesTrainer extends Fragment {
 
-    GlobalState globalState;
+    AuthGlobalState authglobalState;
     Context context;
 
     public static AddSpecialitiesTrainer newInstance() {
@@ -59,7 +60,7 @@ public class AddSpecialitiesTrainer extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         context = getContext();
         View view=inflater.inflate(R.layout.fragment_add_specialities_trainer, container, false);
-        globalState = ViewModelProviders.of(getActivity()).get(GlobalState.class);
+        authglobalState = ViewModelProviders.of(getActivity()).get(AuthGlobalState.class);
         return view;
     }
 
@@ -80,16 +81,16 @@ public class AddSpecialitiesTrainer extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override public void run() {
 
+                        if(response.data().profileToAddSpecialitities()!=null){
+                            List<ProfileSpecialitiesToAddQuery.ProfileToAddSpecialitity> array= response.data().profileToAddSpecialitities();
+                            for (ProfileSpecialitiesToAddQuery.ProfileToAddSpecialitity item: array) {
+                                specialities.add(item.speciality_name() );
+                                idSpec.add(item.speciality_id());
+                            }
 
-                        List<ProfileSpecialitiesToAddQuery.ProfileToAddSpecialitity> array= response.data().profileToAddSpecialitities();
-                        for (ProfileSpecialitiesToAddQuery.ProfileToAddSpecialitity item: array) {
-                            specialities.add(item.speciality_name() );
-                            idSpec.add(item.speciality_id());
+                            ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, specialities);
+                            listSpecialities.setAdapter(adapter);
                         }
-
-                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, specialities);
-                        listSpecialities.setAdapter(adapter);
-
                     }
                 });
             }
@@ -98,7 +99,7 @@ public class AddSpecialitiesTrainer extends Fragment {
             public void onFailure(@NotNull ApolloException e) {
                 System.out.println();
             }
-        },"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiUHJvZmlsZSI6dHJ1ZSwiVHlwZUlEIjoxLCJleHAiOjE1ODg0OTQ3MTJ9.8oopJnrIthd_E06l5ntcjIUBSGVQeJaZ6ylyvoRJNfw");
+        },authglobalState.getToken().getValue());
 
 
         listSpecialities.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -110,12 +111,14 @@ public class AddSpecialitiesTrainer extends Fragment {
                     public void onResponse(@NotNull Response<CreateProfileTrainerSpecialityMutation.Data> response) {
                         getActivity().runOnUiThread(new Runnable() {
                             @Override public void run() {
-                                System.out.println(response.data().createProfileTrainerSpeciality().speciality());
-                                idSpec.remove(position);
-                                specialities.remove(position);
+                                if (response.data().createProfileTrainerSpeciality() != null) {
+                                    System.out.println(response.data().createProfileTrainerSpeciality().speciality());
+                                    idSpec.remove(position);
+                                    specialities.remove(position);
 
-                                ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, specialities);
-                                listSpecialities.setAdapter(adapter);
+                                    ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, specialities);
+                                    listSpecialities.setAdapter(adapter);
+                                }
                             }
                         });
                     }
@@ -124,7 +127,7 @@ public class AddSpecialitiesTrainer extends Fragment {
                     public void onFailure(@NotNull ApolloException e) {
                         System.out.println(e);
                     }
-                },idSpec.get(position),"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiUHJvZmlsZSI6dHJ1ZSwiVHlwZUlEIjoxLCJleHAiOjE1ODg0OTQ3MTJ9.8oopJnrIthd_E06l5ntcjIUBSGVQeJaZ6ylyvoRJNfw");
+                },idSpec.get(position),authglobalState.getToken().getValue());
 
             }
         });

@@ -23,6 +23,7 @@ import com.example.apollographqlandroid.EditProfileUserMutation;
 import com.example.apollographqlandroid.CreateProfileMutation;
 import com.example.myapplication.Model.Repositories.ProfileRepository;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.AuthGlobalState;
 import com.example.myapplication.ui.GlobalState;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -37,7 +38,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public class CreateUserFragment extends Fragment {
 
-    GlobalState globalState;
+    AuthGlobalState authGlobalState;
 
     public static CreateUserFragment newInstance() {
         return new CreateUserFragment();
@@ -47,7 +48,7 @@ public class CreateUserFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_create_user, container, false);
-        globalState = ViewModelProviders.of(getActivity()).get(GlobalState.class);
+        authGlobalState = ViewModelProviders.of(getActivity()).get(AuthGlobalState.class);
         return view;
     }
 
@@ -85,7 +86,7 @@ public class CreateUserFragment extends Fragment {
                     public void onFailure(@NotNull ApolloException e) {
                         System.out.println(e);
                     }
-                },user_name.getText().toString(),Integer.parseInt(age.getText().toString()),"aquifoto",telephone.getText().toString(),city.getText().toString(),"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MSwiUHJvZmlsZSI6ZmFsc2UsIlR5cGVJRCI6MiwiZXhwIjoxNTg4NDY0MTY0fQ.dtXxC9CI3z6xa9QLjp5KS6Pmq3lsaT-YRanlarovk-Y");
+                },user_name.getText().toString(),Integer.parseInt(age.getText().toString()),"aquifoto",telephone.getText().toString(),city.getText().toString(),authGlobalState.getToken().getValue());
 
 
 

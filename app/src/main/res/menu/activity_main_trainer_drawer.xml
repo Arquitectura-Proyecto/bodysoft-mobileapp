@@ -16,10 +16,7 @@
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+
         <item
             android:id="@+id/listRoutineFragment"
             android:icon="@drawable/ic_menu_slideshow"
@@ -27,21 +24,8 @@
         <item
             android:id="@+id/trainerFragment"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Perfil" />
-        <item
-            android:id="@+id/createTrainerFragment"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Crear Usuario" />
+            android:title="Perfil Entrenador" />
 
-        <item
-            android:id="@+id/listSpecialitiesTrainerFragment"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Lista especialidades" />
-
-        <item
-            android:id="@+id/addSpecialitiesTrainer"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Lista especialidades" />
 
     </group>
 </menu>
