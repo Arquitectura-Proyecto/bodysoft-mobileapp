@@ -101,7 +101,7 @@ public class MainActivityUser extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,R.id.listRoutineFragment,R.id.rootRoutineFragment, R.id.userRoutineListFragment, R.id.fragment_profile)/////los que esten aqui tendra tendran el boton para ver el navigation viewer
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,R.id.listRoutineFragment,R.id.rootRoutineFragment, R.id.userRoutineListFragment)/////los que esten aqui tendra tendran el boton para ver el navigation viewer
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = navHostFragment.getNavController();
