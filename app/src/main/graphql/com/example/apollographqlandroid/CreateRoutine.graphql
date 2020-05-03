@@ -69,3 +69,34 @@ mutation getResourcesByIdRoutine($idRoutine:Int!,$token:String!){
     }
 
 }
+
+mutation registerResource($idRoutine:Int!,$link:String!,$title:String!,$description:String!,$position:Int!,$idType:Int!,$token:String!) {
+    registerResource(idRoutine:$idRoutine,registerResourcePOJO:{
+        link:$link
+        title:$title
+        description:$description
+        position:$position
+        idType:$idType
+
+    },token:$token)
+}
+query getRequestByIdRoutine($idRoutine:Int!){
+    Requests:getRequestByIdRoutine(idRoutine:$idRoutine){
+        id
+        idUser
+
+    }
+}
+
+
+mutation registerUserRoutine($idUser:Int!,$idRoutine:Int!,$idStatus:Int!,$token:String!){
+    registerUserRoutine(registerUserRoutinePOJO:{
+        idUser:$idUser
+        idRoutine:$idRoutine
+        idStatus:$idStatus
+    },token:$token)
+}
+
+mutation deleteRequest($idRequest:Int!){
+    deleteRequest(idRequest:$idRequest)
+}

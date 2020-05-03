@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.apollographqlandroid.GetAllTypeRoutineQuery;
+import com.example.apollographqlandroid.GetRequestByIdRoutineQuery;
 import com.example.apollographqlandroid.GetResourcesByIdRoutineMutation;
 import com.example.apollographqlandroid.GetRoutinesByIdOwnerQuery;
 import com.example.apollographqlandroid.GetRoutinesByIdTypeQuery;
@@ -16,6 +17,14 @@ import com.example.myapplication.Model.Entities.RoutineEntity;
 import java.util.List;
 
 public class RoutineStore extends ViewModel {
+
+  private MutableLiveData<GetRequestByIdRoutineQuery.Request>InformationRequest;
+  
+  
+  private MutableLiveData<List<GetRequestByIdRoutineQuery.Request>>listRequest;
+  
+  
+  
     private MutableLiveData<List<GetUserRoutineByIdUserQuery.UserRoutine>>userRoutineList;
     private MutableLiveData<GetUserRoutineByIdUserQuery.UserRoutine>userRoutine;
     private MutableLiveData<List<GetRoutinesByIdTypeQuery.Routine>> listSuggestedRoutines;
@@ -35,6 +44,9 @@ public class RoutineStore extends ViewModel {
         this.userRoutineList=new MutableLiveData<>();
         this.userRoutine=new MutableLiveData<>();
         this.resourceInformation= new MutableLiveData<>();
+      this.InformationRequest=new MutableLiveData<>();
+      
+        this.listRequest=new MutableLiveData<>();
     }
 
     public LiveData<GetRoutinesByIdTypeQuery.Routine> getInformationRoutinePreview() {
@@ -46,6 +58,7 @@ public class RoutineStore extends ViewModel {
     }
 
     public void setRoutines(List<GetRoutinesByIdOwnerQuery.Routine> listRoutine) {
+
         this.listRoutine.setValue(listRoutine);
     }
 
@@ -78,6 +91,13 @@ public class RoutineStore extends ViewModel {
     public LiveData<List<GetResourcesByIdRoutineMutation.Resource>> getListResources() {
         return this.listResources;
     }
+    public void setInformationRequest(GetRequestByIdRoutineQuery.Request request){
+        this.InformationRequest.setValue(request);
+    }
+    public LiveData<GetRequestByIdRoutineQuery.Request>getInformationRequest(){
+        return this.InformationRequest;
+    }
+
 
     public void setListSuggestedRoutines(List<GetRoutinesByIdTypeQuery.Routine> newlistSuggestedRoutines) {
         this.listSuggestedRoutines.setValue(newlistSuggestedRoutines);
@@ -102,6 +122,11 @@ public class RoutineStore extends ViewModel {
         this.userRoutineList.setValue(userRoutines);
     }
     //public LiveData<>
-
+  public LiveData<List<GetRequestByIdRoutineQuery.Request>> getListRequest() {
+        return listRequest;
+    }
+  public void setListRequest(List<GetRequestByIdRoutineQuery.Request> listRequest) {
+        this.listRequest.setValue(listRequest);
+    }
 
 }

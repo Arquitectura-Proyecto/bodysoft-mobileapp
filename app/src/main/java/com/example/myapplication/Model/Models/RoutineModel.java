@@ -6,15 +6,24 @@ import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.example.apollographqlandroid.CrearRutinaMutation;
+import com.example.apollographqlandroid.DeleteRequestMutation;
 import com.example.apollographqlandroid.GetAllTypeRoutineQuery;
+import com.example.apollographqlandroid.GetRequestByIdRoutineQuery;
 import com.example.apollographqlandroid.GetResourcesByIdRoutineMutation;
 import com.example.apollographqlandroid.GetRoutinesByIdOwnerQuery;
 import com.example.apollographqlandroid.GetRoutinesByIdTypeQuery;
 import com.example.apollographqlandroid.GetRoutinesQuery;
+
 import com.example.apollographqlandroid.GetUserRoutineByIdUserQuery;
 import com.example.apollographqlandroid.RegisterRequestMutation;
+
+import com.example.apollographqlandroid.RegisterResourceMutation;
+import com.example.apollographqlandroid.RegisterUserRoutineMutation;
+
 import com.example.apollographqlandroid.UpdateRoutineMutation;
+import com.example.myapplication.Model.Entities.ResourceEntity;
 import com.example.myapplication.Model.Entities.RoutineEntity;
+import com.example.myapplication.Model.Entities.UserRoutineEntity;
 import com.example.myapplication.Model.Repositories.RoutineRepository;
 
 
@@ -119,7 +128,8 @@ public class RoutineModel {
         },idRoutine,token);
 
     }
-    public static void getRoutinesByIdType(ApolloCall.Callback<GetRoutinesByIdTypeQuery.Data>listener,int idType){
+
+      public static void getRoutinesByIdType(ApolloCall.Callback<GetRoutinesByIdTypeQuery.Data>listener,int idType){
         RoutineRepository.getRoutinesByIdType(new ApolloCall.Callback<GetRoutinesByIdTypeQuery.Data>() {
             @Override
             public void onResponse(@NotNull Response<GetRoutinesByIdTypeQuery.Data> response) {
@@ -133,7 +143,23 @@ public class RoutineModel {
         },idType);
     }
 
-    public static void getRoutinesByIdUser(ApolloCall.Callback<GetUserRoutineByIdUserQuery.Data>listener,String token){
+     public static void registerResource(ApolloCall.Callback<RegisterResourceMutation.Data>listener, ResourceEntity resource,String token){
+
+        RoutineRepository.registerResource(new ApolloCall.Callback<RegisterResourceMutation.Data>() {
+            @Override
+            public void onResponse(@NotNull Response<RegisterResourceMutation.Data> response) {
+                listener.onResponse(response);
+            }
+
+            @Override
+            public void onFailure(@NotNull ApolloException e) {
+            listener.onFailure(e);
+            }
+        },resource,token);
+
+    }
+
+   public static void getRoutinesByIdUser(ApolloCall.Callback<GetUserRoutineByIdUserQuery.Data>listener,String token){
         RoutineRepository.getRoutinesByIdUser(new ApolloCall.Callback<GetUserRoutineByIdUserQuery.Data>() {
             @Override
             public void onResponse(@NotNull Response<GetUserRoutineByIdUserQuery.Data> response) {
@@ -146,7 +172,34 @@ public class RoutineModel {
             }
         },token);
     }
-    public static void registerRequest(ApolloCall.Callback<RegisterRequestMutation.Data>listener,int idRoutine,String token){
+    public static void getRequestByIdRoutine(ApolloCall.Callback<GetRequestByIdRoutineQuery.Data>listener,int idRoutine){
+        RoutineRepository.getRequestByIdRoutine(new ModelListener<GetRequestByIdRoutineQuery.Data>(listener),idRoutine);
+    }
+      public static void acceptRequest(UserRoutineEntity userRoutineEntity, int idRequest, String token){
+        RoutineRepository.registerUserRoutine(new ApolloCall.Callback<RegisterUserRoutineMutation.Data>() {
+            @Override
+            public void onResponse(@NotNull Response<RegisterUserRoutineMutation.Data> response) {
+
+            }
+
+            @Override
+            public void onFailure(@NotNull ApolloException e) {
+
+            }
+        },userRoutineEntity,token);
+        RoutineRepository.deleteRequest(new ApolloCall.Callback<DeleteRequestMutation.Data>() {
+            @Override
+            public void onResponse(@NotNull Response<DeleteRequestMutation.Data> response) {
+
+            }
+
+            @Override
+            public void onFailure(@NotNull ApolloException e) {
+
+            }
+        },idRequest);
+    }
+     public static void registerRequest(ApolloCall.Callback<RegisterRequestMutation.Data>listener,int idRoutine,String token){
         RoutineRepository.registerRequest(new ApolloCall.Callback<RegisterRequestMutation.Data>() {
             @Override
             public void onResponse(@NotNull Response<RegisterRequestMutation.Data> response) {
@@ -158,5 +211,38 @@ public class RoutineModel {
             listener.onFailure(e);
             }
         } ,idRoutine,token);
+    }
+     public static void rejectRequest(int idRequest){
+
+        RoutineRepository.deleteRequest(new ApolloCall.Callback<DeleteRequestMutation.Data>() {
+            @Override
+            public void onResponse(@NotNull Response<DeleteRequestMutation.Data> response) {
+
+            }
+
+            @Override
+            public void onFailure(@NotNull ApolloException e) {
+
+            }
+        },idRequest);
+
+    }
+
+    private static class ModelListener<T>extends ApolloCall.Callback<T>{
+        private ApolloCall.Callback<T>callback;
+        public ModelListener(ApolloCall.Callback<T>listener) {
+        this.callback=listener;
+        }
+
+        @Override
+        public void onResponse(@NotNull Response<T> response) {
+            this.callback.onResponse(response);
+        }
+
+        @Override
+        public void onFailure(@NotNull ApolloException e) {
+        this.callback.onFailure(e);
+        }
+
     }
 }

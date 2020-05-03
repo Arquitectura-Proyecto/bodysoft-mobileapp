@@ -132,6 +132,7 @@
             android:layout_height="wrap_content"
             android:text="Editar"/>
         <Button
+            android:id="@+id/btnGoTolistRequest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ver Solicitudes"/>
