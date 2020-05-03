@@ -62,6 +62,7 @@ public class MainActivityTrainer extends AppCompatActivity {
                             Integer typeId = response.data().authValidateAuthToken().TypeID();
                             Boolean profile = response.data().authValidateAuthToken().Profile();
                             authGlobalState.setTypeID(typeId);
+                            authGlobalState.setToken(token);
 
 
                         }
