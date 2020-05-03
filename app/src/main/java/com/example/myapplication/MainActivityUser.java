@@ -2,45 +2,35 @@ package com.example.myapplication;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Menu;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
+import androidx.navigation.NavGraph;
+import androidx.navigation.NavInflater;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.ApolloClient;
-
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
-
-import com.example.apollographqlandroid.CrearRutinaMutation;
-import com.example.apollographqlandroid.GetRoutinesQuery;
-
+import com.example.apollographqlandroid.AuthValidateAuthTokenQuery;
+import com.example.myapplication.Model.Models.AuthModel;
 import com.example.myapplication.ui.AuthGlobalState;
-import com.example.myapplication.ui.NotificationId;
-
-
-import com.example.myapplication.Model.Models.ProfileModel;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
-
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivityUser extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private AuthGlobalState authGlobalState;
@@ -57,31 +47,41 @@ public class MainActivity extends AppCompatActivity {
         createNotificationChannel();
 
         authGlobalState = ViewModelProviders.of(this).get(AuthGlobalState.class);
+        Intent intent = getIntent();
+        String token = intent.getStringExtra("token");
+        int fragment = intent.getIntExtra("fragment",R.id.nav_home);
+
+        AuthModel.authValidateAuthToken(token, new ApolloCall.Callback<AuthValidateAuthTokenQuery.Data>() {
+            @Override
+            public void onResponse(@NotNull Response<AuthValidateAuthTokenQuery.Data> response) {
+                runOnUiThread(new Runnable() {
+                    @Override public void run() {
+                        if (response.hasErrors()) {
+
+                        } else {
+                            Integer typeId = response.data().authValidateAuthToken().TypeID();
+                            Boolean profile = response.data().authValidateAuthToken().Profile();
+                            authGlobalState.setTypeID(typeId);
 
 
-
-/*Ejemplo mutacion
-        apolloClient.mutate(CrearRutinaMutation.builder().price(200.3).name("nombre de android").description("desde el celular").link_preview("www.google.com").idType(2).token("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiUHJvZmlsZSI6ZmFsc2UsIlR5cGVJRCI6MSwiZXhwIjoxNTg3OTI5ODczfQ.rX3r7JAEaWYfs1qc4-sS-_DQoV7WOuI12mw0vYTHp_Y").build()).enqueue(
-                new ApolloCall.Callback<CrearRutinaMutation.Data>() {
-                    @Override
-                    public void onResponse(@NotNull Response<CrearRutinaMutation.Data> response) {
-                        System.out.println("agregado:"+response.data());
+                        }
                     }
+                });
+            }
 
-                    @Override
-                    public void onFailure(@NotNull ApolloException e) {
-                        System.out.println( e);
-                    }
-                }
-        );*/
-        ////
+            @Override
+            public void onFailure(@NotNull ApolloException e) {
 
-        setContentView(R.layout.activity_main);
+            }
+        });
 
+
+        setContentView(R.layout.activity_main_user);
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         DrawerLayout drawer;
         NavigationView navigationView;
@@ -90,6 +90,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);  // Hostfragment
+        NavInflater inflater = navHostFragment.getNavController().getNavInflater();
+        NavGraph graph = inflater.inflate(R.navigation.mobile_navigation);
+        graph.setStartDestination(fragment);
+
+        navHostFragment.getNavController().setGraph(graph);
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -97,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,R.id.listRoutineFragment,R.id.rootRoutineFragment, R.id.userRoutineListFragment)/////los que esten aqui tendra tendran el boton para ver el navigation viewer
                 .setDrawerLayout(drawer)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavController navController = navHostFragment.getNavController();
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
     }
