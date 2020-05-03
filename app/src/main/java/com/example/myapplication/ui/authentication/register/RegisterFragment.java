@@ -145,6 +145,7 @@ public class RegisterFragment extends Fragment {
                                 }else{
                                     registerLayout.setVisibility(view.GONE);
                                     tengocodigo.setVisibility(View.GONE);
+                                    layoutCodigo.setVisibility(View.VISIBLE);
 
                                 }
 
@@ -196,6 +197,7 @@ public class RegisterFragment extends Fragment {
                                     tengocodigo.setVisibility(View.VISIBLE);
                                 }else{
                                     registerLayout.setVisibility(view.GONE);
+                                    tengocodigo.setVisibility(View.GONE);
                                     layoutCodigo.setVisibility(View.VISIBLE);
                                     // notificationId is a unique int for each notification that you must define
 
@@ -247,7 +249,6 @@ public class RegisterFragment extends Fragment {
 
                                     notificationId.setID(id+1);
 
-                                    ((AppCompatActivity)getActivity()).getSupportActionBar().show();
 
 
                                 }
@@ -293,7 +294,6 @@ public class RegisterFragment extends Fragment {
                                     // notificationId is a unique int for each notification that you must define
                                     notificationManager.notify(1, builder.build());
 
-                                    ((AppCompatActivity)getActivity()).getSupportActionBar().show();
 
 
                                 }
