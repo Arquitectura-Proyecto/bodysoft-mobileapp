@@ -1,0 +1,52 @@
+query getRoutinesByIdType($idType:Int!){
+    Routines:getRoutinesByType(idType:$idType){
+        getId:id
+        getIdOwner:idOwner
+        getRaiting:rating
+        getNumRaitings:numRaitings
+        getPrice:price
+        getName:name
+        getDescription:description
+        getLinkPreview:linkPreview
+        getType:type{
+            getId:id
+            getName:name
+        }
+    }
+}
+
+
+query getUserRoutineByIdUser($token:String!){
+    UserRoutines:getUserRoutineByIdUser(token:$token){
+        getId:id
+        getIdUser:idUser
+        getRoutine:routine{
+            getId:id
+            getIdOwner:idOwner
+            getRaiting:rating
+            getNumRaitings:numRaitings
+            getPrice:price
+            getName:name
+            getDescription:description
+            getLinkPreview:linkPreview
+            getType:type{
+                getId:id
+                getName:name
+            }
+        }
+        getStatus:status{
+            getId:id
+            getName:name
+        }
+        getQualified:quailified
+    }
+}
+
+mutation registerRequest($idRoutine:Int!,$token:String!){
+    registerRequest(
+
+        registerRequestPOJO:{
+            idRoutine:$idRoutine
+
+        },token:$token)
+}

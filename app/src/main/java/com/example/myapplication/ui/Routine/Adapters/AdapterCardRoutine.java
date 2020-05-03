@@ -52,6 +52,12 @@ public class AdapterCardRoutine extends RecyclerView.Adapter<AdapterCardRoutine.
         //view.setOnClickListener(this);
         return new ViewHolderCardRoutine(view);
     }
+//    cardSuggestedRoutine
+//    imgResource
+//    txtnameResource
+//    txtdescriptionResource
+//    txtTypeResource
+//    btnGoToRoutinePreview
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderCardRoutine holder, int position) {

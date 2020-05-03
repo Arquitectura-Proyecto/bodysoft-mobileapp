@@ -34,9 +34,16 @@
             android:title="lista rutinas" />
 
         <item
+            android:id="@+id/userRoutineListFragment"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_home" />
+
+
+        <item
             android:id ="@+id/changePasswordFragment"
             android:icon="@drawable/baseline_lock_24"
             android:title="Cambiar contraseña"/>
+
 
     </group>
 </menu>
