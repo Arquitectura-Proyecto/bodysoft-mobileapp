@@ -1,0 +1,3 @@
+mutation authVerifyAcount($email:String!,$vcode:Int!){
+    authVerifyAcount(email: $email, vcode: $vcode )
+}
