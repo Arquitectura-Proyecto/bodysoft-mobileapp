@@ -6,24 +6,15 @@ import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.example.apollographqlandroid.CrearRutinaMutation;
-import com.example.apollographqlandroid.DeleteRequestMutation;
 import com.example.apollographqlandroid.GetAllTypeRoutineQuery;
-import com.example.apollographqlandroid.GetRequestByIdRoutineQuery;
 import com.example.apollographqlandroid.GetResourcesByIdRoutineMutation;
 import com.example.apollographqlandroid.GetRoutinesByIdOwnerQuery;
 import com.example.apollographqlandroid.GetRoutinesByIdTypeQuery;
 import com.example.apollographqlandroid.GetRoutinesQuery;
-
-import com.example.apollographqlandroid.RegisterResourceMutation;
-import com.example.apollographqlandroid.RegisterUserRoutineMutation;
-
 import com.example.apollographqlandroid.GetUserRoutineByIdUserQuery;
 import com.example.apollographqlandroid.RegisterRequestMutation;
-
 import com.example.apollographqlandroid.UpdateRoutineMutation;
-import com.example.myapplication.Model.Entities.ResourceEntity;
 import com.example.myapplication.Model.Entities.RoutineEntity;
-import com.example.myapplication.Model.Entities.UserRoutineEntity;
 import com.example.myapplication.Model.Repositories.RoutineRepository;
 
 
@@ -128,18 +119,15 @@ public class RoutineModel {
         },idRoutine,token);
 
     }
-
     public static void getRoutinesByIdType(ApolloCall.Callback<GetRoutinesByIdTypeQuery.Data>listener,int idType){
         RoutineRepository.getRoutinesByIdType(new ApolloCall.Callback<GetRoutinesByIdTypeQuery.Data>() {
             @Override
             public void onResponse(@NotNull Response<GetRoutinesByIdTypeQuery.Data> response) {
-
                 listener.onResponse(response);
             }
 
             @Override
             public void onFailure(@NotNull ApolloException e) {
-
                 listener.onFailure(e);
             }
         },idType);
@@ -150,12 +138,10 @@ public class RoutineModel {
             @Override
             public void onResponse(@NotNull Response<GetUserRoutineByIdUserQuery.Data> response) {
                 listener.onResponse(response);
-
             }
 
             @Override
             public void onFailure(@NotNull ApolloException e) {
-
             listener.onFailure(e);
             }
         },token);
@@ -165,16 +151,12 @@ public class RoutineModel {
             @Override
             public void onResponse(@NotNull Response<RegisterRequestMutation.Data> response) {
                 listener.onResponse(response);
-
             }
 
             @Override
             public void onFailure(@NotNull ApolloException e) {
-
-
             listener.onFailure(e);
             }
         } ,idRoutine,token);
-
     }
 }

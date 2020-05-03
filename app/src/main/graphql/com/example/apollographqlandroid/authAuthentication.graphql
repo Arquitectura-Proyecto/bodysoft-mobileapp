@@ -1,5 +1,0 @@
-query authAuthentication($email: String!, $password: String!){
-  authAuthentication(email: $email, password: $password){
-    Token
-  }
-}

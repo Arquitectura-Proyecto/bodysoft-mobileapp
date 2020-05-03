@@ -35,7 +35,6 @@ public class RoutineInformationFragment extends Fragment {
     private TextView txtTypeRoutineRoutineInformation;
     private Button btnGoToEditRoutine;
     private Button btnGotoListResources;
-    private Button btnGoTolistRequest;
     private NavController navController;
     public RoutineInformationFragment() {
         // Required empty public constructor
@@ -64,8 +63,6 @@ public class RoutineInformationFragment extends Fragment {
          this.btnGoToEditRoutine.setOnClickListener(new btnGoToEditRoutineListener());
          this.btnGotoListResources=(Button)view.findViewById(R.id.btnGoToResources);
          this.btnGotoListResources.setOnClickListener(new btnGotoListResources());
-         this.btnGoTolistRequest=(Button)view.findViewById(R.id.btnGoTolistRequest);
-         this.btnGoTolistRequest.setOnClickListener(new btnGotoLisRequestListener());
          this.routineStore.getInformationRoutine().observe(getViewLifecycleOwner(), new Observer<GetRoutinesByIdOwnerQuery.Routine>() {
             @Override
             public void onChanged(GetRoutinesByIdOwnerQuery.Routine routine) {
@@ -91,13 +88,6 @@ public class RoutineInformationFragment extends Fragment {
         @Override
         public void onClick(View v) {
             navController.navigate(R.id.fromRoutineInformationFragment_to_listResourcesFragment);
-        }
-    }
-    private class btnGotoLisRequestListener implements View.OnClickListener{
-
-        @Override
-        public void onClick(View v) {
-            navController.navigate(R.id.fromRoutineInformationFragment_to_listRequestFragment);
         }
     }
 }
