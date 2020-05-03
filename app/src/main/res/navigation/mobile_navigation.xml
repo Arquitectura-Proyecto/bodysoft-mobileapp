@@ -230,7 +230,16 @@
         android:id="@+id/userMyResourcesFragment"
         android:name="com.example.myapplication.ui.Routine.User.UserMyResourcesFragment"
         android:label="fragment_user_my_routine"
-        tools:layout="@layout/fragment_user_my_routine" />
+        tools:layout="@layout/fragment_user_my_routine" >
+        <action
+            android:id="@+id/action_userMyResourcesFragment_to_userRoutineVideoFragment"
+            app:destination="@id/userRoutineVideoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userRoutineVideoFragment"
+        android:name="com.example.myapplication.ui.Routine.User.UserRoutineVideoFragment"
+        android:label="fragment_user_routine_video"
+        tools:layout="@layout/fragment_user_routine_video" />
 
 
     <!--Fin Andres-->

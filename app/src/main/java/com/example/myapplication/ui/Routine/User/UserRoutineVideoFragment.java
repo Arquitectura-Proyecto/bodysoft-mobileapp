@@ -24,6 +24,7 @@ import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.example.apollographqlandroid.CrearRutinaMutation;
+import com.example.apollographqlandroid.GetResourcesByIdRoutineMutation;
 import com.example.apollographqlandroid.GetRoutinesByIdTypeQuery;
 import com.example.apollographqlandroid.RegisterRequestMutation;
 import com.example.myapplication.Model.Entities.RoutineEntity;
@@ -65,21 +66,20 @@ public class UserRoutineVideoFragment extends Fragment {
         this.txtDescriptionRoutineInformation = (TextView) view.findViewById(R.id.txtDescriptionRoutineInformation);
         this.txtNameRoutineInformation = (TextView) view.findViewById(R.id.txtNameRoutineInformation);
 
-        routineStore.getInformationRoutinePreview().observe(getViewLifecycleOwner(), new Observer<GetRoutinesByIdTypeQuery.Routine>() {
-                    @Override
-                    public void onChanged(GetRoutinesByIdTypeQuery.Routine routine) {
-                        Uri uri = Uri.parse(routine.getLinkPreview());
-                        imgRoutine.setVideoURI(uri);
-                        imgRoutine.start();
-                        MediaController mediaController = new MediaController(getContext());
-                        mediaController.setAnchorView(imgRoutine);
-                        imgRoutine.setMediaController(mediaController);
-                        txtNameRoutineInformation.setText(routine.getName());
+        routineStore.getResourceInformation().observe(getViewLifecycleOwner(), new Observer<GetResourcesByIdRoutineMutation.Resource>() {
+            @Override
+            public void onChanged(GetResourcesByIdRoutineMutation.Resource resource) {
+                Uri uri = Uri.parse(resource.getLink());
+                imgRoutine.setVideoURI(uri);
+                imgRoutine.start();
+                MediaController mediaController = new MediaController(getContext());
+                mediaController.setAnchorView(imgRoutine);
+                imgRoutine.setMediaController(mediaController);
+                txtNameRoutineInformation.setText(resource.getTitle());
 
-                        txtDescriptionRoutineInformation.setText(routine.getDescription());
-                    }
-                }
-        );
+                txtDescriptionRoutineInformation.setText(resource.getDescription());
+            }
+        });
 
     }
 

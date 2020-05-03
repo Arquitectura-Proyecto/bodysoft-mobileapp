@@ -13,9 +13,30 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="1232" />
-                            <option name="y" value="410" />
+                            <option name="x" value="1317" />
+                            <option name="y" value="283" />
                           </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="listRequestFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="368" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="fromListRequestFragment_to_requestInformationFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -25,9 +46,18 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="1232" />
-                            <option name="y" value="766" />
+                            <option name="x" value="1384" />
+                            <option name="y" value="1197" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="fromListResourcesFragment_to_registerResourceFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -37,8 +67,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="256" />
-                            <option name="y" value="12" />
+                            <option name="x" value="278" />
+                            <option name="y" value="-127" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -70,8 +100,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="500" />
-                            <option name="y" value="12" />
+                            <option name="x" value="788" />
+                            <option name="y" value="-122" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -91,8 +121,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="500" />
-                            <option name="y" value="504" />
+                            <option name="x" value="312" />
+                            <option name="y" value="547" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -112,8 +142,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="256" />
-                            <option name="y" value="547" />
+                            <option name="x" value="606" />
+                            <option name="y" value="265" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -140,6 +170,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="registerResourceFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="1672" />
+                            <option name="y" value="769" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="registerRoutineFragment">
                     <value>
                       <LayoutPositions>
@@ -147,6 +189,18 @@
                           <Point>
                             <option name="x" value="988" />
                             <option name="y" value="368" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="requestInformationFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="268" />
+                            <option name="y" value="165" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -183,8 +237,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="744" />
-                            <option name="y" value="12" />
+                            <option name="x" value="1156" />
+                            <option name="y" value="-121" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -195,13 +249,18 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="988" />
-                            <option name="y" value="724" />
+                            <option name="x" value="954" />
+                            <option name="y" value="1218" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
                             <entry key="fromRoutineInformationFragment_to_editRoutineFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="fromRoutineInformationFragment_to_listRequestFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -216,13 +275,13 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="userMyRoutineFragment">
+                  <entry key="userMyResourcesFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-242" />
-                            <option name="y" value="13" />
+                            <option name="x" value="123" />
+                            <option name="y" value="1163" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -233,9 +292,18 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="100" />
-                            <option name="y" value="1153" />
+                            <option name="x" value="-186" />
+                            <option name="y" value="1161" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_userMyRoutinesListFragment_to_userMyResourcesFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -245,8 +313,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-237" />
-                            <option name="y" value="1151" />
+                            <option name="x" value="-537" />
+                            <option name="y" value="1005" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -271,9 +339,18 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="104" />
-                            <option name="y" value="848" />
+                            <option name="x" value="-184" />
+                            <option name="y" value="806" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_userRoutinePreviewFragment_to_userRoutineRequestFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -283,8 +360,32 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="440" />
-                            <option name="y" value="925" />
+                            <option name="x" value="-446" />
+                            <option name="y" value="475" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="userRoutineVideoFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="570" />
+                            <option name="y" value="1315" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="userRoutinesFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="529" />
+                            <option name="y" value="-127" />
                           </Point>
                         </option>
                       </LayoutPositions>

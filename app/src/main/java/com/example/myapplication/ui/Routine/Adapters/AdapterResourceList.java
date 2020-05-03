@@ -34,15 +34,15 @@ public class AdapterResourceList extends RecyclerView.Adapter<AdapterResourceLis
     @NonNull
     @Override
     public AdapterResourceList.ViewHolderResourceList onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_user_list_resources,parent,false);//parent para ajustarlo al layout del padre
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_user_list_resources, parent, false);//parent para ajustarlo al layout del padre
         //view.setOnClickListener(this);
         return new ViewHolderResourceList(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull AdapterResourceList.ViewHolderResourceList holder, int position) {
-    holder.txtTitleResource.setText(this.resourceList.get(position).getTitle());
-    //holder.goToResourceVideo.setOnClickListener();
+        holder.txtTitleResource.setText(this.resourceList.get(position).getTitle());
+        holder.goToResourceVideo.setOnClickListener(new GoToVideo(this.resourceList.get(position)));
     }
 
     @Override
@@ -54,15 +54,17 @@ public class AdapterResourceList extends RecyclerView.Adapter<AdapterResourceLis
 
         TextView txtTitleResource;
         Button goToResourceVideo;
+
         public ViewHolderResourceList(@NonNull View itemView) {
             super(itemView);
-            this.txtTitleResource=(TextView)itemView.findViewById(R.id.txtTitleUserResource);
-            this.goToResourceVideo=(Button)itemView.findViewById(R.id.btnViewResource);
+            this.txtTitleResource = (TextView) itemView.findViewById(R.id.txtTitleUserResource);
+            this.goToResourceVideo = (Button) itemView.findViewById(R.id.btnViewResource);
 
 
         }
     }
-    private class GoToVideo implements View.OnClickListener{
+
+    private class GoToVideo implements View.OnClickListener {
         private GetResourcesByIdRoutineMutation.Resource resource;
 
         public GoToVideo(GetResourcesByIdRoutineMutation.Resource resource) {
@@ -71,14 +73,14 @@ public class AdapterResourceList extends RecyclerView.Adapter<AdapterResourceLis
 
         @Override
         public void onClick(View v) {
-            //System.out.println("THE ROUTINE IS "+routine.getDescription());
-           // RoutineStore routineStore= ViewModelProviders.of((FragmentActivity) context).get(RoutineStore.class);
-            // routineStore.setRoutineInformation(routine);
+            //System.out.println("THE ROUTINE IS " + routine.getDescription());
+            RoutineStore routineStore = ViewModelProviders.of((FragmentActivity) context).get(RoutineStore.class);
+            routineStore.setResourceInformation(resource);
 
-            ///navigationController.navigate(R.id.aquivaelvideo);
+            navigationController.navigate(R.id.action_userMyResourcesFragment_to_userRoutineVideoFragment);
         }
 
-}
+    }
 
 
 }
