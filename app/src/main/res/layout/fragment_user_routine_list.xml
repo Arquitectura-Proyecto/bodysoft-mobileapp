@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
 
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/loginPageBackgroundColor"
-    >
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-
-        tools:context=".ui.Routine.User.UserRoutineListFragment">
+        tools:context=".ui.Routine.User.UserRoutineListFragment"
+        >
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -44,11 +36,21 @@
             android:textSize="20sp"
             android:layout_marginRight="12dp"/>
         <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/loginPageBackgroundColor"
+
+        >
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerListMyRoutines"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            />
+            /></ScrollView>
     </LinearLayout>
-</ScrollView>
+
