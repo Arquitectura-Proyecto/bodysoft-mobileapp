@@ -1,51 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/loginPageBackgroundColor"
+tools:context=".ui.Routine.User.UserRoutineRequestFragment">
+>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
-    tools:context=".ui.Routine.User.UserRoutineRequestFragment">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="12dp"
-        android:text="Información compra rutina"
-        android:textSize="20sp" />
+    tools:context=".ui.Routine.RoutineInformationFragment">
+    <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
         android:layout_width="match_parent"
+
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_margin="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="12dp"
-            android:text="Numero de contacto"
+            android:text="Nombre:"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtNameRoutineInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:text="Precio:"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtPriceRoutineInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:text="Descripcion:"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtDescriptionRoutineInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:text="Calificacion:"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtRaitingRoutineInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:text="Numero de Calificaciones:"
+            android:textSize="20sp" />
+
+        <TextView
+
+            android:id="@+id/txtNumRaitingRoutineInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:text="Tipo:"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtTypeRoutineRoutineInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:textSize="20sp" />
 
     </LinearLayout>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="12dp"
-        android:text="Información pago"
-        android:textSize="20sp" />
     <LinearLayout
         android:layout_width="match_parent"
+
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_margin="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="12dp"
-            android:text="Descripción detallada"
+            android:text="Descripción pago:"
+            android:textSize="20sp" />
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ponte en contacto con el entrenador"
             android:textSize="20sp" />
 
     </LinearLayout>
@@ -57,3 +166,4 @@
         android:layout_gravity="center_horizontal"
         android:text="Confirmar solicitud" />
 </LinearLayout>
+</ScrollView>
