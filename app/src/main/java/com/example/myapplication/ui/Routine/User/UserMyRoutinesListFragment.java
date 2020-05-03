@@ -21,6 +21,7 @@ import com.example.apollographqlandroid.GetUserRoutineByIdUserQuery;
 import com.example.myapplication.Model.Models.RoutineModel;
 import com.example.myapplication.Model.Store.RoutineStore;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.AuthGlobalState;
 import com.example.myapplication.ui.GlobalState;
 import com.example.myapplication.ui.Routine.Adapters.AdapterCardResource;
 import com.example.myapplication.ui.Routine.Adapters.AdapterCardUserMyRoutines;
@@ -36,6 +37,7 @@ public class UserMyRoutinesListFragment extends Fragment {
     private RecyclerView recyclerListUserRoutines;
     private RoutineStore routineStore;
     private NavController navController;
+    private AuthGlobalState authGlobalState;
     public UserMyRoutinesListFragment() {
         // Required empty public constructor
     }
@@ -53,6 +55,7 @@ public class UserMyRoutinesListFragment extends Fragment {
 
         this.recyclerListUserRoutines = (RecyclerView) view.findViewById(R.id.recyclerListUserRoutines);
         this.routineStore=ViewModelProviders.of(getActivity()).get(RoutineStore.class);
+        this.authGlobalState=ViewModelProviders.of(getActivity()).get(AuthGlobalState.class);
         this.navController=Navigation.findNavController(view);
         this.routineStore.getUserRoutineList().observe(getViewLifecycleOwner(), new Observer<List<GetUserRoutineByIdUserQuery.UserRoutine>>() {
             @Override
@@ -62,7 +65,7 @@ public class UserMyRoutinesListFragment extends Fragment {
                 recyclerListUserRoutines.setAdapter(adapter);
             }
         });
-        RoutineModel.getRoutinesByIdUser(new getUserRoutinesByIdUserListener(), GlobalState.getToken());
+        RoutineModel.getRoutinesByIdUser(new getUserRoutinesByIdUserListener(), authGlobalState.getToken().getValue());
 
     }
     private  class getUserRoutinesByIdUserListener extends ApolloCall.Callback<GetUserRoutineByIdUserQuery.Data>{

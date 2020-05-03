@@ -22,7 +22,5 @@ public class GlobalState extends ViewModel {
     public LiveData<String> getSharedString(){
         return this.sharedString;
     }
-    public static String getToken(){
-        return token;
-    }
+
 }

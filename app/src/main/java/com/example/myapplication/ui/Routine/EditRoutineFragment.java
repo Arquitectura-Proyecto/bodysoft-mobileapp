@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -26,6 +27,7 @@ import com.example.myapplication.Model.Models.RoutineModel;
 import com.example.myapplication.Model.Repositories.RoutineRepository;
 import com.example.myapplication.Model.Store.RoutineStore;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.AuthGlobalState;
 import com.example.myapplication.ui.GlobalState;
 import com.example.myapplication.ui.Routine.EventListener.GetAllTypesRoutineListener;
 import com.google.android.material.textfield.TextInputEditText;
@@ -48,7 +50,7 @@ public class EditRoutineFragment extends Fragment {
     private TextInputEditText priceTextInput;
     private TextInputEditText nameTextInput;
     private  TextInputEditText descriptionTextInput;
-
+    private AuthGlobalState authGlobalState;
     public EditRoutineFragment() {
         // Required empty public constructor
     }
@@ -65,6 +67,7 @@ public class EditRoutineFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.routineStore= ViewModelProviders.of(getActivity()).get(RoutineStore.class);
+        authGlobalState= ViewModelProviders.of(getActivity()).get(AuthGlobalState.class);
         GetRoutinesByIdOwnerQuery.Routine routine=routineStore.getInformationRoutine().getValue();
         this.spinnerTypeRoutines = (MaterialSpinner) view.findViewById(R.id.spinnerEditRoutine);
 
@@ -125,7 +128,7 @@ public class EditRoutineFragment extends Fragment {
                    public void onFailure(@NotNull ApolloException e) {
                        e.printStackTrace();
                    }
-               },editedRoutine, GlobalState.getToken());
+               },editedRoutine, authGlobalState.getToken().getValue());
            }catch (Exception e){
                System.out.println("errorcillo");
            }

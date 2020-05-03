@@ -4,7 +4,7 @@ public enum Utilities {
 
 
 
-    LocalHost("http://192.168.0.4","3800","/graphql");
+    LocalHost("http://192.168.0.12","3800","/graphql");
 
 
 

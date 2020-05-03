@@ -21,6 +21,7 @@ import com.example.myapplication.Model.Entities.ResourceEntity;
 import com.example.myapplication.Model.Repositories.RoutineRepository;
 import com.example.myapplication.Model.Store.RoutineStore;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.AuthGlobalState;
 import com.example.myapplication.ui.GlobalState;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -36,6 +37,7 @@ public class RegisterResourceFragment extends Fragment {
     private TextInputEditText descriptionTextInput;
     private Button btnRegiserResource;
     private RoutineStore routineStore;
+    private AuthGlobalState authGlobalState;
     public RegisterResourceFragment() {
         // Required empty public constructor
     }
@@ -52,6 +54,7 @@ public class RegisterResourceFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.routineStore= ViewModelProviders.of(getActivity()).get(RoutineStore.class);
+        this.authGlobalState= ViewModelProviders.of(getActivity()).get(AuthGlobalState.class);
         this.descriptionTextInput=(TextInputEditText)view.findViewById(R.id.txtInputDescriptionRegisterResource);
         this.TitleTextInput=(TextInputEditText)view.findViewById(R.id.txtInputNameRegisterResource);
         this.positionTextInput=(TextInputEditText)view.findViewById(R.id.txtInputPositionRegisterResource);
@@ -86,7 +89,7 @@ private class btnRegisterResourceListener implements View.OnClickListener{
                 public void onFailure(@NotNull ApolloException e) {
 
                 }
-            },newResource, GlobalState.getToken());
+            },newResource, authGlobalState.getToken().getValue());
         }catch (Exception e){
             Toast.makeText(v.getContext(),
                     e.getMessage(), Toast.LENGTH_SHORT).show();

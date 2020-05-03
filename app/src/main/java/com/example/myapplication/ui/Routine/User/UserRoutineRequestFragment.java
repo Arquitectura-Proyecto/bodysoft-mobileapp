@@ -30,6 +30,7 @@ import com.example.myapplication.Model.Entities.RoutineEntity;
 import com.example.myapplication.Model.Models.RoutineModel;
 import com.example.myapplication.Model.Store.RoutineStore;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.AuthGlobalState;
 import com.example.myapplication.ui.GlobalState;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -49,7 +50,7 @@ public class UserRoutineRequestFragment extends Fragment {
     Button btnRequestConfirmation;
     NavController navController;
     RoutineStore routineStore;
-
+    private AuthGlobalState authGlobalState;
     public UserRoutineRequestFragment() {
         // Required empty public constructor
     }
@@ -67,6 +68,7 @@ public class UserRoutineRequestFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         super.onViewCreated(view, savedInstanceState);
         this.routineStore = ViewModelProviders.of(getActivity()).get(RoutineStore.class);
+        this.authGlobalState = ViewModelProviders.of(getActivity()).get(AuthGlobalState.class);
         this.txtDescriptionRoutineInformation = (TextView) view.findViewById(R.id.txtDescriptionRoutineInformation);
         this.txtNameRoutineInformation = (TextView) view.findViewById(R.id.txtNameRoutineInformation);
         this.txtNumRaitingRoutineInformation = (TextView) view.findViewById(R.id.txtNumRaitingRoutineInformation);
@@ -120,7 +122,7 @@ public class UserRoutineRequestFragment extends Fragment {
                     public void onFailure(@NotNull ApolloException e) {
                         System.out.println("error es "+e.getMessage());
                     }
-                }, Integer.parseInt(routineId), GlobalState.getToken());
+                }, Integer.parseInt(routineId), authGlobalState.getToken().getValue());
 
             } catch (Exception e) {
                 Toast.makeText(v.getContext(),
