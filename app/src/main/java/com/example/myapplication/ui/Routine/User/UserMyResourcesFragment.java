@@ -14,10 +14,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.apollographql.apollo.ApolloCall;
+import com.apollographql.apollo.api.Response;
+import com.apollographql.apollo.exception.ApolloException;
 import com.example.apollographqlandroid.GetResourcesByIdRoutineMutation;
+import com.example.myapplication.Model.Models.RoutineModel;
 import com.example.myapplication.Model.Store.RoutineStore;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.GlobalState;
+import com.example.myapplication.ui.Routine.Adapters.AdapterCardResource;
 import com.example.myapplication.ui.Routine.Adapters.AdapterCardUserMyRoutines;
+import com.example.myapplication.ui.Routine.Adapters.AdapterResourceList;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -55,13 +64,13 @@ public class UserMyResourcesFragment extends Fragment {
         routineStore.getListResources().observe(getViewLifecycleOwner(), new Observer<List<GetResourcesByIdRoutineMutation.Resource>>() {
             @Override
             public void onChanged(List<GetResourcesByIdRoutineMutation.Resource> resources) {
-                 /*recyclerListResources.setLayoutManager(new LinearLayoutManager(getContext()));
-                AdapterCardUserMyRoutines adapter=new AdapterCardUserMyRoutines(routineStore.getListResources().getValue(),navController,getContext());
-                resourceRecycler.setAdapter(adapter);*/
+                 recyclerListResources.setLayoutManager(new LinearLayoutManager(getContext()));
+                AdapterResourceList adapter=new AdapterResourceList(routineStore.getListResources().getValue(),navController,getContext());
+                recyclerListResources.setAdapter(adapter);
             }
         });
-        /*RoutineModel.getResourcesByIdRoutine(new getResourcesByIdRoutineListener(),Integer.parseInt(routineStore.getInformationRoutine().getValue().getId()),GlobalState.getToken());
-*/
+        RoutineModel.getResourcesByIdRoutine(new getResourcesByIdRoutineListener(),Integer.parseInt(routineStore.getUserRoutine().getValue().getRoutine().getId()), GlobalState.getToken());
+
 
 
 
@@ -70,4 +79,26 @@ public class UserMyResourcesFragment extends Fragment {
 
 
     }
+
+    private class getResourcesByIdRoutineListener extends ApolloCall.Callback<GetResourcesByIdRoutineMutation.Data>{
+
+
+        @Override
+        public void onResponse(@NotNull Response<GetResourcesByIdRoutineMutation.Data> response) {
+
+            getActivity().runOnUiThread(new Runnable() {
+                @Override public void run() {
+                    routineStore.setListResources(response.data().Resources());
+                }
+            });
+
+        }
+
+        @Override
+        public void onFailure(@NotNull ApolloException e) {
+
+            e.printStackTrace();
+        }
+    }
 }
+

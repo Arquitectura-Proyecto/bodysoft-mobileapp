@@ -24,7 +24,7 @@ public class RoutineStore extends ViewModel {
     private MutableLiveData<List<GetAllTypeRoutineQuery.TypeRoutine>> listTypeRoutines;
     private MutableLiveData<List<GetRoutinesByIdOwnerQuery.Routine>> listRoutine;
     private MutableLiveData<GetRoutinesByIdTypeQuery.Routine> InformationRoutinePreview;
-
+    private MutableLiveData<GetResourcesByIdRoutineMutation.Resource>resourceInformation;
     public RoutineStore() {
         this.InformationRoutinePreview = new MutableLiveData<>();
         this.listRoutine = new MutableLiveData<>();
@@ -34,6 +34,7 @@ public class RoutineStore extends ViewModel {
         this.listSuggestedRoutines = new MutableLiveData<>();
         this.userRoutineList=new MutableLiveData<>();
         this.userRoutine=new MutableLiveData<>();
+        this.resourceInformation= new MutableLiveData<>();
     }
 
     public LiveData<GetRoutinesByIdTypeQuery.Routine> getInformationRoutinePreview() {
@@ -100,6 +101,7 @@ public class RoutineStore extends ViewModel {
     public void setUserRoutineList(List<GetUserRoutineByIdUserQuery.UserRoutine> userRoutines){
         this.userRoutineList.setValue(userRoutines);
     }
+    //public LiveData<>
 
 
 }
