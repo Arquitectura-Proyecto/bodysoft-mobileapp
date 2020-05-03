@@ -62,6 +62,8 @@ public class TrainerFragment extends Fragment {
         TextView resources = view.findViewById(R.id.resourcesTrainerProfile);
 
         MaterialButton buttonEditTrainer = view.findViewById(R.id.buttonEditTrainer);
+        MaterialButton buttonSpecialitiesTrainer = view.findViewById(R.id.buttonSpecialitiesTrainer);
+        MaterialButton buttonDegreesTrainer = view.findViewById(R.id.buttonDegreesTrainer);
         final NavController navController= Navigation.findNavController(view);
 
 
@@ -94,7 +96,7 @@ public class TrainerFragment extends Fragment {
             public void onFailure(@NotNull ApolloException e) {
                 System.out.println();
             }
-        },"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MSwiUHJvZmlsZSI6dHJ1ZSwiVHlwZUlEIjoxLCJleHAiOjE1ODg0Mzg1NDN9.9X2JxE-JYSMfVBw8-kQYhH0dvF-g-r-eMF6yrHqP41U");
+        },"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiUHJvZmlsZSI6ZmFsc2UsIlR5cGVJRCI6MSwiZXhwIjoxNTg4NDY2MzE5fQ.F96YzanVY2G6HJV_Y3jjuUpazFmigMPTuz2IbHe5hoE");
 
 
         buttonEditTrainer .setOnClickListener(new View.OnClickListener() {
@@ -102,6 +104,22 @@ public class TrainerFragment extends Fragment {
             public void onClick(View v) {
                 NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.trainerEditFragment, true).build();
                 navController.navigate(R.id.go_to_edit_trainer,null,navOption);
+            }
+        });
+
+        buttonSpecialitiesTrainer .setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.listSpecialitiesTrainerFragment, true).build();
+                navController.navigate(R.id.go_to_list_specialities,null,navOption);
+            }
+        });
+
+        buttonDegreesTrainer .setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.listDegreesTrainerFragment, true).build();
+                navController.navigate(R.id.go_to_list_degrees,null,navOption);
             }
         });
 

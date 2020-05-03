@@ -347,16 +347,66 @@
                 android:orientation="horizontal"
                 android:gravity="center_horizontal"
                 android:layout_marginTop="14dp"
-                android:layout_marginBottom="30dp">
+                android:layout_marginBottom="5dp">
                 <Button
                     android:id="@+id/buttonEditTrainer"
-                    android:layout_width="wrap_content"
+                    android:layout_width="190dp"
                     android:layout_height="wrap_content"
                     android:text="Editar"
 
                     />
 
             </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+                <Button
+                    android:id="@+id/buttonDegreesTrainer"
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="Títulos"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+                <Button
+                    android:id="@+id/buttonSpecialitiesTrainer"
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="Especialidades" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="30dp">
+                <Button
+                    android:id="@+id/buttonPasswordTrainer"
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="Cambiar contraseña"/>
+
+            </LinearLayout>
+
+
+
         </LinearLayout>
 
 

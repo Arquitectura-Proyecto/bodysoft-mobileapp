@@ -100,7 +100,7 @@ public class TrainerEditFragment extends Fragment {
             public void onFailure(@NotNull ApolloException e) {
                 System.out.println();
             }
-        },"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MSwiUHJvZmlsZSI6dHJ1ZSwiVHlwZUlEIjoxLCJleHAiOjE1ODg0Mzg1NDN9.9X2JxE-JYSMfVBw8-kQYhH0dvF-g-r-eMF6yrHqP41U");
+        },"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiUHJvZmlsZSI6ZmFsc2UsIlR5cGVJRCI6MSwiZXhwIjoxNTg4NDY2MzE5fQ.F96YzanVY2G6HJV_Y3jjuUpazFmigMPTuz2IbHe5hoE");
 
         buttonSaveEditTrainer .setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,7 +121,7 @@ public class TrainerEditFragment extends Fragment {
                     public void onFailure(@NotNull ApolloException e) {
                         System.out.println(e);
                     }
-                },trainer_name.getText().toString(),Integer.parseInt(age.getText().toString()),"aquifoto",telephone.getText().toString(),city.getText().toString(),cal[1],cal[0],description.getText().toString(),resources.getText().toString(),experience.getText().toString(),"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MSwiUHJvZmlsZSI6dHJ1ZSwiVHlwZUlEIjoxLCJleHAiOjE1ODg0Mzg1NDN9.9X2JxE-JYSMfVBw8-kQYhH0dvF-g-r-eMF6yrHqP41U");
+                },trainer_name.getText().toString(),Integer.parseInt(age.getText().toString()),"aquifoto",telephone.getText().toString(),city.getText().toString(),cal[1],cal[0],description.getText().toString(),resources.getText().toString(),experience.getText().toString(),"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiUHJvZmlsZSI6ZmFsc2UsIlR5cGVJRCI6MSwiZXhwIjoxNTg4NDY2MzE5fQ.F96YzanVY2G6HJV_Y3jjuUpazFmigMPTuz2IbHe5hoE");
 
             }
         });
