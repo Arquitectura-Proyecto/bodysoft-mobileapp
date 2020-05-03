@@ -6,13 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/loginPageBackgroundColor"
-    tools:context=".ui.login.login">
+    tools:context=".ui.Profile.ListSpecialitiesTrainerFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:context=".ui.Profile.UserProfileFragment">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,11 +59,12 @@
             android:paddingTop="16dp"
             android:paddingEnd="30dp"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:orientation="vertical">
 
             <ListView
                 android:id="@+id/specialitiesList"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 />
 

@@ -22,6 +22,7 @@ import com.example.apollographqlandroid.EditProfileTrainerMutation;
 import com.example.apollographqlandroid.ProfileTrainerQuery;
 import com.example.myapplication.Model.Repositories.ProfileTrainerRepository;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.AuthGlobalState;
 import com.example.myapplication.ui.GlobalState;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -36,7 +37,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public class TrainerEditFragment extends Fragment {
 
-    GlobalState globalState;
+    AuthGlobalState authGlobalState;
 
     public static TrainerEditFragment newInstance() {
         return new TrainerEditFragment();
@@ -46,7 +47,7 @@ public class TrainerEditFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_trainer_edit, container, false);
-        globalState = ViewModelProviders.of(getActivity()).get(GlobalState.class);
+        authGlobalState = ViewModelProviders.of(getActivity()).get(AuthGlobalState.class);
         return view;
     }
 
@@ -74,22 +75,23 @@ public class TrainerEditFragment extends Fragment {
             public void onResponse(@NotNull Response<ProfileTrainerQuery.Data> response) {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override public void run() {
-
-                        trainer_name.setText(response.data().profileTrainer().trainer_name());
-                        age.setText(response.data().profileTrainer().age().toString());
-                        telephone.setText(response.data().profileTrainer().telephone());
-                        city.setText(response.data().profileTrainer().city());
-                        description.setText(response.data().profileTrainer().description());
-                        experience.setText(response.data().profileTrainer().work_experience());
-                        resources.setText(response.data().profileTrainer().resources());
-                        cal[0] = response.data().profileTrainer().num_ratings();
-                        if (cal[0]!=0) {
-                            cal[1] = response.data().profileTrainer().sum_ratings();
-                            float calc = (float)cal[1] / cal[0];
-                            String val = String.format("%.1f",calc);
-                            degree.setText(val);
-                        }else {
-                            degree.setText("0");
+                        if(response.data().profileTrainer()!=null) {
+                            trainer_name.setText(response.data().profileTrainer().trainer_name());
+                            age.setText(response.data().profileTrainer().age().toString());
+                            telephone.setText(response.data().profileTrainer().telephone());
+                            city.setText(response.data().profileTrainer().city());
+                            description.setText(response.data().profileTrainer().description());
+                            experience.setText(response.data().profileTrainer().work_experience());
+                            resources.setText(response.data().profileTrainer().resources());
+                            cal[0] = response.data().profileTrainer().num_ratings();
+                            if (cal[0] != 0) {
+                                cal[1] = response.data().profileTrainer().sum_ratings();
+                                float calc = (float) cal[1] / cal[0];
+                                String val = String.format("%.1f", calc);
+                                degree.setText(val);
+                            } else {
+                                degree.setText("0");
+                            }
                         }
 
                     }
@@ -100,7 +102,7 @@ public class TrainerEditFragment extends Fragment {
             public void onFailure(@NotNull ApolloException e) {
                 System.out.println();
             }
-        },"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiUHJvZmlsZSI6ZmFsc2UsIlR5cGVJRCI6MSwiZXhwIjoxNTg4NDY2MzE5fQ.F96YzanVY2G6HJV_Y3jjuUpazFmigMPTuz2IbHe5hoE");
+        },authGlobalState.getToken().getValue());
 
         buttonSaveEditTrainer .setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,7 +123,7 @@ public class TrainerEditFragment extends Fragment {
                     public void onFailure(@NotNull ApolloException e) {
                         System.out.println(e);
                     }
-                },trainer_name.getText().toString(),Integer.parseInt(age.getText().toString()),"aquifoto",telephone.getText().toString(),city.getText().toString(),cal[1],cal[0],description.getText().toString(),resources.getText().toString(),experience.getText().toString(),"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiUHJvZmlsZSI6ZmFsc2UsIlR5cGVJRCI6MSwiZXhwIjoxNTg4NDY2MzE5fQ.F96YzanVY2G6HJV_Y3jjuUpazFmigMPTuz2IbHe5hoE");
+                },trainer_name.getText().toString(),Integer.parseInt(age.getText().toString()),"aquifoto",telephone.getText().toString(),city.getText().toString(),cal[1],cal[0],description.getText().toString(),resources.getText().toString(),experience.getText().toString(),authGlobalState.getToken().getValue());
 
             }
         });

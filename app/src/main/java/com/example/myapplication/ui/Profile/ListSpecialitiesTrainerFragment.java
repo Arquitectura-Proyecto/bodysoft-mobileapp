@@ -26,6 +26,7 @@ import com.example.apollographqlandroid.ProfileTrainerQuery;
 import com.example.apollographqlandroid.CreateProfileMutation;
 import com.example.myapplication.Model.Repositories.ProfileTrainerRepository;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.AuthGlobalState;
 import com.example.myapplication.ui.GlobalState;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -44,7 +45,7 @@ import java.util.List;
  */
 public class ListSpecialitiesTrainerFragment extends Fragment {
 
-    GlobalState globalState;
+    AuthGlobalState authGlobalState;
     Context context;
 
     public static ListSpecialitiesTrainerFragment newInstance() {
@@ -56,7 +57,7 @@ public class ListSpecialitiesTrainerFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         context = getContext();
         View view=inflater.inflate(R.layout.fragment_list_specialities_trainer, container, false);
-        globalState = ViewModelProviders.of(getActivity()).get(GlobalState.class);
+        authGlobalState = ViewModelProviders.of(getActivity()).get(AuthGlobalState.class);
         return view;
     }
 
@@ -76,11 +77,13 @@ public class ListSpecialitiesTrainerFragment extends Fragment {
             public void onResponse(@NotNull Response<ProfileTrainerQuery.Data> response) {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override public void run() {
-                        List<String> spe = response.data().profileTrainer().specialities();
-                        System.out.println(spe);
-                        ArrayList<String> specialities = new ArrayList<>(spe);
-                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, specialities);
-                        listSpecialities.setAdapter(adapter);
+                        if(response.data().profileTrainer()!=null) {
+                            List<String> spe = response.data().profileTrainer().specialities();
+                            System.out.println(spe);
+                            ArrayList<String> specialities = new ArrayList<>(spe);
+                            ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, specialities);
+                            listSpecialities.setAdapter(adapter);
+                        }
                     }
                 });
             }
@@ -89,7 +92,7 @@ public class ListSpecialitiesTrainerFragment extends Fragment {
             public void onFailure(@NotNull ApolloException e) {
                 System.out.println();
             }
-        },"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiUHJvZmlsZSI6dHJ1ZSwiVHlwZUlEIjoxLCJleHAiOjE1ODg0OTQ3MTJ9.8oopJnrIthd_E06l5ntcjIUBSGVQeJaZ6ylyvoRJNfw");
+        },authGlobalState.getToken().getValue());
 
 
 

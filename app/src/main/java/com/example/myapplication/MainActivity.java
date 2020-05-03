@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //
         //http://192.168.0.41:3800/graphql
-        ApolloClient apolloClient=ApolloClient.builder().serverUrl("http://192.168.0.12:3000/graphql").build();
+        ApolloClient apolloClient=ApolloClient.builder().serverUrl("http://192.168.0.46:3000/graphql").build();
 
         createNotificationChannel();
 
