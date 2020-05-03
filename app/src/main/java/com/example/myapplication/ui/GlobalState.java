@@ -6,8 +6,12 @@ import androidx.lifecycle.ViewModel;
 
 public class GlobalState extends ViewModel {
 
+
     private static  String token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MSwiUHJvZmlsZSI6ZmFsc2UsIlR5cGVJRCI6MiwiZXhwIjoxNTg4NDc5OTAyfQ.CKvj4MNrNf1frHdvhJ6mQHgVF9niK0cCwb7o4MJ8hf0";
 
+
+
+    
 
     private MutableLiveData<String>  sharedString;
     public GlobalState(){
