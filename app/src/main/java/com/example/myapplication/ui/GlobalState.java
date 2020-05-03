@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel;
 public class GlobalState extends ViewModel {
 
 
-    private static  String token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MiwiUHJvZmlsZSI6ZmFsc2UsIlR5cGVJRCI6MSwiZXhwIjoxNTg4NDc1NTU1fQ.5387DM_SyQPF8g6g-b2DMugAt6iroj5gyfURMP3Jlt8";
+    private static  String token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MSwiUHJvZmlsZSI6ZmFsc2UsIlR5cGVJRCI6MiwiZXhwIjoxNTg4NDg1OTIwfQ.qK0sQzttudNc4zFTihMJYtDidZQClgNpZ0way1gBNBI";
 
 
 
