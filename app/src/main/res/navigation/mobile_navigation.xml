@@ -317,12 +317,20 @@
         android:id="@+id/addDegreesTrainerFragment"
         android:name="com.example.myapplication.ui.Profile.AddDegreesTrainerFragment"
         android:label="fragment_add_degrees_trainer"
-        tools:layout="@layout/fragment_add_degrees_trainer" />
+        tools:layout="@layout/fragment_add_degrees_trainer" >
+        <action
+            android:id="@+id/from_add_to_list_degrees"
+            app:destination="@id/listDegreesTrainerFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addSpecialitiesTrainer"
         android:name="com.example.myapplication.ui.Profile.AddSpecialitiesTrainer"
         android:label="fragment_add_specialities_trainer"
-        tools:layout="@layout/fragment_add_specialities_trainer" />
+        tools:layout="@layout/fragment_add_specialities_trainer" >
+        <action
+            android:id="@+id/from_add_to_list_specialities"
+            app:destination="@id/listSpecialitiesTrainerFragment" />
+    </fragment>
 
 
     <!--fin valentina-->
