@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //
+        //http://192.168.0.41:3800/graphql
         ApolloClient apolloClient=ApolloClient.builder().serverUrl("http://192.168.0.12:3000/graphql").build();
 
 
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,R.id.listRoutineFragment,R.id.rootRoutineFragment)/////los que esten aqui tendra tendran el boton para ver el navigation viewer
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,R.id.listRoutineFragment,R.id.rootRoutineFragment, R.id.userRoutineListFragment)/////los que esten aqui tendra tendran el boton para ver el navigation viewer
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

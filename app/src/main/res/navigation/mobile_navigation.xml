@@ -148,9 +148,6 @@
         <action
             android:id="@+id/fromRoutineInformationFragment_to_listResourcesFragment"
             app:destination="@id/listResourcesFragment" />
-        <action
-            android:id="@+id/fromRoutineInformationFragment_to_listRequestFragment"
-            app:destination="@id/listRequestFragment" />
     </fragment>
     <fragment
         android:id="@+id/editRoutineFragment"
@@ -161,30 +158,53 @@
         android:id="@+id/listResourcesFragment"
         android:name="com.example.myapplication.ui.Routine.ListResourcesFragment"
         android:label="fragment_list_resources"
-        tools:layout="@layout/fragment_list_resources" >
+        tools:layout="@layout/fragment_list_resources" />
+
+    <fragment
+        android:id="@+id/userRoutineListFragment"
+        android:name="com.example.myapplication.ui.Routine.User.UserRoutineListFragment"
+        android:label="fragment_user_routine_list"
+        tools:layout="@layout/fragment_user_routine_list" >
         <action
-            android:id="@+id/fromListResourcesFragment_to_registerResourceFragment"
-            app:destination="@id/registerResourceFragment" />
+            android:id="@+id/action_userRoutineListFragment_to_userMyRoutinesListFragment"
+            app:destination="@id/userMyRoutinesListFragment" />
+        <action
+            android:id="@+id/action_userRoutineListFragment_to_userRoutinePreviewFragment"
+            app:destination="@id/userRoutinePreviewFragment" />
     </fragment>
     <fragment
-        android:id="@+id/registerResourceFragment"
-        android:name="com.example.myapplication.ui.Routine.RegisterResourceFragment"
-        android:label="fragment_register_resource"
-        tools:layout="@layout/fragment_register_resource" />
-    <fragment
-        android:id="@+id/listRequestFragment"
-        android:name="com.example.myapplication.ui.Routine.ListRequestFragment"
-        android:label="fragment_list_request"
-        tools:layout="@layout/fragment_list_request" >
+        android:id="@+id/userMyRoutinesListFragment"
+        android:name="com.example.myapplication.ui.Routine.User.UserMyRoutinesListFragment"
+        android:label="fragment_user_my_routines_list"
+        tools:layout="@layout/fragment_user_my_routines_list" >
         <action
-            android:id="@+id/fromListRequestFragment_to_requestInformationFragment"
-            app:destination="@id/requestInformationFragment" />
+            android:id="@+id/action_userMyRoutinesListFragment_to_userMyResourcesFragment"
+            app:destination="@id/userMyResourcesFragment" />
     </fragment>
     <fragment
-        android:id="@+id/requestInformationFragment"
-        android:name="com.example.myapplication.ui.Routine.RequestInformationFragment"
-        android:label="fragment_request_information"
-        tools:layout="@layout/fragment_request_information" />
+        android:id="@+id/userRoutinePreviewFragment"
+        android:name="com.example.myapplication.ui.Routine.User.UserRoutinePreviewFragment"
+        android:label="fragment_user_routine_preview"
+        tools:layout="@layout/fragment_user_routine_preview" >
+        <action
+            android:id="@+id/action_userRoutinePreviewFragment_to_userRoutineRequestFragment"
+            app:destination="@id/userRoutineRequestFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userRoutineRequestFragment"
+        android:name="com.example.myapplication.ui.Routine.User.UserRoutineRequestFragment"
+        android:label="fragment_user_routine_request"
+        tools:layout="@layout/fragment_user_routine_request" />
+    <fragment
+        android:id="@+id/userRoutinesFragment"
+        android:name="com.example.myapplication.ui.Routine.User.UserRoutinesFragment"
+        android:label="fragment_user_routines"
+        tools:layout="@layout/fragment_user_routines" />
+    <fragment
+        android:id="@+id/userMyResourcesFragment"
+        android:name="com.example.myapplication.ui.Routine.User.UserMyResourcesFragment"
+        android:label="fragment_user_my_routine"
+        tools:layout="@layout/fragment_user_my_routine" />
 
 
     <!--Fin Andres-->

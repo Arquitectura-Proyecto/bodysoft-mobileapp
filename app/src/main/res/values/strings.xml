@@ -25,6 +25,4 @@
     <string name="routine__register_price_input_text">Precio</string>
     <string name="routine__register_description_input_text">Descripcion</string>
     <string name="routine__register_linkPreview_input_text">Link</string>
-    <string name="resource_register_title_input_text">Titulo</string>
-    <string name="resource_register_position_input_text">Posicion</string>
 </resources>
