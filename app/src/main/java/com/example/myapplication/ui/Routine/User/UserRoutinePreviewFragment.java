@@ -66,10 +66,10 @@ public class UserRoutinePreviewFragment extends Fragment {
         this.imgRoutine = (VideoView) view.findViewById(R.id.imgRoutine);
         this.txtDescriptionRoutineInformation = (TextView) view.findViewById(R.id.txtDescriptionRoutineInformation);
         this.txtNameRoutineInformation = (TextView) view.findViewById(R.id.txtNameRoutineInformation);
-        this.txtNumRaitingRoutineInformation= (TextView) view.findViewById(R.id.txtNumRaitingRoutineInformation);
-        this.txtPriceRoutineInformation= (TextView) view.findViewById(R.id.txtPriceRoutineInformation);
-        this.txtRaitingRoutineInformation= (TextView) view.findViewById(R.id.txtRaitingRoutineInformation);
-        this.txtTypeRoutineRoutineInformation= (TextView) view.findViewById(R.id.txtTypeRoutineRoutineInformation);
+        this.txtNumRaitingRoutineInformation = (TextView) view.findViewById(R.id.txtNumRaitingRoutineInformation);
+        this.txtPriceRoutineInformation = (TextView) view.findViewById(R.id.txtPriceRoutineInformation);
+        this.txtRaitingRoutineInformation = (TextView) view.findViewById(R.id.txtRaitingRoutineInformation);
+        this.txtTypeRoutineRoutineInformation = (TextView) view.findViewById(R.id.txtTypeRoutineRoutineInformation);
         this.navController = Navigation.findNavController(view);
         routineStore.getInformationRoutinePreview().observe(getViewLifecycleOwner(), new Observer<GetRoutinesByIdTypeQuery.Routine>() {
                     @Override
@@ -85,7 +85,7 @@ public class UserRoutinePreviewFragment extends Fragment {
                         txtDescriptionRoutineInformation.setText(routine.getDescription());
                         txtRaitingRoutineInformation.setText(routine.getRaiting() + "");
                         txtNumRaitingRoutineInformation.setText(routine.getNumRaitings() + "");
-                        txtTypeRoutineRoutineInformation.setText(routine.getType() + "");
+                        txtTypeRoutineRoutineInformation.setText(routine.getType().getName() + "");
                     }
                 }
         );
@@ -94,6 +94,7 @@ public class UserRoutinePreviewFragment extends Fragment {
         //This is a test for github
 
     }
+
     private class GoToRequestRoutineListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
