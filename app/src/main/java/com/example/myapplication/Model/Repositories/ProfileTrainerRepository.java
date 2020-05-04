@@ -14,6 +14,9 @@ import com.example.apollographqlandroid.EditProfileTrainerMutation;
 import com.example.apollographqlandroid.CreateProfileMutation;
 import com.example.apollographqlandroid.ProfileSpecialitiesToAddQuery;
 import com.example.apollographqlandroid.CreateProfileTrainerSpecialityMutation;
+import com.example.apollographqlandroid.ProfileDegreesQuery;
+import com.example.apollographqlandroid.CreateDegreeMutation;
+
 import com.example.myapplication.Model.Models.ModelListener;
 import com.example.myapplication.Model.Repositories.Data.Client;
 import com.example.myapplication.ui.GlobalState;
@@ -131,6 +134,41 @@ public class ProfileTrainerRepository {
         });
     }
 
+
+    public static void getProfileDegrees(ApolloCall.Callback<ProfileDegreesQuery.Data>listener, String token){
+        apolloClient.query(ProfileDegreesQuery.builder().token(token).build()).enqueue(new ApolloCall.Callback<ProfileDegreesQuery.Data>() {
+            @Override
+            public void onResponse(@NotNull Response<ProfileDegreesQuery.Data> response) {
+                System.out.println("los datos son "+response.data().toString());
+                List<ProfileDegreesQuery.ProfileDegreesByTrainer> array= response.data().profileDegreesByTrainers();
+                listener.onResponse(response);
+            }
+
+            @Override
+            public void onFailure(@NotNull ApolloException e) {
+                listener.onFailure(e);
+
+            }
+        });
+    }
+
+
+
+    public static void createProfileTrainerDegree(ApolloCall.Callback<CreateDegreeMutation.Data>listener, String degree_name, int year, String institution, String token){
+        apolloClient.mutate(CreateDegreeMutation.builder().degree_name(degree_name).institution(institution).year(year).token(token).build()).enqueue(new ApolloCall.Callback<CreateDegreeMutation.Data>() {
+            @Override
+            public void onResponse(@NotNull Response<CreateDegreeMutation.Data> response) {
+                CreateDegreeMutation.CreateProfileDegree degree= response.data().createProfileDegree();
+                System.out.println("repo" + degree);
+                listener.onResponse(response);
+            }
+
+            @Override
+            public void onFailure(@NotNull ApolloException e) {
+                listener.onFailure(e);
+            }
+        });
+    }
 
 
 

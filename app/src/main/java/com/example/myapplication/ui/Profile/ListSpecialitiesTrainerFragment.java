@@ -90,7 +90,7 @@ public class ListSpecialitiesTrainerFragment extends Fragment {
 
             @Override
             public void onFailure(@NotNull ApolloException e) {
-                System.out.println();
+                System.out.println(e);
             }
         },authGlobalState.getToken().getValue());
 

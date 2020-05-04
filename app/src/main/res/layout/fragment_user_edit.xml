@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/loginPageBackgroundColor"
-    tools:context=".ui.login.login">
+    tools:context=".ui.Profile.UserEditFragment">
 
 <LinearLayout
     android:layout_width="match_parent"
@@ -23,12 +23,11 @@
         android:background="#ffbc02">
 
         <ImageView
-            android:layout_width="100dp"
+            android:layout_width="200dp"
             android:layout_height="100dp"
             android:layout_marginTop="20dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/dug"
-            android:background="@drawable/bg_circle"/>
+
+            android:src="@drawable/user_dos"/>
 
         <TextView
             android:id="@+id/nameUserEditProfile"
