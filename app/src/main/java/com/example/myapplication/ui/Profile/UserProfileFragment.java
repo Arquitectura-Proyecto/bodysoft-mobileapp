@@ -54,16 +54,6 @@ public class UserProfileFragment extends Fragment {
         TextView city = view.findViewById(R.id.cityUser);
         TextView age = view.findViewById(R.id.ageUserProfile);
 
-        MaterialButton buttonEditUser = view.findViewById(R.id.buttonEditUser);
-        final NavController navController= Navigation.findNavController(view);
-        buttonEditUser .setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.userEditFragment, true).build();
-                navController.navigate(R.id.go_to_edit_user,null,navOption);
-            }
-        });
-
 
         ProfileRepository.getProfileUser(new ApolloCall.Callback<ProfileUserQuery.Data>() {
             @Override
@@ -82,9 +72,37 @@ public class UserProfileFragment extends Fragment {
 
             @Override
             public void onFailure(@NotNull ApolloException e) {
-                System.out.println();
+                System.out.println(e);
             }
         },authGlobalState.getToken().getValue());
+
+
+        MaterialButton buttonEditUser = view.findViewById(R.id.buttonEditUser);
+        final NavController navController= Navigation.findNavController(view);
+        buttonEditUser .setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.userEditFragment, true).build();
+                navController.navigate(R.id.go_to_edit_user,null,navOption);
+            }
+        });
+
+
+
+        MaterialButton buttonPasswordUser = view.findViewById(R.id.buttonPasswordUser);
+        buttonPasswordUser .setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.changePasswordFragment, true).build();
+                navController.navigate(R.id.from_user_to_change_password,null,navOption);
+            }
+        });
+
+
+
+
+
+
     }
 
     @Override

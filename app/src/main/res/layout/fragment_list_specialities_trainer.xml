@@ -26,7 +26,7 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="20dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/crear_perfil" />
+                android:src="@drawable/my_specialities" />
 
         </LinearLayout>
 
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_horizontal"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginBottom="30dp">
                 <Button
                     android:id="@+id/buttonAddSpecialitiesTrainer"

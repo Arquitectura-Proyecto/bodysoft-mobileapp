@@ -36,7 +36,7 @@ public class ProfileRepository {
 
             @Override
             public void onFailure(@NotNull ApolloException e) {
-                System.out.println("el error es "+e.getMessage());
+                listener.onFailure(e);
 
             }
         });
@@ -53,7 +53,7 @@ public class ProfileRepository {
 
             @Override
             public void onFailure(@NotNull ApolloException e) {
-                System.out.println("el error es "+e.getMessage());
+                listener.onFailure(e);
             }
         });
     }
@@ -69,7 +69,7 @@ public class ProfileRepository {
 
             @Override
             public void onFailure(@NotNull ApolloException e) {
-                System.out.println("el error es "+e.getMessage());
+                listener.onFailure(e);
             }
         });
     }
@@ -86,10 +86,13 @@ public class ProfileRepository {
 
             @Override
             public void onFailure(@NotNull ApolloException e) {
-                System.out.println("el error es "+e.getMessage());
+                listener.onFailure(e);
             }
         });
     }
+
+
+
 
 
 

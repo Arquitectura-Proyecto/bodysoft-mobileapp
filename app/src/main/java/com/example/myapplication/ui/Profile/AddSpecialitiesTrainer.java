@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.api.Response;
@@ -97,7 +98,7 @@ public class AddSpecialitiesTrainer extends Fragment {
 
             @Override
             public void onFailure(@NotNull ApolloException e) {
-                System.out.println();
+                System.out.println(e);
             }
         },authglobalState.getToken().getValue());
 
@@ -112,6 +113,9 @@ public class AddSpecialitiesTrainer extends Fragment {
                         getActivity().runOnUiThread(new Runnable() {
                             @Override public void run() {
                                 if (response.data().createProfileTrainerSpeciality() != null) {
+                                    String message =  "Especialidad " + specialities.get(position) + " agregada";
+                                    Toast toast = Toast.makeText(context,message,Toast.LENGTH_SHORT);
+                                    toast.show();
                                     System.out.println(response.data().createProfileTrainerSpeciality().speciality());
                                     idSpec.remove(position);
                                     specialities.remove(position);
@@ -125,10 +129,19 @@ public class AddSpecialitiesTrainer extends Fragment {
 
                     @Override
                     public void onFailure(@NotNull ApolloException e) {
-                        System.out.println(e);
+                        System.out.println(e);;
                     }
                 },idSpec.get(position),authglobalState.getToken().getValue());
 
+            }
+        });
+
+        MaterialButton buttonReturnSpecialitiesTrainer = view.findViewById(R.id.buttonReturnSpecialitiesTrainer);
+        buttonReturnSpecialitiesTrainer .setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.listSpecialitiesTrainerFragment, true).build();
+                navController.navigate(R.id.from_add_to_list_specialities,null,navOption);
             }
         });
 

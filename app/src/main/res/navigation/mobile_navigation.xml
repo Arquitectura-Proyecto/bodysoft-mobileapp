@@ -298,6 +298,9 @@
         <action
             android:id="@+id/go_to_edit_user"
             app:destination="@id/userEditFragment" />
+        <action
+            android:id="@+id/from_user_to_change_password"
+            app:destination="@id/changePasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/userEditFragment"
@@ -322,11 +325,14 @@
         <action
             android:id="@+id/go_to_list_degrees"
             app:destination="@id/listDegreesTrainerFragment" />
+        <action
+            android:id="@+id/from_trainer_to_change_password"
+            app:destination="@id/changePasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/trainerEditFragment"
         android:name="com.example.myapplication.ui.Profile.TrainerEditFragment"
-        android:label="fragment_trainer_edit"
+        android:label="Editar entrenador"
         tools:layout="@layout/fragment_trainer_edit" >
         <action
             android:id="@+id/go_to_trainer_profile"
@@ -335,7 +341,7 @@
     <fragment
         android:id="@+id/createUserFragment"
         android:name="com.example.myapplication.ui.Profile.CreateUserFragment"
-        android:label="fragment_create_user"
+        android:label="Crear usuario"
         tools:layout="@layout/fragment_create_user" >
         <action
             android:id="@+id/from_create_user_to_home"
@@ -344,7 +350,7 @@
     <fragment
         android:id="@+id/createTrainerFragment"
         android:name="com.example.myapplication.ui.Profile.CreateTrainerFragment"
-        android:label="fragment_create_trainer"
+        android:label="Crear entrenador"
         tools:layout="@layout/fragment_create_trainer" >
         <action
             android:id="@+id/from_create_trainer_to_home"
@@ -353,7 +359,7 @@
     <fragment
         android:id="@+id/listSpecialitiesTrainerFragment"
         android:name="com.example.myapplication.ui.Profile.ListSpecialitiesTrainerFragment"
-        android:label="fragment_list_specialities_trainer"
+        android:label="Mis especialidades"
         tools:layout="@layout/fragment_list_specialities_trainer" >
         <action
             android:id="@+id/go_to_add_specialities"
@@ -362,7 +368,7 @@
     <fragment
         android:id="@+id/listDegreesTrainerFragment"
         android:name="com.example.myapplication.ui.Profile.ListDegreesTrainerFragment"
-        android:label="fragment_list_degrees_trainer"
+        android:label="Mis títulos"
         tools:layout="@layout/fragment_list_degrees_trainer" >
         <action
             android:id="@+id/go_to_add_degrees"
@@ -371,7 +377,7 @@
     <fragment
         android:id="@+id/addDegreesTrainerFragment"
         android:name="com.example.myapplication.ui.Profile.AddDegreesTrainerFragment"
-        android:label="fragment_add_degrees_trainer"
+        android:label="Agregar títulos"
         tools:layout="@layout/fragment_add_degrees_trainer" >
         <action
             android:id="@+id/from_add_to_list_degrees"
@@ -380,7 +386,7 @@
     <fragment
         android:id="@+id/addSpecialitiesTrainer"
         android:name="com.example.myapplication.ui.Profile.AddSpecialitiesTrainer"
-        android:label="fragment_add_specialities_trainer"
+        android:label="Agregar especialidades"
         tools:layout="@layout/fragment_add_specialities_trainer" >
         <action
             android:id="@+id/from_add_to_list_specialities"

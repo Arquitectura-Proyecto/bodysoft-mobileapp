@@ -66,6 +66,7 @@ public class TrainerFragment extends Fragment {
         MaterialButton buttonEditTrainer = view.findViewById(R.id.buttonEditTrainer);
         MaterialButton buttonSpecialitiesTrainer = view.findViewById(R.id.buttonSpecialitiesTrainer);
         MaterialButton buttonDegreesTrainer = view.findViewById(R.id.buttonDegreesTrainer);
+        MaterialButton buttonPasswordTrainer = view.findViewById(R.id.buttonPasswordTrainer);
         final NavController navController= Navigation.findNavController(view);
 
         System.out.println("global: " + authGlobalState.getToken().getValue());
@@ -125,6 +126,15 @@ public class TrainerFragment extends Fragment {
             public void onClick(View v) {
                 NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.listDegreesTrainerFragment, true).build();
                 navController.navigate(R.id.go_to_list_degrees,null,navOption);
+            }
+        });
+
+
+        buttonPasswordTrainer .setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.changePasswordFragment, true).build();
+                navController.navigate(R.id.from_trainer_to_change_password,null,navOption);
             }
         });
 
