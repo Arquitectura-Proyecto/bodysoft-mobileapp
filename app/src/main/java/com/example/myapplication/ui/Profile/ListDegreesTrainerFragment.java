@@ -86,7 +86,7 @@ public class ListDegreesTrainerFragment extends Fragment {
                         if(response.data().profileDegreesByTrainers()!=null){
                             List<ProfileDegreesQuery.ProfileDegreesByTrainer> array= response.data().profileDegreesByTrainers();
                             for ( ProfileDegreesQuery.ProfileDegreesByTrainer item: array) {
-                                EntityDegree d = new EntityDegree(item.degree_name(),String.valueOf(item.year()),item.institution(), R.drawable.icon_degrees);
+                                EntityDegree d = new EntityDegree(item.degree_name(),String.valueOf(item.year()),item.institution(), R.drawable.degrees_image);
                                 degrees.add(d);
                             }
                             AdapterDegrees adapter = new AdapterDegrees(context, degrees);
