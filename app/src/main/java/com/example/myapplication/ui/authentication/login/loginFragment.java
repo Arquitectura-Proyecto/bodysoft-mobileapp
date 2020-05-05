@@ -211,7 +211,7 @@ public class loginFragment extends Fragment {
         bundle.putString("token", token);
         if(!profile){
             if(typeId==1){
-                Intent intent = new Intent(getActivity().getApplicationContext(), MainActivityTrainer .class);
+                Intent intent = new Intent(getActivity().getApplicationContext(), MainActivityTrainer.class);
                 intent.putExtra("token", token);
                 intent.putExtra("fragment",R.id.createTrainerFragment);
                 startActivity(intent);
