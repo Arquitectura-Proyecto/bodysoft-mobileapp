@@ -215,11 +215,13 @@ public class loginFragment extends Fragment {
                 intent.putExtra("token", token);
                 intent.putExtra("fragment",R.id.createTrainerFragment);
                 startActivity(intent);
+                getActivity().finish();
             }else{
                 Intent intent = new Intent(getActivity().getApplicationContext(), MainActivityUser.class);
                 intent.putExtra("token", token);
                 intent.putExtra("fragment",R.id.createUserFragment);
                 startActivity(intent);
+                getActivity().finish();
             }
 
         }else{
@@ -228,11 +230,13 @@ public class loginFragment extends Fragment {
                 Intent intent = new Intent(getActivity().getApplicationContext(), MainActivityTrainer.class);
                 intent.putExtra("token", token);
                 startActivity(intent);
+                getActivity().finish();
 
             }else{
                 Intent intent = new Intent(getActivity().getApplicationContext(), MainActivityUser.class);
                 intent.putExtra("token", token);
                 startActivity(intent);
+                getActivity().finish();
             }
         }
 
