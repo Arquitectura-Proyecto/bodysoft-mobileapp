@@ -118,7 +118,7 @@
     <fragment
         android:id="@+id/rootRoutineFragment"
         android:name="com.example.myapplication.ui.Routine.RootRoutineFragment"
-        android:label="fragment_root_routine"
+        android:label="Rutinas"
         tools:layout="@layout/fragment_root_routine" >
         <action
             android:id="@+id/fromRootRoutineToRegisterRoutine"
@@ -131,12 +131,12 @@
     <fragment
         android:id="@+id/registerRoutineFragment"
         android:name="com.example.myapplication.ui.Routine.RegisterRoutineFragment"
-        android:label="fragment_register_routine"
+        android:label="Rutinas"
         tools:layout="@layout/fragment_register_routine" />
     <fragment
         android:id="@+id/routineInformationFragment"
         android:name="com.example.myapplication.ui.Routine.RoutineInformationFragment"
-        android:label="fragment_routine_information"
+        android:label="Rutina"
         tools:layout="@layout/fragment_routine_information" >
         <action
             android:id="@+id/fromRoutineInformationFragment_to_editRoutineFragment"
@@ -151,12 +151,12 @@
     <fragment
         android:id="@+id/editRoutineFragment"
         android:name="com.example.myapplication.ui.Routine.EditRoutineFragment"
-        android:label="fragment_edit_routine"
+        android:label="Rutinas"
         tools:layout="@layout/fragment_edit_routine" />
     <fragment
         android:id="@+id/listResourcesFragment"
         android:name="com.example.myapplication.ui.Routine.ListResourcesFragment"
-        android:label="fragment_list_resources"
+        android:label="Recursos"
         tools:layout="@layout/fragment_list_resources" >
         <action
             android:id="@+id/fromListResourcesFragment_to_registerResourceFragment"
@@ -165,12 +165,12 @@
     <fragment
         android:id="@+id/registerResourceFragment"
         android:name="com.example.myapplication.ui.Routine.RegisterResourceFragment"
-        android:label="fragment_register_resource"
+        android:label="Recursos"
         tools:layout="@layout/fragment_register_resource" />
     <fragment
         android:id="@+id/listRequestFragment"
         android:name="com.example.myapplication.ui.Routine.ListRequestFragment"
-        android:label="fragment_list_request"
+        android:label="Solicitudes"
         tools:layout="@layout/fragment_list_request" >
         <action
             android:id="@+id/fromListRequestFragment_to_requestInformationFragment"
@@ -179,13 +179,13 @@
     <fragment
         android:id="@+id/requestInformationFragment"
         android:name="com.example.myapplication.ui.Routine.RequestInformationFragment"
-        android:label="fragment_request_information"
+        android:label="Solicitudes"
         tools:layout="@layout/fragment_request_information" />
 
     <fragment
         android:id="@+id/userRoutineListFragment"
         android:name="com.example.myapplication.ui.Routine.User.UserRoutineListFragment"
-        android:label="fragment_user_routine_list"
+        android:label="Rutinas"
         tools:layout="@layout/fragment_user_routine_list" >
         <action
             android:id="@+id/action_userRoutineListFragment_to_userMyRoutinesListFragment"
@@ -197,7 +197,7 @@
     <fragment
         android:id="@+id/userMyRoutinesListFragment"
         android:name="com.example.myapplication.ui.Routine.User.UserMyRoutinesListFragment"
-        android:label="fragment_user_my_routines_list"
+        android:label="Rutinas"
         tools:layout="@layout/fragment_user_my_routines_list" >
         <action
             android:id="@+id/action_userMyRoutinesListFragment_to_userMyResourcesFragment"
@@ -206,7 +206,7 @@
     <fragment
         android:id="@+id/userRoutinePreviewFragment"
         android:name="com.example.myapplication.ui.Routine.User.UserRoutinePreviewFragment"
-        android:label="fragment_user_routine_preview"
+        android:label="Rutinas"
         tools:layout="@layout/fragment_user_routine_preview" >
         <action
             android:id="@+id/action_userRoutinePreviewFragment_to_userRoutineRequestFragment"
@@ -215,17 +215,17 @@
     <fragment
         android:id="@+id/userRoutineRequestFragment"
         android:name="com.example.myapplication.ui.Routine.User.UserRoutineRequestFragment"
-        android:label="fragment_user_routine_request"
+        android:label="Solicitudes"
         tools:layout="@layout/fragment_user_routine_request" />
     <fragment
         android:id="@+id/userRoutinesFragment"
         android:name="com.example.myapplication.ui.Routine.User.UserRoutinesFragment"
-        android:label="fragment_user_routines"
+        android:label="Rutinas"
         tools:layout="@layout/fragment_user_routines" />
     <fragment
         android:id="@+id/userMyResourcesFragment"
         android:name="com.example.myapplication.ui.Routine.User.UserMyResourcesFragment"
-        android:label="fragment_user_my_routine"
+        android:label="Rutinas"
         tools:layout="@layout/fragment_user_my_routine" >
         <action
             android:id="@+id/action_userMyResourcesFragment_to_userRoutineVideoFragment"
@@ -234,7 +234,7 @@
     <fragment
         android:id="@+id/userRoutineVideoFragment"
         android:name="com.example.myapplication.ui.Routine.User.UserRoutineVideoFragment"
-        android:label="fragment_user_routine_video"
+        android:label="Rutinas"
         tools:layout="@layout/fragment_user_routine_video" />
 
 
