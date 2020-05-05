@@ -2,10 +2,14 @@ package com.example.myapplication;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.ClipData;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -51,33 +55,10 @@ public class MainActivityTrainer extends AppCompatActivity {
         String token = intent.getStringExtra("token");
         int fragment = intent.getIntExtra("fragment",R.id.nav_home);
 
-        AuthModel.authValidateAuthToken(token, new ApolloCall.Callback<AuthValidateAuthTokenQuery.Data>() {
-            @Override
-            public void onResponse(@NotNull Response<AuthValidateAuthTokenQuery.Data> response) {
-                runOnUiThread(new Runnable() {
-                    @Override public void run() {
-                        if (response.hasErrors()) {
-
-                        } else {
-                            Integer typeId = response.data().authValidateAuthToken().TypeID();
-                            Boolean profile = response.data().authValidateAuthToken().Profile();
-                            authGlobalState.setTypeID(typeId);
-                            authGlobalState.setToken(token);
-
-
-                        }
-                    }
-                });
-            }
-
-            @Override
-            public void onFailure(@NotNull ApolloException e) {
-
-            }
-        });
+        authGlobalState.setTypeID(1);
+        authGlobalState.setToken(token);
 
         setContentView(R.layout.activity_main_trainer);
-
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -113,6 +94,30 @@ public class MainActivityTrainer extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_logout:
+                CerrarSession();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void CerrarSession(){
+        SharedPreferences myPreferences
+                = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        SharedPreferences.Editor myEditor = myPreferences.edit();
+        myEditor.putString("token", "unknown").commit();
+
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        finish();
+
     }
 
     @Override
