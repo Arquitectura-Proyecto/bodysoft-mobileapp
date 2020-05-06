@@ -82,7 +82,17 @@ private class btnRegisterResourceListener implements View.OnClickListener{
             RoutineRepository.registerResource(new ApolloCall.Callback<RegisterResourceMutation.Data>() {
                 @Override
                 public void onResponse(@NotNull Response<RegisterResourceMutation.Data> response) {
+                    if(!response.hasErrors()){
+                        try{
+                            getActivity().runOnUiThread(new Runnable() {
+                                public void run() {
+                                    Toast.makeText(getContext(),"Registro exitoso", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }catch (Exception e){}
 
+
+                    }
                 }
 
                 @Override

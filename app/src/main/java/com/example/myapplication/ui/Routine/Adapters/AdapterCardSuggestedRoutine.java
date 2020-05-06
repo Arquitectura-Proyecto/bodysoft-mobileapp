@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaPlayer;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -65,13 +66,23 @@ public class AdapterCardSuggestedRoutine extends RecyclerView.Adapter<AdapterCar
     @Override
     public void onBindViewHolder(@NonNull ViewHolderCardSuggestedRoutine holder, int position) {
 
-        Uri uri = Uri.parse(routineList.get(position).getLinkPreview());
-        holder.video.setVideoURI(uri);
-        //holder.video.start();
-        MediaController mediaController = new MediaController(this.context);
-        // holder.video.setBackgroundResource(R.drawable.ic_launcher_background);
-        mediaController.setAnchorView(holder.video);
-        holder.video.setMediaController(mediaController);
+       try{
+           Uri uri = Uri.parse(routineList.get(position).getLinkPreview());
+           holder.video.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+               @Override
+               public boolean onError(MediaPlayer mp, int what, int extra) {
+                   return true;//evita la ventana de error si no puede reproducirlo
+               }
+           });
+           holder.video.setVideoURI(uri);
+           //holder.video.start();
+           MediaController mediaController = new MediaController(this.context);
+           // holder.video.setBackgroundResource(R.drawable.ic_launcher_background);
+           mediaController.setAnchorView(holder.video);
+           holder.video.setMediaController(mediaController);
+       }catch (Exception e){
+
+       }
 
         //holder.video.requestFocus();
 
