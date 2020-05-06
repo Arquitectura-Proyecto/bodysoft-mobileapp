@@ -18,12 +18,36 @@
         tools:context=".ui.Routine.EditRoutineFragment">
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/textColorPrimary"
+            android:layout_marginBottom="15dp">
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/logo"
+                android:layout_gravity="center_horizontal"
+                android:padding="10dp"
+
+                />
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edita Tu RUTINA"
+            android:layout_marginBottom="15dp"
+            android:textAppearance="@style/TextAppearance.Shrine.Title"
+
+            android:gravity="center_horizontal"/>
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.Shrine.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginLeft="12dp"
             android:hint="@string/routine_register_name_input_text">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -40,7 +64,8 @@
             style="@style/Widget.Shrine.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginLeft="12dp"
             android:hint="@string/routine__register_price_input_text">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -56,7 +81,8 @@
             style="@style/Widget.Shrine.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginLeft="12dp"
             android:hint="@string/routine__register_description_input_text">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -72,11 +98,16 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:layout_marginLeft="12dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Tipo"
+                android:gravity="center_vertical"
+                android:textStyle="bold"
+                android:textSize="14dp"
                 android:layout_margin="2dp"/>
             <com.jaredrummler.materialspinner.MaterialSpinner
                 android:id="@+id/spinnerEditRoutine"
@@ -88,6 +119,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Editar"
+            android:layout_marginTop="15dp"
             android:layout_gravity="center_horizontal"/>
 
 
