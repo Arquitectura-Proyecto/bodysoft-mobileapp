@@ -87,7 +87,7 @@ public class UserRoutineRequestFragment extends Fragment {
                         txtDescriptionRoutineInformation.setText(routine.getDescription());
                         txtRaitingRoutineInformation.setText(routine.getRaiting() + "");
                         txtNumRaitingRoutineInformation.setText(routine.getNumRaitings() + "");
-                        txtTypeRoutineRoutineInformation.setText(routine.getType() + "");
+                        txtTypeRoutineRoutineInformation.setText(routine.getType().getName() + "");
                     }
                 }
         );

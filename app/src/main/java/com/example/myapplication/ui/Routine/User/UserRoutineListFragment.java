@@ -71,7 +71,7 @@ public class UserRoutineListFragment extends Fragment {
                 recyclerListMyRoutines.setAdapter(adapter);
             }
         });
-        this.spinnerRoutineTypes = (MaterialSpinner) view.findViewById(R.id.spinnerRoutineTypes);
+        //this.spinnerRoutineTypes = (MaterialSpinner) view.findViewById(R.id.spinnerRoutineTypes);
         this.btnGotoMyRoutinesList.setOnClickListener(new GoToMyRoutinesListener());
        // RoutineModel.getAllRoutinesByIdOwner(new UserRoutineListFragment.getAllRotuinesByIdOwnerListener(), GlobalState.getToken());
         RoutineModel.getRoutinesByIdType(new getAllRoutinesByIdTypeListener(),1);

@@ -7,24 +7,20 @@ android:layout_height="match_parent"
 android:orientation="vertical"
 tools:context=".ui.Routine.User.UserMyResourcesFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="12dp"
-        android:text="Rutina"
-        android:textSize="20sp" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:background="@color/textColorPrimary"
+        android:layout_marginBottom="15dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <ImageView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="12dp"
-            android:text="Recursos"
-            android:textSize="20sp" />
+            android:src="@mipmap/logo"
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp"
+
+            />
 
     </LinearLayout>
 

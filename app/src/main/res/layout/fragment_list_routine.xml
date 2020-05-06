@@ -12,7 +12,7 @@
         android:id="@+id/txtlistarutinas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Lista de Rutinas" />
+         />
 <ListView
     android:id="@+id/list_routines"
     android:layout_width="match_parent"

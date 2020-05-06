@@ -15,31 +15,53 @@
         android:orientation="vertical"
         tools:context=".ui.Routine.RoutineInformationFragment">
         <!-- TODO: Update blank fragment layout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/textColorPrimary">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/logo"
+                android:layout_gravity="center_horizontal"
+                android:padding="10dp"
+
+               />
+        </LinearLayout>
+
         <VideoView
             android:id="@+id/imgRoutine"
             android:layout_width="match_parent"
-            android:layout_height="194dp"
+            android:layout_height="205dp"
             android:contentDescription="Imagen no disponible"
-            android:scaleType="centerCrop" />
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="15dp"
+           />
 
         <LinearLayout
             android:layout_width="match_parent"
 
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="12dp"
                 android:text="Nombre:"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textAppearance="@style/Widget.Shrine.Button.TextButton"/>
 
             <TextView
                 android:id="@+id/txtNameRoutineInformation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -53,7 +75,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="12dp"
                 android:text="Precio:"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textAppearance="@style/Widget.Shrine.Button.TextButton"/>
 
             <TextView
                 android:id="@+id/txtPriceRoutineInformation"
@@ -73,7 +97,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="12dp"
                 android:text="Descripcion:"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textAppearance="@style/Widget.Shrine.Button.TextButton"/>
 
             <TextView
                 android:id="@+id/txtDescriptionRoutineInformation"
@@ -93,7 +119,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="12dp"
                 android:text="Calificacion:"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textAppearance="@style/Widget.Shrine.Button.TextButton"/>
 
             <TextView
                 android:id="@+id/txtRaitingRoutineInformation"
@@ -113,7 +141,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="12dp"
                 android:text="Numero de Calificaciones:"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textAppearance="@style/Widget.Shrine.Button.TextButton"/>
 
             <TextView
                 android:id="@+id/txtNumRaitingRoutineInformation"
@@ -133,7 +163,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="12dp"
                 android:text="Tipo:"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textAppearance="@style/Widget.Shrine.Button.TextButton"/>
 
             <TextView
                 android:id="@+id/txtTypeRoutineRoutineInformation"
@@ -147,6 +179,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Solicitar Rutina" />
+            android:text="Solicitar Rutina"
+            android:layout_marginTop="20sp"/>
     </LinearLayout>
 </ScrollView>

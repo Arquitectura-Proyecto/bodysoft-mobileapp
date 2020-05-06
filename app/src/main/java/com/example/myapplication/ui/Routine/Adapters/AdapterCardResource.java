@@ -78,7 +78,7 @@ public class AdapterCardResource extends RecyclerView.Adapter<AdapterCardResourc
             description=(TextView)itemView.findViewById(R.id.txtdescriptionResource);
             title=(TextView)itemView.findViewById(R.id.txtnameResource);
             type=(TextView)itemView.findViewById(R.id.txtTypeResource);
-            btnGoToRegisterResourceFragment=(Button)itemView.findViewById(R.id.btnGoToEditResource);
+//            btnGoToRegisterResourceFragment=(Button)itemView.findViewById(R.id.btnGoToEditResource);
             //btnGoToRoutineInformationFragment.setOnClickListener(listener);
         }
     }
