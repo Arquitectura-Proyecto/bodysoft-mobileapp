@@ -90,14 +90,14 @@ public class AdapterCardRoutine extends RecyclerView.Adapter<AdapterCardRoutine.
             mediaController.setAnchorView(holder.video);
             holder.video.setMediaController(mediaController);
 
-            holder.video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+           /* holder.video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
 
 
                     holder.placeholder.setVisibility(View.GONE);//el place holder de video que no se puede reproducir se hace invisible si se puede reproducir el video
                 }
-            });
+            });*/
 
         }catch (Exception e){}
 
@@ -118,7 +118,7 @@ public class AdapterCardRoutine extends RecyclerView.Adapter<AdapterCardRoutine.
 
 
     public class ViewHolderCardRoutine extends RecyclerView.ViewHolder {
-        View placeholder ;
+        //View placeholder ;
      VideoView video;
      TextView description,title,type;
      Button btnGoToRoutineInformationFragment;
@@ -129,7 +129,7 @@ public class AdapterCardRoutine extends RecyclerView.Adapter<AdapterCardRoutine.
             title=(TextView)itemView.findViewById(R.id.txtnameRoutine);
             type=(TextView)itemView.findViewById(R.id.txtTypeRoutine);
             btnGoToRoutineInformationFragment=(Button)itemView.findViewById(R.id.btnGoToInformationRoutine);
-            placeholder = (View) itemView.findViewById(R.id.placeholder);
+            //placeholder = (View) itemView.findViewById(R.id.placeholder);
             //btnGoToRoutineInformationFragment.setOnClickListener(listener);
         }
 
