@@ -26,6 +26,7 @@ import com.example.myapplication.Model.Entities.TypeRoutineEntity;
 import com.example.myapplication.Model.Models.RoutineModel;
 import com.example.myapplication.Model.Store.RoutineStore;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.AuthGlobalState;
 import com.example.myapplication.ui.GlobalState;
 import com.example.myapplication.ui.Routine.Adapters.AdapterCardRoutine;
 
@@ -44,6 +45,7 @@ public class RootRoutineFragment extends Fragment {
     private Button goToRegisterRoutine;
     private RoutineModel routineModel;
     NavController navController;
+    private AuthGlobalState authGlobalState;
     public RootRoutineFragment() {
         // Required empty public constructor
     }
@@ -60,6 +62,7 @@ public class RootRoutineFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.routineStore= ViewModelProviders.of(getActivity()).get(RoutineStore.class);
+        this.authGlobalState= ViewModelProviders.of(getActivity()).get(AuthGlobalState.class);
         //listaRutinas=new ArrayList<>();
         this.goToRegisterRoutine=(Button)view.findViewById(R.id.btnGotoRoutineRegister);
         routineRecycler=(RecyclerView)view.findViewById(R.id.recyclerListRoutine);
@@ -87,7 +90,7 @@ public class RootRoutineFragment extends Fragment {
 
 
         //Test();
-        RoutineModel.getAllRoutinesByIdOwner(new getAllRotuinesByIdOwnerListener(), GlobalState.getToken());
+        RoutineModel.getAllRoutinesByIdOwner(new getAllRotuinesByIdOwnerListener(), authGlobalState.getToken().getValue());
       /*  routineRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         //Test();
         AdapterCardRoutine adapter=new AdapterCardRoutine(listaRutinas,this.getContext());

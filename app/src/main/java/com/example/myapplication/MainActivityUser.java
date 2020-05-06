@@ -3,9 +3,12 @@ package com.example.myapplication;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -51,30 +54,9 @@ public class MainActivityUser extends AppCompatActivity {
         String token = intent.getStringExtra("token");
         int fragment = intent.getIntExtra("fragment",R.id.nav_home);
 
-        AuthModel.authValidateAuthToken(token, new ApolloCall.Callback<AuthValidateAuthTokenQuery.Data>() {
-            @Override
-            public void onResponse(@NotNull Response<AuthValidateAuthTokenQuery.Data> response) {
-                runOnUiThread(new Runnable() {
-                    @Override public void run() {
-                        if (response.hasErrors()) {
+        authGlobalState.setTypeID(2);
+        authGlobalState.setToken(token);
 
-                        } else {
-                            Integer typeId = response.data().authValidateAuthToken().TypeID();
-                            Boolean profile = response.data().authValidateAuthToken().Profile();
-                            authGlobalState.setTypeID(typeId);
-                            authGlobalState.setToken(token);
-
-
-                        }
-                    }
-                });
-            }
-
-            @Override
-            public void onFailure(@NotNull ApolloException e) {
-
-            }
-        });
 
 
         setContentView(R.layout.activity_main_user);
@@ -115,8 +97,31 @@ public class MainActivityUser extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_logout:
+                CerrarSession();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void CerrarSession() {
+        SharedPreferences myPreferences
+                = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        SharedPreferences.Editor myEditor = myPreferences.edit();
+        myEditor.putString("token", "unknown").commit();
+
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+        @Override
     public boolean onSupportNavigateUp() {
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

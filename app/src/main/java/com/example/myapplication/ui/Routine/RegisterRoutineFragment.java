@@ -29,6 +29,7 @@ import com.example.myapplication.Model.Models.RoutineModel;
 import com.example.myapplication.Model.Repositories.RoutineRepository;
 import com.example.myapplication.Model.Store.RoutineStore;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.AuthGlobalState;
 import com.example.myapplication.ui.GlobalState;
 import com.example.myapplication.ui.Routine.EventListener.GetAllTypesRoutineListener;
 import com.google.android.material.textfield.TextInputEditText;
@@ -53,6 +54,7 @@ public class RegisterRoutineFragment extends Fragment {
     private TextInputEditText priceTextInput;
     private TextInputEditText descriptionTextInput;
     private TextInputEditText linkPreviewTextInput;
+    private AuthGlobalState authGlobalState;
     public RegisterRoutineFragment() {
         // Required empty public constructor
     }
@@ -69,6 +71,7 @@ public class RegisterRoutineFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.routineStore= ViewModelProviders.of(getActivity()).get(RoutineStore.class);
+        this.authGlobalState= ViewModelProviders.of(getActivity()).get(AuthGlobalState.class);
         this.ListTypeRoutines=new TreeMap<>();
         this.priceTextInput=view.findViewById(R.id.txtInputPriceRegisterRoutine);
         this.nameTextInput=(TextInputEditText)view.findViewById(R.id.txtInputNameRegisterRoutine);
@@ -140,7 +143,7 @@ public class RegisterRoutineFragment extends Fragment {
                     public void onFailure(@NotNull ApolloException e) {
                         System.out.println("error es "+e.getMessage());
                     }
-                },routineEntity, GlobalState.getToken());
+                },routineEntity, authGlobalState.getToken().getValue());
 
             }catch (Exception e){
                 Toast.makeText(v.getContext(),

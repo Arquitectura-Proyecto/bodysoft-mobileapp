@@ -18,6 +18,7 @@ import com.example.myapplication.Model.Entities.UserRoutineEntity;
 import com.example.myapplication.Model.Models.RoutineModel;
 import com.example.myapplication.Model.Store.RoutineStore;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.AuthGlobalState;
 import com.example.myapplication.ui.GlobalState;
 
 /**
@@ -27,6 +28,7 @@ public class RequestInformationFragment extends Fragment {
     private Button btnAcceptRequest;
     private Button btnRechazarRequest;
     private RoutineStore routineStore;
+    private AuthGlobalState authGlobalState;
     public RequestInformationFragment() {
         // Required empty public constructor
     }
@@ -43,6 +45,7 @@ public class RequestInformationFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.routineStore= ViewModelProviders.of(getActivity()).get(RoutineStore.class);
+        this.authGlobalState= ViewModelProviders.of(getActivity()).get(AuthGlobalState.class);
         this.btnAcceptRequest=(Button)view.findViewById(R.id.btnAcceptRequest);
 
         this.btnRechazarRequest=(Button)view.findViewById(R.id.btnRechazarRequest);
@@ -61,7 +64,7 @@ public class RequestInformationFragment extends Fragment {
             userRoutine.setIdUser(routineStore.getInformationRequest().getValue().idUser());
 
 
-            RoutineModel.acceptRequest(userRoutine,Integer.parseInt(routineStore.getInformationRequest().getValue().id()), GlobalState.getToken());
+            RoutineModel.acceptRequest(userRoutine,Integer.parseInt(routineStore.getInformationRequest().getValue().id()), authGlobalState.getToken().getValue());
         }
     }
 

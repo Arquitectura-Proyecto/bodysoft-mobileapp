@@ -25,6 +25,7 @@ import com.example.apollographqlandroid.GetRoutinesByIdOwnerQuery;
 import com.example.myapplication.Model.Models.RoutineModel;
 import com.example.myapplication.Model.Store.RoutineStore;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.AuthGlobalState;
 import com.example.myapplication.ui.GlobalState;
 import com.example.myapplication.ui.Routine.Adapters.AdapterCardResource;
 import com.example.myapplication.ui.Routine.Adapters.AdapterCardRoutine;
@@ -42,6 +43,7 @@ public class ListResourcesFragment extends Fragment {
     private Button goToRegisterResource;
     private RecyclerView resourceRecycler;
     private NavController navController;
+    private AuthGlobalState authGlobalState;
     public ListResourcesFragment() {
         // Required empty public constructor
     }
@@ -59,6 +61,7 @@ public class ListResourcesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         this.routineStore= ViewModelProviders.of(getActivity()).get(RoutineStore.class);
         //listaRutinas=new ArrayList<>();
+        this.authGlobalState= ViewModelProviders.of(getActivity()).get(AuthGlobalState.class);
         this.goToRegisterResource=(Button)view.findViewById(R.id.btnGotoResourceRegister);
         this.resourceRecycler=(RecyclerView)view.findViewById(R.id.recyclerListResource);
         this.navController= Navigation.findNavController(view);
@@ -71,7 +74,7 @@ public class ListResourcesFragment extends Fragment {
                 resourceRecycler.setAdapter(adapter);
             }
         });
-        RoutineModel.getResourcesByIdRoutine(new getResourcesByIdRoutineListener(),Integer.parseInt(routineStore.getInformationRoutine().getValue().getId()),GlobalState.getToken());
+        RoutineModel.getResourcesByIdRoutine(new getResourcesByIdRoutineListener(),Integer.parseInt(routineStore.getInformationRoutine().getValue().getId()),authGlobalState.getToken().getValue());
 
 
 
