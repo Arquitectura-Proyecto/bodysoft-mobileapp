@@ -1,10 +1,12 @@
 package com.example.myapplication.ui.Profile;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
@@ -71,6 +73,8 @@ public class AddSpecialitiesTrainer extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         ListView listSpecialities = view.findViewById(R.id.specialitiesAddList);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
 
         final NavController navController= Navigation.findNavController(view);
         ArrayList<String> idSpec = new ArrayList<>();
@@ -106,42 +110,56 @@ public class AddSpecialitiesTrainer extends Fragment {
         listSpecialities.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String newSpeciality =  specialities.get(position);
 
-                ProfileTrainerRepository.createProfileTrainerSpeciality(new ApolloCall.Callback<CreateProfileTrainerSpecialityMutation.Data>() {
+                builder.setTitle("Agregar especialidad");
+                builder.setMessage("¿Deseas agregar " + newSpeciality + " a tus especialidades?");
+
+                builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onResponse(@NotNull Response<CreateProfileTrainerSpecialityMutation.Data> response) {
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override public void run() {
-                                if (response.data().createProfileTrainerSpeciality() != null) {
-                                    String message =  "Especialidad " + specialities.get(position) + " agregada";
-                                    Toast toast = Toast.makeText(context,message,Toast.LENGTH_SHORT);
-                                    toast.show();
-                                    System.out.println(response.data().createProfileTrainerSpeciality().speciality());
-                                    idSpec.remove(position);
-                                    specialities.remove(position);
+                    public void onClick(DialogInterface dialog, int which) {
 
-                                    ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, specialities);
-                                    listSpecialities.setAdapter(adapter);
-                                }
+                        ProfileTrainerRepository.createProfileTrainerSpeciality(new ApolloCall.Callback<CreateProfileTrainerSpecialityMutation.Data>() {
+                            @Override
+                            public void onResponse(@NotNull Response<CreateProfileTrainerSpecialityMutation.Data> response) {
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override public void run() {
+                                        if (response.data().createProfileTrainerSpeciality() != null) {
+
+                                            String message =  "Especialidad " + specialities.get(position) + " agregada";
+                                            Toast toast = Toast.makeText(context,message,Toast.LENGTH_SHORT);
+                                            toast.show();
+                                            System.out.println(response.data().createProfileTrainerSpeciality().speciality());
+                                            idSpec.remove(position);
+                                            specialities.remove(position);
+
+                                            ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, specialities);
+                                            listSpecialities.setAdapter(adapter);
+                                        }
+                                    }
+                                });
                             }
-                        });
-                    }
 
+                            @Override
+                            public void onFailure(@NotNull ApolloException e) {
+                                System.out.println(e);;
+                            }
+                        },idSpec.get(position),authglobalState.getToken().getValue());
+
+                    }
+                });
+
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onFailure(@NotNull ApolloException e) {
-                        System.out.println(e);;
+                    public void onClick(DialogInterface dialog, int which) {
+
                     }
-                },idSpec.get(position),authglobalState.getToken().getValue());
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
 
-            }
-        });
 
-        MaterialButton buttonReturnSpecialitiesTrainer = view.findViewById(R.id.buttonReturnSpecialitiesTrainer);
-        buttonReturnSpecialitiesTrainer .setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavOptions navOption = new NavOptions.Builder().setPopUpTo(R.id.listSpecialitiesTrainerFragment, true).build();
-                navController.navigate(R.id.from_add_to_list_specialities,null,navOption);
+
             }
         });
 

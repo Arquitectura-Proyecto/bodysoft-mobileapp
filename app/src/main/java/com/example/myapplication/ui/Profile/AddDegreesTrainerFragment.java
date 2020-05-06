@@ -54,6 +54,16 @@ public class AddDegreesTrainerFragment extends Fragment {
         return view;
     }
 
+    private boolean fieldValidate (TextInputEditText text){
+        text.setError(null);
+        if("".equals(text.getText().toString())) {
+            text.setError("Campo necesario");
+            text.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -72,6 +82,8 @@ public class AddDegreesTrainerFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                if(!fieldValidate(degree_name) | !fieldValidate(institution) | !fieldValidate(year)){ return; }
+
                 ProfileTrainerRepository.createProfileTrainerDegree(new ApolloCall.Callback<CreateDegreeMutation.Data>() {
                     @Override
                     public void onResponse(@NotNull Response<CreateDegreeMutation.Data> response) {
@@ -87,7 +99,10 @@ public class AddDegreesTrainerFragment extends Fragment {
                     public void onFailure(@NotNull ApolloException e) {
                         System.out.println(e);
                     }
-                },degree_name.getText().toString(),Integer.parseInt(year.getText().toString()),institution.getText().toString(),authGlobalState.getToken().getValue());
+                },degree_name.getText().toString(),
+                  Integer.parseInt(year.getText().toString()),
+                  institution.getText().toString(),
+                  authGlobalState.getToken().getValue());
 
 
 

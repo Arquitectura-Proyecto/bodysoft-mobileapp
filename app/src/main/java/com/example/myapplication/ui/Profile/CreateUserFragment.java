@@ -52,6 +52,16 @@ public class CreateUserFragment extends Fragment {
         return view;
     }
 
+    private boolean fieldValidate (TextInputEditText text){
+        text.setError(null);
+        if("".equals(text.getText().toString())) {
+            text.setError("Campo necesario");
+            text.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -70,6 +80,9 @@ public class CreateUserFragment extends Fragment {
         buttonCreateUser .setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(!fieldValidate(user_name) | !fieldValidate(telephone) | !fieldValidate(city) | !fieldValidate(age) ){ return; }
+
 
                 ProfileRepository.createProfileUser(new ApolloCall.Callback<CreateProfileMutation.Data>() {
                     @Override
