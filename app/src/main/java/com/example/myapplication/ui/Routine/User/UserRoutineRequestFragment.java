@@ -114,8 +114,18 @@ public class UserRoutineRequestFragment extends Fragment {
                 RoutineModel.registerRequest(new ApolloCall.Callback<RegisterRequestMutation.Data>() {
                     @Override
                     public void onResponse(@NotNull Response<RegisterRequestMutation.Data> response) {
-                        System.out.println("routine request processed"+response.errors());
-                        //Toast.makeText(v.getContext(),"routine request processed" , Toast.LENGTH_SHORT).show();
+                       // System.out.println("routine request processed"+response.errors());
+                        if(!response.hasErrors()){
+                            try{
+                                getActivity().runOnUiThread(new Runnable() {
+                                    public void run() {
+                                        Toast.makeText(getContext(),"Solicitud Enviada", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }catch (Exception e){}
+
+
+                        }
                     }
 
                     @Override
