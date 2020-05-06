@@ -22,13 +22,22 @@
 
             <!-- Media -->
             <!--app:srcCompat="@drawable/media"-->
-            <VideoView
-                android:id="@+id/imgRoutine"
-                android:layout_width="match_parent"
-                android:layout_height="194dp"
-                android:scaleType="centerCrop"
-                android:contentDescription="Imagen no disponible"
-                />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <VideoView
+                    android:id="@+id/imgRoutine"
+                    android:layout_width="match_parent"
+                    android:layout_height="194dp"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Imagen no disponible"
+                    />
+                <FrameLayout
+                    android:id="@+id/placeholder"
+                    android:layout_width="match_parent"
+                    android:layout_height="194dp" android:background="@drawable/cannot_play">
+                </FrameLayout>
+            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
