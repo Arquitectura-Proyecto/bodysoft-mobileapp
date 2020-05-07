@@ -53,6 +53,16 @@ public class CreateTrainerFragment extends Fragment {
     }
 
 
+    private boolean fieldValidate (TextInputEditText text){
+        text.setError(null);
+        if("".equals(text.getText().toString())) {
+            text.setError("Campo necesario");
+            text.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -73,6 +83,9 @@ public class CreateTrainerFragment extends Fragment {
         buttonCreateTrainer .setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(!fieldValidate(trainer_name) | !fieldValidate(telephone) | !fieldValidate(city)
+                   | !fieldValidate(age) | !fieldValidate(description) | !fieldValidate(experience) | !fieldValidate(resources)){ return; }
 
                 ProfileTrainerRepository.createProfileTrainer(new ApolloCall.Callback<CreateProfileMutation.Data>() {
                     @Override

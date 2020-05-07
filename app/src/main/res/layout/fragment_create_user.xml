@@ -170,8 +170,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/createTelephoneUser"
                             android:layout_width="match_parent"
-                            android:inputType="number"
-                            android:digits="1234567890 "
+                            android:inputType="phone"
                             android:maxLength="10"
                             android:singleLine="true"
                             android:layout_height="wrap_content"/>

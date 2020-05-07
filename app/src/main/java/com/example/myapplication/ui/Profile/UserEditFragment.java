@@ -52,6 +52,16 @@ public class UserEditFragment extends Fragment {
     }
 
 
+    private boolean fieldValidate (TextInputEditText text){
+        text.setError(null);
+        if("".equals(text.getText().toString())) {
+            text.setError("Campo necesario");
+            text.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -63,6 +73,7 @@ public class UserEditFragment extends Fragment {
 
         MaterialButton buttonSaveEditUser = view.findViewById(R.id.buttonSaveEditUser);
         final NavController navController= Navigation.findNavController(view);
+
 
 
         ProfileRepository.getProfileUser(new ApolloCall.Callback<ProfileUserQuery.Data>() {
@@ -93,6 +104,7 @@ public class UserEditFragment extends Fragment {
         buttonSaveEditUser .setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(!fieldValidate(age)  | !fieldValidate(telephone) | !fieldValidate(city)){ return; }
 
                 ProfileRepository.editProfileUser(new ApolloCall.Callback<EditProfileUserMutation.Data>() {
                     @Override

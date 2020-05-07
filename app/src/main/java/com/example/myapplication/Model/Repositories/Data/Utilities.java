@@ -3,8 +3,8 @@ package com.example.myapplication.Model.Repositories.Data;
 public enum Utilities {
 
 
-
     LocalHost("http://192.168.0.14","3800","/graphql");
+
 
 
 
