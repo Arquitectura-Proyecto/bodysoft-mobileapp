@@ -7,10 +7,12 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaPlayer;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,13 +73,34 @@ public class AdapterCardRoutine extends RecyclerView.Adapter<AdapterCardRoutine.
             System.out.println("el error es "+e);
         }*/
 
-        Uri uri=Uri.parse(routineList.get(position).getLinkPreview());
-        holder.video.setVideoURI(uri);
-        //holder.video.start();
-        MediaController mediaController=new MediaController(this.context);
-        // holder.video.setBackgroundResource(R.drawable.ic_launcher_background);
-        mediaController.setAnchorView(holder.video);
-        holder.video.setMediaController(mediaController);
+        try {
+            holder.video.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+                @Override
+                public boolean onError(MediaPlayer mp, int what, int extra) {
+                    return true;//evita la ventana de error si no puede reproducirlo
+                }
+            });
+
+            Uri uri=Uri.parse(routineList.get(position).getLinkPreview());
+            holder.video.setVideoURI(uri);
+
+            MediaController mediaController=new MediaController(this.context);
+            mediaController.setMediaPlayer(holder.video);
+
+            mediaController.setAnchorView(holder.video);
+            holder.video.setMediaController(mediaController);
+
+           /* holder.video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+
+
+                    holder.placeholder.setVisibility(View.GONE);//el place holder de video que no se puede reproducir se hace invisible si se puede reproducir el video
+                }
+            });*/
+
+        }catch (Exception e){}
+
 
         //holder.video.requestFocus();
 
@@ -95,6 +118,7 @@ public class AdapterCardRoutine extends RecyclerView.Adapter<AdapterCardRoutine.
 
 
     public class ViewHolderCardRoutine extends RecyclerView.ViewHolder {
+        //View placeholder ;
      VideoView video;
      TextView description,title,type;
      Button btnGoToRoutineInformationFragment;
@@ -105,6 +129,7 @@ public class AdapterCardRoutine extends RecyclerView.Adapter<AdapterCardRoutine.
             title=(TextView)itemView.findViewById(R.id.txtnameRoutine);
             type=(TextView)itemView.findViewById(R.id.txtTypeRoutine);
             btnGoToRoutineInformationFragment=(Button)itemView.findViewById(R.id.btnGoToInformationRoutine);
+            //placeholder = (View) itemView.findViewById(R.id.placeholder);
             //btnGoToRoutineInformationFragment.setOnClickListener(listener);
         }
 

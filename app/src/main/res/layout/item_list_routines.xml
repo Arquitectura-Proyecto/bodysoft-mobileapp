@@ -77,15 +77,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
-                    android:text="boton 1"
+                    android:text="Ver"
                     style="?attr/borderlessButtonStyle"
                     />
-                <com.google.android.material.button.MaterialButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="boton 2"
-                    style="?attr/borderlessButtonStyle"
-                    />
+
             </LinearLayout>
 
         </LinearLayout>

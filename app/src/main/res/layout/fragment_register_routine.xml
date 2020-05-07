@@ -18,12 +18,30 @@
     tools:context=".ui.Routine.RegisterRoutineFragment">
 
     <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/textColorPrimary"
+        android:layout_marginBottom="15dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/logo"
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp"
+
+            />
+
+    </LinearLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="29sp"
-        android:text="Registro Rutina" />
+        android:text="Registra una rutina"
+        android:layout_marginBottom="15dp"
+        android:textAppearance="@style/TextAppearance.Shrine.Title"
+
+        android:gravity="center_horizontal"/>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -67,7 +85,7 @@
             android:id="@+id/txtInputPriceRegisterRoutine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
+            android:inputType="number"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 

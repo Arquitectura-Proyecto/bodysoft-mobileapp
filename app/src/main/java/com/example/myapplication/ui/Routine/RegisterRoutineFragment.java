@@ -137,6 +137,17 @@ public class RegisterRoutineFragment extends Fragment {
                     @Override
                     public void onResponse(@NotNull Response<CrearRutinaMutation.Data> response) {
                         System.out.println("correcto:"+response.errors());
+                        if(!response.hasErrors()){
+                            try{
+                                getActivity().runOnUiThread(new Runnable() {
+                                    public void run() {
+                                        Toast.makeText(getContext(),"Registro exitoso", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }catch (Exception e){}
+
+
+                        }
                     }
 
                     @Override
