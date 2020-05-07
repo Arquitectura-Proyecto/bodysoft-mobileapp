@@ -27,23 +27,10 @@
             android:id="@+id/fragment_profile"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Perfil" />
-        <item
-            android:id="@+id/createUserFragment"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Crear Usuario" />
-
-
+        
         <item
             android:id="@+id/userRoutineListFragment"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Rutinas Usuario" />
-
-
-        <item
-            android:id ="@+id/changePasswordFragment"
-            android:icon="@drawable/baseline_lock_24"
-            android:title="Cambiar contraseña"/>
-
-
     </group>
 </menu>
