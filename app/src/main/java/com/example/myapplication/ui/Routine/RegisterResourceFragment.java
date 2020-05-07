@@ -59,7 +59,7 @@ public class RegisterResourceFragment extends Fragment {
         this.TitleTextInput=(TextInputEditText)view.findViewById(R.id.txtInputNameRegisterResource);
         this.positionTextInput=(TextInputEditText)view.findViewById(R.id.txtInputPositionRegisterResource);
         this.linkTextInpunt=(TextInputEditText)view.findViewById(R.id.txtInputLinkPreviewRegisterResource);
-        this.linkTextInpunt.setText("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4");
+        //this.linkTextInpunt.setText("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4");
         this.btnRegiserResource=(Button)view.findViewById(R.id.btnRoutineResource);
         this.btnRegiserResource.setOnClickListener(new btnRegisterResourceListener());
 

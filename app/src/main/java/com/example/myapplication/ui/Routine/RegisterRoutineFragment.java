@@ -77,7 +77,7 @@ public class RegisterRoutineFragment extends Fragment {
         this.nameTextInput=(TextInputEditText)view.findViewById(R.id.txtInputNameRegisterRoutine);
         this.descriptionTextInput=(TextInputEditText)view.findViewById(R.id.txtInputDescriptionRegisterRoutine);
         this.linkPreviewTextInput=(TextInputEditText)view.findViewById(R.id.txtInputLinkPreviewRegisterRoutine);
-        this.linkPreviewTextInput.setText("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4");
+        //this.linkPreviewTextInput.setText("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4");
         this.btnRegister=(Button)view.findViewById(R.id.btnRoutineRegister);
         this.btnRegister.setOnClickListener(new btnClickListener());
         spinnerTypeRoutines = (MaterialSpinner) view.findViewById(R.id.spinner);
