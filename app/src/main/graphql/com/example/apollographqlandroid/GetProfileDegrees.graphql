@@ -1,0 +1,9 @@
+query profileDegrees($token:String!){
+  profileDegreesByTrainers(token:$token){
+    degree_name
+    year
+    institution
+  }
+}
+
+
