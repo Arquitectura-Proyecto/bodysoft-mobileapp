@@ -4,7 +4,9 @@ import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.example.apollographqlandroid.AuthAuthenticationQuery;
+import com.example.apollographqlandroid.AuthChagePasswordMutation;
 import com.example.apollographqlandroid.AuthCreateUserMutation;
+import com.example.apollographqlandroid.AuthRecoverPasswordQuery;
 import com.example.apollographqlandroid.AuthValidateAuthTokenQuery;
 import com.example.apollographqlandroid.AuthVerifyAcountMutation;
 import com.example.apollographqlandroid.GetRoutinesQuery;
@@ -81,5 +83,36 @@ public class AuthModel {
             }
         });
     }
+
+    public static void authRecoverPassword(String email,ApolloCall.Callback<AuthRecoverPasswordQuery.Data>listener) {
+
+        authRepository.authRecoverPassword(email, new ApolloCall.Callback<AuthRecoverPasswordQuery.Data>() {
+            @Override
+            public void onResponse(@NotNull Response<AuthRecoverPasswordQuery.Data> response) {
+                listener.onResponse(response);
+            }
+
+            @Override
+            public void onFailure(@NotNull ApolloException e) {
+
+            }
+        });
+    }
+
+    public static  void authChagePassword(String token,String password, String newpassword,  ApolloCall.Callback<AuthChagePasswordMutation.Data>listener){
+
+        authRepository.authChagePassword(token,password,newpassword,new ApolloCall.Callback<AuthChagePasswordMutation.Data>() {
+            @Override
+            public void onResponse(@NotNull Response<AuthChagePasswordMutation.Data> response) {
+                listener.onResponse(response);
+            }
+
+            @Override
+            public void onFailure(@NotNull ApolloException e) {
+
+            }
+        });
+    }
+
 
 }

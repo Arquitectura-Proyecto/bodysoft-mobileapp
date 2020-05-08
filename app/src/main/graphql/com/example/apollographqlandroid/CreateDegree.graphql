@@ -1,0 +1,14 @@
+mutation createDegree($degree_name:String!, $year:Int!, $institution:String!, $token:String!)
+{
+  createProfileDegree(body:{
+    degree_name: $degree_name
+    year: $year
+    institution: $institution
+  },token: $token){
+    degree_id
+    degree_name
+    year
+    institution
+    trainer
+  }
+}

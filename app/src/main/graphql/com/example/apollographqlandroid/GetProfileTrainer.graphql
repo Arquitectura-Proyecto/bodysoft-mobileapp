@@ -1,0 +1,18 @@
+query profileTrainer($token:String!){
+  profileTrainer(token:$token){
+    trainer_id
+    trainer_name
+    age
+    photo
+    telephone
+    city
+    sum_ratings
+    num_ratings
+    description
+    work_experience
+    resources
+    specialities
+  }
+}
+
+

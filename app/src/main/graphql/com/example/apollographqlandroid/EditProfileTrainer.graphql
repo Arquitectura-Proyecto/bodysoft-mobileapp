@@ -1,0 +1,28 @@
+mutation editProfileTrainer($trainer_name:String!, $age:Int!, $photo:String!, $telephone:String!, $city:String!, $sum_ratings:Int!, $num_ratings:Int!
+  $description:String!, $work_experience:String!, $resources:String! ,$token:String!)
+{
+  updateProfileTrainer(body:{
+    trainer_name: $trainer_name
+    age: $age
+    photo : $photo
+    telephone : $telephone
+    city : $city
+    sum_ratings : $sum_ratings
+    num_ratings: $num_ratings
+    description : $description
+    work_experience : $work_experience
+    resources : $resources
+  },token: $token){
+    trainer_id
+    trainer_name
+    age
+    photo
+    telephone
+    city
+    sum_ratings
+    num_ratings
+    description
+    work_experience
+    resources
+  }
+}

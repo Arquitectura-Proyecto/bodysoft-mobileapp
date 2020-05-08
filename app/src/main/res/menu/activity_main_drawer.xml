@@ -6,20 +6,31 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/baseline_home_24"
             android:title="@string/menu_home" />
+    <!--
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/baseline_account_circle_24"
             android:title="@string/menu_gallery" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow" />
-        <item
+       -->
+       <!-- <item
             android:id="@+id/listRoutineFragment"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="lista rutinas" />
-
+            android:title="Rutinas" />
+        -->
+        <item
+            android:id="@+id/fragment_profile"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Perfil" />
+        
+        <item
+            android:id="@+id/userRoutineListFragment"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Rutinas Usuario" />
     </group>
 </menu>

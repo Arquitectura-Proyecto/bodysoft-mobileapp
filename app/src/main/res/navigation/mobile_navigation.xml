@@ -71,7 +71,12 @@
         <action
             android:id="@+id/go_to_register"
             app:destination="@id/Register" />
-    </fragment>
+
+        <action
+            android:id="@+id/go_to_changePassword"
+            app:destination="@id/recoverPasswordFragment" />
+</fragment>
+
 <!--Daniela-->
     <fragment
         style = "AppTheme.NoActionBar"
@@ -79,123 +84,162 @@
         android:name="com.example.myapplication.ui.authentication.register.RegisterFragment"
         tools:layout="@layout/fragment_login" >
         <action
+            android:id="@+id/go_to_login"
+            app:destination="@id/login" />
+    </fragment>
+    <fragment
+        android:id="@+id/recoverPasswordFragment"
+        android:name="com.example.myapplication.ui.authentication.recoverPassword.recoverPasswordFragment"
+        android:label="changePasswordFragment" >
+        <action
+            android:id="@+id/go_to_login"
+            app:destination="@id/login" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.example.myapplication.ui.authentication.changePassword.changePasswordFragment"
+        android:label="Cambiar Contraseña"
+        tools:layout="@layout/fragment_change_password" >
+        <action
             android:id="@+id/go_to_main"
             app:destination="@id/nav_home" />
     </fragment>
 
 
+    <!--Fin Daniela-->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--Fin Daniela-->
 
 
 
 
 <!--Andres-->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--Fin Andres-->
+    <fragment
+        android:id="@+id/rootRoutineFragment"
+        android:name="com.example.myapplication.ui.Routine.RootRoutineFragment"
+        android:label="Rutinas"
+        tools:layout="@layout/fragment_root_routine" >
+        <action
+            android:id="@+id/fromRootRoutineToRegisterRoutine"
+            app:destination="@id/registerRoutineFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim" />
+        <action
+            android:id="@+id/fromRootRoutineFragment_to_routineInformationFragment"
+            app:destination="@id/routineInformationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerRoutineFragment"
+        android:name="com.example.myapplication.ui.Routine.RegisterRoutineFragment"
+        android:label="Rutinas"
+        tools:layout="@layout/fragment_register_routine" />
+    <fragment
+        android:id="@+id/routineInformationFragment"
+        android:name="com.example.myapplication.ui.Routine.RoutineInformationFragment"
+        android:label="Rutina"
+        tools:layout="@layout/fragment_routine_information" >
+        <action
+            android:id="@+id/fromRoutineInformationFragment_to_editRoutineFragment"
+            app:destination="@id/editRoutineFragment" />
+        <action
+            android:id="@+id/fromRoutineInformationFragment_to_listResourcesFragment"
+            app:destination="@id/listResourcesFragment" />
+        <action
+            android:id="@+id/fromRoutineInformationFragment_to_listRequestFragment"
+            app:destination="@id/listRequestFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editRoutineFragment"
+        android:name="com.example.myapplication.ui.Routine.EditRoutineFragment"
+        android:label="Rutinas"
+        tools:layout="@layout/fragment_edit_routine" />
+    <fragment
+        android:id="@+id/listResourcesFragment"
+        android:name="com.example.myapplication.ui.Routine.ListResourcesFragment"
+        android:label="Recursos"
+        tools:layout="@layout/fragment_list_resources" >
+        <action
+            android:id="@+id/fromListResourcesFragment_to_registerResourceFragment"
+            app:destination="@id/registerResourceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerResourceFragment"
+        android:name="com.example.myapplication.ui.Routine.RegisterResourceFragment"
+        android:label="Recursos"
+        tools:layout="@layout/fragment_register_resource" />
+    <fragment
+        android:id="@+id/listRequestFragment"
+        android:name="com.example.myapplication.ui.Routine.ListRequestFragment"
+        android:label="Solicitudes"
+        tools:layout="@layout/fragment_list_request" >
+        <action
+            android:id="@+id/fromListRequestFragment_to_requestInformationFragment"
+            app:destination="@id/requestInformationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/requestInformationFragment"
+        android:name="com.example.myapplication.ui.Routine.RequestInformationFragment"
+        android:label="Solicitudes"
+        tools:layout="@layout/fragment_request_information" />
+
+    <fragment
+        android:id="@+id/userRoutineListFragment"
+        android:name="com.example.myapplication.ui.Routine.User.UserRoutineListFragment"
+        android:label="Rutinas"
+        tools:layout="@layout/fragment_user_routine_list" >
+        <action
+            android:id="@+id/action_userRoutineListFragment_to_userMyRoutinesListFragment"
+            app:destination="@id/userMyRoutinesListFragment" />
+        <action
+            android:id="@+id/action_userRoutineListFragment_to_userRoutinePreviewFragment"
+            app:destination="@id/userRoutinePreviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userMyRoutinesListFragment"
+        android:name="com.example.myapplication.ui.Routine.User.UserMyRoutinesListFragment"
+        android:label="Rutinas"
+        tools:layout="@layout/fragment_user_my_routines_list" >
+        <action
+            android:id="@+id/action_userMyRoutinesListFragment_to_userMyResourcesFragment"
+            app:destination="@id/userMyResourcesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userRoutinePreviewFragment"
+        android:name="com.example.myapplication.ui.Routine.User.UserRoutinePreviewFragment"
+        android:label="Rutinas"
+        tools:layout="@layout/fragment_user_routine_preview" >
+        <action
+            android:id="@+id/action_userRoutinePreviewFragment_to_userRoutineRequestFragment"
+            app:destination="@id/userRoutineRequestFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userRoutineRequestFragment"
+        android:name="com.example.myapplication.ui.Routine.User.UserRoutineRequestFragment"
+        android:label="Solicitudes"
+        tools:layout="@layout/fragment_user_routine_request" />
+    <fragment
+        android:id="@+id/userRoutinesFragment"
+        android:name="com.example.myapplication.ui.Routine.User.UserRoutinesFragment"
+        android:label="Rutinas"
+        tools:layout="@layout/fragment_user_routines" />
+    <fragment
+        android:id="@+id/userMyResourcesFragment"
+        android:name="com.example.myapplication.ui.Routine.User.UserMyResourcesFragment"
+        android:label="Rutinas"
+        tools:layout="@layout/fragment_user_my_routine" >
+        <action
+            android:id="@+id/action_userMyResourcesFragment_to_userRoutineVideoFragment"
+            app:destination="@id/userRoutineVideoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userRoutineVideoFragment"
+        android:name="com.example.myapplication.ui.Routine.User.UserRoutineVideoFragment"
+        android:label="Rutinas"
+        tools:layout="@layout/fragment_user_routine_video" />
+
+
+
+    <!--Fin Andres-->
 
 <!--Sergio-->
 
@@ -246,65 +290,108 @@
     <!--Valentina-->
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <fragment
+        android:id="@+id/fragment_profile"
+        android:name="com.example.myapplication.ui.Profile.UserProfileFragment"
+        android:label="Perfil"
+        tools:layout="@layout/fragment_user_profile" >
+        <action
+            android:id="@+id/go_to_edit_user"
+            app:destination="@id/userEditFragment" />
+        <action
+            android:id="@+id/from_user_to_change_password"
+            app:destination="@id/changePasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userEditFragment"
+        android:name="com.example.myapplication.ui.Profile.UserEditFragment"
+        android:label="Editar usuario"
+        tools:layout="@layout/fragment_user_edit" >
+        <action
+            android:id="@+id/go_to_user_profile"
+            app:destination="@id/fragment_profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/trainerFragment"
+        android:name="com.example.myapplication.ui.Profile.TrainerFragment"
+        android:label="Perfil"
+        tools:layout="@layout/fragment_trainer" >
+        <action
+            android:id="@+id/go_to_edit_trainer"
+            app:destination="@id/trainerEditFragment" />
+        <action
+            android:id="@+id/go_to_list_specialities"
+            app:destination="@id/listSpecialitiesTrainerFragment" />
+        <action
+            android:id="@+id/go_to_list_degrees"
+            app:destination="@id/listDegreesTrainerFragment" />
+        <action
+            android:id="@+id/from_trainer_to_change_password"
+            app:destination="@id/changePasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/trainerEditFragment"
+        android:name="com.example.myapplication.ui.Profile.TrainerEditFragment"
+        android:label="Editar entrenador"
+        tools:layout="@layout/fragment_trainer_edit" >
+        <action
+            android:id="@+id/go_to_trainer_profile"
+            app:destination="@id/trainerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createUserFragment"
+        android:name="com.example.myapplication.ui.Profile.CreateUserFragment"
+        android:label="Crear usuario"
+        tools:layout="@layout/fragment_create_user" >
+        <action
+            android:id="@+id/from_create_user_to_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/createTrainerFragment"
+        android:name="com.example.myapplication.ui.Profile.CreateTrainerFragment"
+        android:label="Crear entrenador"
+        tools:layout="@layout/fragment_create_trainer" >
+        <action
+            android:id="@+id/from_create_trainer_to_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/listSpecialitiesTrainerFragment"
+        android:name="com.example.myapplication.ui.Profile.ListSpecialitiesTrainerFragment"
+        android:label="Mis especialidades"
+        tools:layout="@layout/fragment_list_specialities_trainer" >
+        <action
+            android:id="@+id/go_to_add_specialities"
+            app:destination="@id/addSpecialitiesTrainer" />
+    </fragment>
+    <fragment
+        android:id="@+id/listDegreesTrainerFragment"
+        android:name="com.example.myapplication.ui.Profile.ListDegreesTrainerFragment"
+        android:label="Mis títulos"
+        tools:layout="@layout/fragment_list_degrees_trainer" >
+        <action
+            android:id="@+id/go_to_add_degrees"
+            app:destination="@id/addDegreesTrainerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addDegreesTrainerFragment"
+        android:name="com.example.myapplication.ui.Profile.AddDegreesTrainerFragment"
+        android:label="Agregar títulos"
+        tools:layout="@layout/fragment_add_degrees_trainer" >
+        <action
+            android:id="@+id/from_add_to_list_degrees"
+            app:destination="@id/listDegreesTrainerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addSpecialitiesTrainer"
+        android:name="com.example.myapplication.ui.Profile.AddSpecialitiesTrainer"
+        android:label="Agregar especialidades"
+        tools:layout="@layout/fragment_add_specialities_trainer" >
+        <action
+            android:id="@+id/from_add_to_list_specialities"
+            app:destination="@id/listSpecialitiesTrainerFragment" />
+    </fragment>
 
 
     <!--fin valentina-->
