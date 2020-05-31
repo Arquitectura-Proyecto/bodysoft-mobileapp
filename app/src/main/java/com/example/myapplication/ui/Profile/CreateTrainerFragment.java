@@ -102,7 +102,7 @@ public class CreateTrainerFragment extends Fragment {
                     public void onFailure(@NotNull ApolloException e) {
                         System.out.println(e);
                     }
-                },trainer_name.getText().toString(),Integer.parseInt(age.getText().toString()),"aquifoto",telephone.getText().toString(),city.getText().toString(),description.getText().toString(),resources.getText().toString(),experience.getText().toString(),authGlobalState.getToken().getValue());
+                },trainer_name.getText().toString(),Integer.parseInt(age.getText().toString()),"none",telephone.getText().toString(),city.getText().toString(),description.getText().toString(),resources.getText().toString(),experience.getText().toString(),authGlobalState.getToken().getValue());
 
             }
         });

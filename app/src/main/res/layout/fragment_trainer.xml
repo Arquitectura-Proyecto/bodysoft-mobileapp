@@ -23,11 +23,10 @@
             android:background="#ffbc02">
 
             <ImageView
+                android:id="@+id/trainerPhoto"
                 android:layout_width="200dp"
                 android:layout_height="100dp"
-                android:layout_marginTop="20dp"
-
-                android:src="@drawable/trainer_dos"/>
+                android:layout_marginTop="20dp"/>
 
             <TextView
                 android:id="@+id/nameTrainerProfile"

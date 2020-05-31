@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.Profile;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,11 +14,13 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
+import com.bumptech.glide.Glide;
 import com.example.apollographqlandroid.EditProfileTrainerMutation;
 import com.example.apollographqlandroid.ProfileTrainerQuery;
 import com.example.myapplication.Model.Repositories.ProfileTrainerRepository;
@@ -38,6 +41,8 @@ import org.jetbrains.annotations.NotNull;
 public class TrainerEditFragment extends Fragment {
 
     AuthGlobalState authGlobalState;
+    String ph;
+    Context context;
 
     public static TrainerEditFragment newInstance() {
         return new TrainerEditFragment();
@@ -47,6 +52,7 @@ public class TrainerEditFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_trainer_edit, container, false);
+        context = getContext();
         authGlobalState = ViewModelProviders.of(getActivity()).get(AuthGlobalState.class);
         return view;
     }
@@ -73,6 +79,7 @@ public class TrainerEditFragment extends Fragment {
         TextInputEditText description = view.findViewById(R.id.editDescriptionTrainer);
         TextInputEditText experience = view.findViewById(R.id.editExperienceTrainer);
         TextInputEditText resources = view.findViewById(R.id.editResourcesTrainer);
+        ImageView photo = view.findViewById(R.id.trainerEditPhoto);
 
         MaterialButton buttonSaveEditTrainer = view.findViewById(R.id.buttonSaveEditTrainer);
         final NavController navController= Navigation.findNavController(view);
@@ -92,6 +99,17 @@ public class TrainerEditFragment extends Fragment {
                             description.setText(response.data().profileTrainer().description());
                             experience.setText(response.data().profileTrainer().work_experience());
                             resources.setText(response.data().profileTrainer().resources());
+
+                            ph = response.data().profileTrainer().photo();
+                            if ("none".equals(ph)){
+                                photo.setImageResource(R.drawable.trainer_dos);
+                            }else {
+
+                                Glide.with(context)
+                                        .load(ph)
+                                        .into(photo);
+                            }
+
                             cal[0] = response.data().profileTrainer().num_ratings();
                             if (cal[0] != 0) {
                                 cal[1] = response.data().profileTrainer().sum_ratings();
@@ -134,7 +152,7 @@ public class TrainerEditFragment extends Fragment {
                     public void onFailure(@NotNull ApolloException e) {
                         System.out.println(e);
                     }
-                },trainer_name.getText().toString(),Integer.parseInt(age.getText().toString()),"aquifoto",telephone.getText().toString(),city.getText().toString(),cal[1],cal[0],description.getText().toString(),resources.getText().toString(),experience.getText().toString(),authGlobalState.getToken().getValue());
+                },trainer_name.getText().toString(),Integer.parseInt(age.getText().toString()),ph,telephone.getText().toString(),city.getText().toString(),cal[1],cal[0],description.getText().toString(),resources.getText().toString(),experience.getText().toString(),authGlobalState.getToken().getValue());
 
             }
         });
