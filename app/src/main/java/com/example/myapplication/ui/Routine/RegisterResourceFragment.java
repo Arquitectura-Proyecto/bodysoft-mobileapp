@@ -59,7 +59,7 @@ public class RegisterResourceFragment extends Fragment {
         this.TitleTextInput=(TextInputEditText)view.findViewById(R.id.txtInputNameRegisterResource);
         this.positionTextInput=(TextInputEditText)view.findViewById(R.id.txtInputPositionRegisterResource);
         this.linkTextInpunt=(TextInputEditText)view.findViewById(R.id.txtInputLinkPreviewRegisterResource);
-        this.linkTextInpunt.setText("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4");
+        //this.linkTextInpunt.setText("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4");
         this.btnRegiserResource=(Button)view.findViewById(R.id.btnRoutineResource);
         this.btnRegiserResource.setOnClickListener(new btnRegisterResourceListener());
 
@@ -82,7 +82,17 @@ private class btnRegisterResourceListener implements View.OnClickListener{
             RoutineRepository.registerResource(new ApolloCall.Callback<RegisterResourceMutation.Data>() {
                 @Override
                 public void onResponse(@NotNull Response<RegisterResourceMutation.Data> response) {
+                    if(!response.hasErrors()){
+                        try{
+                            getActivity().runOnUiThread(new Runnable() {
+                                public void run() {
+                                    Toast.makeText(getContext(),"Registro exitoso", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }catch (Exception e){}
 
+
+                    }
                 }
 
                 @Override

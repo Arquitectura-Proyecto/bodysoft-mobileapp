@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.api.Response;
@@ -122,6 +123,17 @@ public class EditRoutineFragment extends Fragment {
                    @Override
                    public void onResponse(@NotNull Response<UpdateRoutineMutation.Data> response) {
                        System.out.println("editada"+response.data());
+                       if(!response.hasErrors()){
+                           try{
+                               getActivity().runOnUiThread(new Runnable() {
+                                   public void run() {
+                                       Toast.makeText(getContext(),"Se ha editado satisfactoriamente", Toast.LENGTH_SHORT).show();
+                                   }
+                               });
+                           }catch (Exception e){}
+
+
+                       }
                    }
 
                    @Override

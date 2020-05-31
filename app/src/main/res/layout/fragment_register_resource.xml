@@ -18,12 +18,31 @@
         tools:context=".ui.Routine.RegisterRoutineFragment">
 
         <!-- TODO: Update blank fragment layout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/textColorPrimary"
+            android:layout_marginBottom="15dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/logo"
+                android:layout_gravity="center_horizontal"
+                android:padding="10dp"
+
+                />
+
+        </LinearLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="29sp"
-            android:text="Registro Recurso" />
+            android:text="Registra un Recurso"
+            android:layout_marginBottom="15dp"
+            android:textAppearance="@style/TextAppearance.Shrine.Title"
+
+            android:gravity="center_horizontal"/>
+
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -54,7 +73,7 @@
                 android:id="@+id/txtInputPositionRegisterResource"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="number"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -96,6 +115,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Registrar"
+            android:layout_marginTop="5dp"
             android:layout_gravity="center_horizontal"/>
 
 

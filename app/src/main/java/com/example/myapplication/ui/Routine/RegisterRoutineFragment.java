@@ -77,7 +77,7 @@ public class RegisterRoutineFragment extends Fragment {
         this.nameTextInput=(TextInputEditText)view.findViewById(R.id.txtInputNameRegisterRoutine);
         this.descriptionTextInput=(TextInputEditText)view.findViewById(R.id.txtInputDescriptionRegisterRoutine);
         this.linkPreviewTextInput=(TextInputEditText)view.findViewById(R.id.txtInputLinkPreviewRegisterRoutine);
-        this.linkPreviewTextInput.setText("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4");
+        //this.linkPreviewTextInput.setText("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4");
         this.btnRegister=(Button)view.findViewById(R.id.btnRoutineRegister);
         this.btnRegister.setOnClickListener(new btnClickListener());
         spinnerTypeRoutines = (MaterialSpinner) view.findViewById(R.id.spinner);
@@ -137,6 +137,17 @@ public class RegisterRoutineFragment extends Fragment {
                     @Override
                     public void onResponse(@NotNull Response<CrearRutinaMutation.Data> response) {
                         System.out.println("correcto:"+response.errors());
+                        if(!response.hasErrors()){
+                            try{
+                                getActivity().runOnUiThread(new Runnable() {
+                                    public void run() {
+                                        Toast.makeText(getContext(),"Registro exitoso", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }catch (Exception e){}
+
+
+                        }
                     }
 
                     @Override

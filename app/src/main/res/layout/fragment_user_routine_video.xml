@@ -13,6 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:padding="4dp"
         tools:context=".ui.Routine.RoutineInformationFragment">
         <!-- TODO: Update blank fragment layout -->
         <VideoView
@@ -33,7 +35,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="12dp"
                 android:text="Nombre:"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textAppearance="@style/Widget.Shrine.Button.TextButton"/>
 
             <TextView
                 android:id="@+id/txtNameRoutineInformation"
@@ -53,7 +57,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="12dp"
                 android:text="Descripcion:"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textAppearance="@style/Widget.Shrine.Button.TextButton"/>
 
             <TextView
                 android:id="@+id/txtDescriptionRoutineInformation"
