@@ -2,11 +2,13 @@ package com.example.myapplication.ui.Profile;
 
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavArgs;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
@@ -14,11 +16,13 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
+import com.bumptech.glide.Glide;
 import com.example.apollographqlandroid.ProfileUserQuery;
 import com.example.myapplication.Model.Models.ProfileModel;
 import com.example.myapplication.Model.Repositories.ProfileRepository;
@@ -26,11 +30,18 @@ import com.example.myapplication.R;
 import com.example.myapplication.ui.AuthGlobalState;
 import com.example.myapplication.ui.GlobalState;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import org.jetbrains.annotations.NotNull;
 
 public class UserProfileFragment extends Fragment {
 
+    Context context;
+    String ruta;
+    FirebaseStorage storage;
+    StorageReference storageRef;
+    StorageReference spaceRef;
     AuthGlobalState authGlobalState;
 
     public static UserProfileFragment newInstance() {
@@ -41,7 +52,11 @@ public class UserProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_user_profile, container, false);
+        context = getContext();
         authGlobalState= ViewModelProviders.of(getActivity()).get(AuthGlobalState.class);
+        storage = FirebaseStorage.getInstance();
+        storageRef = storage.getReference();
+        ruta = "gs://bodysoft-test.appspot.com";
         return view;
     }
 
@@ -53,6 +68,7 @@ public class UserProfileFragment extends Fragment {
         TextView telephone = view.findViewById(R.id.telephoneUserProfile);
         TextView city = view.findViewById(R.id.cityUser);
         TextView age = view.findViewById(R.id.ageUserProfile);
+        ImageView photo = view.findViewById(R.id.userPhoto);
 
 
         ProfileRepository.getProfileUser(new ApolloCall.Callback<ProfileUserQuery.Data>() {
@@ -65,6 +81,16 @@ public class UserProfileFragment extends Fragment {
                             age.setText(response.data().profileUser().age().toString());
                             telephone.setText(response.data().profileUser().telephone());
                             city.setText(response.data().profileUser().city());
+
+
+                            String ph = response.data().profileUser().photo();
+                            if ("none".equals(ph)){
+                                photo.setImageResource(R.drawable.user_dos);
+                            }else {
+                                Glide.with(context)
+                                        .load(ph)
+                                        .into(photo);
+                            }
                         }
                     }
                 });
