@@ -99,7 +99,7 @@ public class CreateUserFragment extends Fragment {
                     public void onFailure(@NotNull ApolloException e) {
                         System.out.println(e);
                     }
-                },user_name.getText().toString(),Integer.parseInt(age.getText().toString()),"aquifoto",telephone.getText().toString(),city.getText().toString(),authGlobalState.getToken().getValue());
+                },user_name.getText().toString(),Integer.parseInt(age.getText().toString()),"none",telephone.getText().toString(),city.getText().toString(),authGlobalState.getToken().getValue());
 
 
 

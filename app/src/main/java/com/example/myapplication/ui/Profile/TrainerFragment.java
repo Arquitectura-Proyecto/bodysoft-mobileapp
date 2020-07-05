@@ -2,6 +2,7 @@ package com.example.myapplication.ui.Profile;
 
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,11 +15,13 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
+import com.bumptech.glide.Glide;
 import com.example.apollographqlandroid.ProfileUserQuery;
 import com.example.apollographqlandroid.ProfileTrainerQuery;
 import com.example.myapplication.Model.Repositories.ProfileRepository;
@@ -36,6 +39,8 @@ public class TrainerFragment extends Fragment {
 
     GlobalState globalState;
     AuthGlobalState authGlobalState;
+    String ruta;
+    Context context;
 
     public static TrainerFragment newInstance() {
         return new TrainerFragment();
@@ -45,6 +50,7 @@ public class TrainerFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_trainer, container, false);
+        context = getContext();
         this.authGlobalState= ViewModelProviders.of(getActivity()).get(AuthGlobalState.class);
         return view;
     }
@@ -64,14 +70,18 @@ public class TrainerFragment extends Fragment {
         TextView description = view.findViewById(R.id.descriptionTrainerProfile);
         TextView experience = view.findViewById(R.id.experienceTrainerProfile);
         TextView resources = view.findViewById(R.id.resourcesTrainerProfile);
+        ImageView photo = view.findViewById(R.id.trainerPhoto);
 
         MaterialButton buttonEditTrainer = view.findViewById(R.id.buttonEditTrainer);
         MaterialButton buttonSpecialitiesTrainer = view.findViewById(R.id.buttonSpecialitiesTrainer);
         MaterialButton buttonDegreesTrainer = view.findViewById(R.id.buttonDegreesTrainer);
         MaterialButton buttonPasswordTrainer = view.findViewById(R.id.buttonPasswordTrainer);
+
+
+
         final NavController navController= Navigation.findNavController(view);
 
-        System.out.println("global: " + authGlobalState.getToken().getValue());
+
 
         ProfileTrainerRepository.getProfileTrainer(new ApolloCall.Callback<ProfileTrainerQuery.Data>() {
             @Override
@@ -87,6 +97,18 @@ public class TrainerFragment extends Fragment {
                             description.setText(response.data().profileTrainer().description());
                             experience.setText(response.data().profileTrainer().work_experience());
                             resources.setText(response.data().profileTrainer().resources());
+
+
+                            String ph = response.data().profileTrainer().photo();
+                            if ("none".equals(ph)){
+                                photo.setImageResource(R.drawable.trainer_dos);
+                            }else {
+                                Glide.with(context)
+                                        .load(ph)
+                                        .into(photo);
+                            }
+
+
                             int div = response.data().profileTrainer().num_ratings();
                             if (div != 0) {
                                 float calc = (float) response.data().profileTrainer().sum_ratings() / div;

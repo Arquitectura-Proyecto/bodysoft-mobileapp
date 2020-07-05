@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.Profile;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,11 +14,13 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
+import com.bumptech.glide.Glide;
 import com.example.apollographqlandroid.ProfileUserQuery;
 import com.example.apollographqlandroid.EditProfileUserMutation;
 import com.example.myapplication.Model.Repositories.ProfileRepository;
@@ -38,6 +41,9 @@ import org.jetbrains.annotations.NotNull;
 public class UserEditFragment extends Fragment {
 
     AuthGlobalState authGlobalState;
+    Context context;
+    String ph;
+
 
     public static UserEditFragment newInstance() {
         return new UserEditFragment();
@@ -46,7 +52,9 @@ public class UserEditFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
         View view=inflater.inflate(R.layout.fragment_user_edit, container, false);
+        context = getContext();
         authGlobalState = ViewModelProviders.of(getActivity()).get(AuthGlobalState.class);
         return view;
     }
@@ -66,10 +74,14 @@ public class UserEditFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+
+
         TextView user_name = view.findViewById(R.id.nameUserEditProfile);
         TextInputEditText telephone = view.findViewById(R.id.editTelephone);
         TextInputEditText city = view.findViewById(R.id.editCity);
         TextInputEditText age = view.findViewById(R.id.editAge);
+        ImageView photo = view.findViewById(R.id.userEditPhoto);
 
         MaterialButton buttonSaveEditUser = view.findViewById(R.id.buttonSaveEditUser);
         final NavController navController= Navigation.findNavController(view);
@@ -86,6 +98,14 @@ public class UserEditFragment extends Fragment {
                             age.setText(response.data().profileUser().age().toString());
                             telephone.setText(response.data().profileUser().telephone());
                             city.setText(response.data().profileUser().city());
+                            ph = response.data().profileUser().photo();
+                            if ("none".equals(ph)){
+                                photo.setImageResource(R.drawable.user_dos);
+                            }else {
+                                Glide.with(context)
+                                        .load(ph)
+                                        .into(photo);
+                            }
                         }
                     }
                 });
@@ -121,7 +141,7 @@ public class UserEditFragment extends Fragment {
                     public void onFailure(@NotNull ApolloException e) {
                         System.out.println(e);
                     }
-                },user_name.getText().toString(),Integer.parseInt(age.getText().toString()),"aquifoto",telephone.getText().toString(),city.getText().toString(),authGlobalState.getToken().getValue());
+                },user_name.getText().toString(),Integer.parseInt(age.getText().toString()), ph,telephone.getText().toString(),city.getText().toString(),authGlobalState.getToken().getValue());
 
 
 

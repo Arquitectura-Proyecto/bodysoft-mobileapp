@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "762940100621",
+    "firebase_url": "https://body-soft.firebaseio.com",
+    "project_id": "body-soft",
+    "storage_bucket": "body-soft.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762940100621:android:415d4f02020f4c092b8544",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "762940100621-04h0hdil8f4ffr4h002mkgjmgc7gvehn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBptxEP1Fgc0_a8JbpPeXtNSB4MZfGfP7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "762940100621-04h0hdil8f4ffr4h002mkgjmgc7gvehn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
